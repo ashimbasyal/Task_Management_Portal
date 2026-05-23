@@ -1,0 +1,16 @@
+# Visual Studio
+.vs/
+
+# .NET
+bin/
+obj/
+
+# Angular
+node_modules/
+dist/
+
+# Logs
+*.log
+
+# Secrets (use appsettings.Development.json instead)
+appsettings.Development.json
