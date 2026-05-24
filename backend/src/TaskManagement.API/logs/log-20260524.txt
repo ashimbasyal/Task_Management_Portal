@@ -78,3 +78,121 @@ System.UnauthorizedAccessException: Invalid or expired refresh token.
    at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
    at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
    at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-24 18:42:27.201 +05:45 [ERR] Failed executing DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Departments" AS d)
+2026-05-24 18:42:27.254 +05:45 [ERR] An exception occurred while iterating over the results of a query for context type 'TaskManagement.Infrastructure.Persistence.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "Departments" does not exist
+
+POSITION: 41
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "Departments" does not exist
+    Position: 41
+    File: parse_relation.c
+    Line: 1469
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "Departments" does not exist
+
+POSITION: 41
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "Departments" does not exist
+    Position: 41
+    File: parse_relation.c
+    Line: 1469
+    Routine: parserOpenTable
+2026-05-24 18:42:27.323 +05:45 [FTL] Application terminated unexpectedly
+Npgsql.PostgresException (0x80004005): 42P01: relation "Departments" does not exist
+
+POSITION: 41
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at TaskManagement.Infrastructure.Persistence.DbSeeder.SeedAsync(UserManager`1 userManager, RoleManager`1 roleManager, AppDbContext db) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Infrastructure\Persistence\DbSeeder.cs:line 21
+   at Program.<Main>$(String[] args) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Program.cs:line 51
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "Departments" does not exist
+    Position: 41
+    File: parse_relation.c
+    Line: 1469
+    Routine: parserOpenTable
+2026-05-24 18:45:23.935 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 787.9554 ms
+2026-05-24 18:45:36.458 +05:45 [INF] HTTP GET /api/Users responded 302 in 6.2046 ms
+2026-05-24 18:45:36.462 +05:45 [INF] HTTP GET /Account/Login responded 404 in 0.5850 ms
+2026-05-24 18:46:19.040 +05:45 [INF] HTTP GET /api/Departments responded 302 in 6.2122 ms
+2026-05-24 18:46:19.043 +05:45 [INF] HTTP GET /Account/Login responded 404 in 0.0515 ms
+2026-05-24 18:50:50.699 +05:45 [INF] HTTP GET /api/Departments responded 302 in 12.3909 ms
+2026-05-24 18:50:50.725 +05:45 [INF] HTTP GET /Account/Login responded 404 in 1.3815 ms
+2026-05-24 19:00:18.215 +05:45 [INF] HTTP POST /api/Auth/register responded 200 in 225.3116 ms
+2026-05-24 19:01:01.809 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 64.2019 ms
+2026-05-24 19:01:07.539 +05:45 [INF] HTTP GET /api/Departments responded 302 in 5.5889 ms
+2026-05-24 19:01:07.542 +05:45 [INF] HTTP GET /Account/Login responded 404 in 0.0657 ms
+2026-05-24 19:01:17.948 +05:45 [INF] HTTP GET /api/Departments responded 302 in 1.0307 ms
+2026-05-24 19:01:17.951 +05:45 [INF] HTTP GET /Account/Login responded 404 in 0.0326 ms
+2026-05-24 19:02:14.258 +05:45 [INF] HTTP GET /api/Users responded 302 in 2.3481 ms
+2026-05-24 19:02:14.261 +05:45 [INF] HTTP GET /Account/Login responded 404 in 0.0266 ms
+2026-05-24 19:05:27.344 +05:45 [INF] HTTP GET /api/Departments responded 401 in 749.0864 ms
+2026-05-24 19:06:02.621 +05:45 [INF] HTTP GET /api/Departments responded 401 in 2.7063 ms
+2026-05-24 19:14:23.177 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 261.6255 ms
+2026-05-24 19:14:43.423 +05:45 [INF] HTTP GET /api/Departments responded 401 in 12.6028 ms
+2026-05-24 19:14:45.445 +05:45 [INF] HTTP GET /api/Departments responded 401 in 1.9104 ms
+2026-05-24 19:15:22.593 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 58.0890 ms
+2026-05-24 19:15:42.825 +05:45 [INF] HTTP GET /api/Departments responded 200 in 44.0326 ms
+2026-05-24 19:15:55.048 +05:45 [INF] HTTP GET /api/Departments responded 200 in 6.1123 ms
+2026-05-24 19:15:56.187 +05:45 [INF] HTTP GET /api/Departments responded 200 in 5.9225 ms
+2026-05-24 19:16:08.350 +05:45 [INF] HTTP GET /api/Users responded 403 in 2.0990 ms
+2026-05-24 19:16:11.419 +05:45 [INF] HTTP GET /api/Users responded 403 in 0.4127 ms
+2026-05-24 19:16:26.932 +05:45 [INF] HTTP GET /api/Users responded 403 in 0.3314 ms
+2026-05-24 19:16:46.991 +05:45 [INF] HTTP GET /api/Users responded 403 in 19.8472 ms
+2026-05-24 19:18:37.386 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 215.7322 ms
+2026-05-24 19:18:49.864 +05:45 [INF] HTTP GET /api/Departments responded 200 in 53.0087 ms
+2026-05-24 19:18:54.907 +05:45 [INF] HTTP GET /api/Users responded 403 in 4.2563 ms
+2026-05-24 19:20:43.695 +05:45 [INF] HTTP POST /api/Users responded 403 in 4.7261 ms
+2026-05-24 19:20:51.108 +05:45 [INF] HTTP POST /api/Users responded 403 in 0.5766 ms
+2026-05-24 19:22:16.267 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 222.7435 ms
+2026-05-24 19:22:28.672 +05:45 [INF] HTTP GET /api/Users responded 403 in 24.2076 ms
+2026-05-24 19:27:30.107 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 161.3311 ms
+2026-05-24 19:27:40.720 +05:45 [INF] HTTP GET /api/Users responded 200 in 72.7241 ms
+2026-05-24 19:28:02.029 +05:45 [INF] HTTP GET /api/Departments responded 200 in 15.8351 ms
+2026-05-24 19:28:08.191 +05:45 [INF] HTTP GET /api/Users responded 200 in 5.5406 ms

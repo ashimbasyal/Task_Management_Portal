@@ -11,7 +11,7 @@ public class AppUser : IdentityUser
     public string FullName { get; set; } = string.Empty;
     public UserRole Role { get; set; }
 
-    // 
+    
     public int? DepartmentId { get; set; }
     public Department? Department { get; set; }
 
