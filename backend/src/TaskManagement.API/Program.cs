@@ -46,7 +46,9 @@ try
     using (var scope = app.Services.CreateScope())
     {
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-        await DbSeeder.SeedAdminAsync(userManager);
+        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var db = scope.ServiceProvider.GetRequiredService<TaskManagement.Infrastructure.Persistence.AppDbContext>();
+        await DbSeeder.SeedAsync(userManager, roleManager, db);
     }
 
     await app.RunAsync();
