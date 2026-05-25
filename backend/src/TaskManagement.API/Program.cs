@@ -24,6 +24,13 @@ try
         .AddInfrastructure(builder.Configuration)
         .AddJwtAuthentication(builder.Configuration);
 
+    builder.Services.AddCors(opt =>
+        opt.AddPolicy("AllowFrontend", policy =>
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials()));
+
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen(opt =>
@@ -62,6 +69,7 @@ try
         app.UseSwaggerUI();
     }
 
+    app.UseCors("AllowFrontend");
     app.UseSerilogRequestLogging();
     app.UseAuthentication();
     app.UseAuthorization();
