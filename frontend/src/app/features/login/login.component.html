@@ -1,0 +1,77 @@
+<div class="wrapper">
+  <div class="container">
+    <p-toast position="bottom-right" key="br"></p-toast>
+    <div class="form-container">
+      <div class="img-wrapper">
+        <h3 style="font-weight:700;color:#495057;margin:0;letter-spacing:1px;">TMP</h3>
+      </div>
+      <div class="heading-text">
+        <h4 class="font-bold">Welcome Back!</h4>
+        <h5 class="mt-2">Please Login to Continue</h5>
+      </div>
+      <div class="form-wrap">
+        <form [formGroup]="loginForm" (keydown.enter)="onSubmit()">
+          <div class="form-group">
+            <label for="userName">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Your Username"
+              formControlName="userName"
+              name="userName"
+              [ngClass]="{
+                  'ng-invalid ng-dirty': submitted() && g['userName']
+              }"
+            />
+            <small
+              class="ng-dirty ng-invalid"
+              *ngIf="submitted() && g['userName'].errors?.['required']"
+              style="color: #e11d48"
+            >
+              ⚠️ Enter Username
+            </small>
+            <small
+              class="ng-dirty ng-invalid"
+              *ngIf="submitted() && g['userName'].errors?.['email']"
+              style="color: #e11d48"
+            >
+              ⚠️ Enter valid email
+            </small>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Your Password"
+              formControlName="password"
+              name="password"
+              [ngClass]="{
+                  'ng-invalid ng-dirty': submitted() && g['password']
+              }"
+            />
+            <small
+              class="ng-dirty ng-invalid"
+              *ngIf="submitted() && g['password'].errors"
+              style="color: #e11d48"
+            >
+              ⚠️ Enter Password
+            </small>
+          </div>
+          <div class="btn-wrapper mt-6">
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Login"
+              class="p-button w-full button-primary-imark"
+              [loading]="loading()"
+              [disabled]="loading()"
+              (click)="onSubmit()"
+            ></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -196,3 +196,9 @@ POSITION: 41
 2026-05-24 19:27:40.720 +05:45 [INF] HTTP GET /api/Users responded 200 in 72.7241 ms
 2026-05-24 19:28:02.029 +05:45 [INF] HTTP GET /api/Departments responded 200 in 15.8351 ms
 2026-05-24 19:28:08.191 +05:45 [INF] HTTP GET /api/Users responded 200 in 5.5406 ms
+2026-05-24 22:55:15.982 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 57.8580 ms
+2026-05-24 22:55:21.613 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 0.8170 ms
+2026-05-24 22:55:27.129 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 1.2004 ms
+2026-05-24 23:12:14.830 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 22.1798 ms
+2026-05-24 23:12:15.546 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 0.1151 ms
+2026-05-24 23:17:26.169 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 364.4250 ms

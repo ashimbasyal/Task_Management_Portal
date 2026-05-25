@@ -1,0 +1,714 @@
+2026-05-25 20:24:47.751 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 971.6425 ms
+2026-05-25 20:25:05.047 +05:45 [INF] HTTP GET /api/departments responded 200 in 60.1815 ms
+2026-05-25 20:25:05.071 +05:45 [INF] HTTP GET /api/users responded 200 in 83.6378 ms
+2026-05-25 20:26:36.832 +05:45 [INF] HTTP GET /api/users responded 200 in 13.5315 ms
+2026-05-25 20:26:36.856 +05:45 [INF] HTTP GET /api/departments responded 200 in 38.0757 ms
+2026-05-25 20:26:39.516 +05:45 [INF] HTTP GET /api/users responded 200 in 6.3105 ms
+2026-05-25 20:26:39.516 +05:45 [INF] HTTP GET /api/departments responded 200 in 6.3144 ms
+2026-05-25 20:27:04.237 +05:45 [INF] HTTP GET /api/users responded 200 in 9.3994 ms
+2026-05-25 20:27:04.237 +05:45 [INF] HTTP GET /api/departments responded 200 in 8.4527 ms
+2026-05-25 20:28:01.602 +05:45 [INF] HTTP GET /api/users responded 200 in 37.5795 ms
+2026-05-25 20:28:01.602 +05:45 [INF] HTTP GET /api/departments responded 200 in 13.6871 ms
+2026-05-25 20:28:05.819 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 51.7951 ms
+2026-05-25 20:28:06.788 +05:45 [INF] HTTP GET /api/departments responded 200 in 6.1492 ms
+2026-05-25 20:28:06.788 +05:45 [INF] HTTP GET /api/users responded 200 in 6.3972 ms
+2026-05-25 20:28:40.617 +05:45 [INF] HTTP GET /api/users responded 200 in 8.6313 ms
+2026-05-25 20:28:40.618 +05:45 [INF] HTTP GET /api/departments responded 200 in 9.0621 ms
+2026-05-25 20:28:44.330 +05:45 [INF] HTTP GET /api/departments responded 200 in 5.2397 ms
+2026-05-25 20:28:44.330 +05:45 [INF] HTTP GET /api/users responded 200 in 5.2396 ms
+2026-05-25 20:29:09.979 +05:45 [INF] HTTP GET /api/departments responded 200 in 10.3144 ms
+2026-05-25 20:29:09.979 +05:45 [INF] HTTP GET /api/users responded 200 in 10.3094 ms
+2026-05-25 21:05:12.694 +05:45 [INF] HTTP GET /api/departments responded 401 in 9.5171 ms
+2026-05-25 21:05:12.694 +05:45 [INF] HTTP GET /api/users responded 401 in 7.9109 ms
+2026-05-25 21:05:20.135 +05:45 [INF] HTTP GET /api/departments responded 401 in 0.8584 ms
+2026-05-25 21:05:20.135 +05:45 [INF] HTTP GET /api/users responded 401 in 0.8383 ms
+2026-05-25 21:05:26.976 +05:45 [INF] HTTP GET /api/users responded 401 in 1.0767 ms
+2026-05-25 21:05:26.981 +05:45 [INF] HTTP GET /api/departments responded 401 in 0.4207 ms
+2026-05-25 21:05:35.867 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 82.8240 ms
+2026-05-25 21:05:38.841 +05:45 [INF] HTTP GET /api/departments responded 200 in 6.4616 ms
+2026-05-25 21:05:38.968 +05:45 [INF] HTTP GET /api/users responded 200 in 134.0334 ms
+2026-05-25 21:10:33.204 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 59.7119 ms
+2026-05-25 21:11:22.782 +05:45 [INF] HTTP GET /api/departments responded 200 in 39.6031 ms
+2026-05-25 21:11:22.784 +05:45 [INF] HTTP GET /api/users responded 200 in 44.3890 ms
+2026-05-25 21:13:22.623 +05:45 [INF] HTTP GET /api/users responded 200 in 8.8725 ms
+2026-05-25 21:13:22.623 +05:45 [INF] HTTP GET /api/departments responded 200 in 8.8737 ms
+2026-05-25 21:13:30.377 +05:45 [INF] HTTP GET /api/users responded 200 in 5.3033 ms
+2026-05-25 21:13:30.377 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.8275 ms
+2026-05-25 21:13:48.869 +05:45 [INF] HTTP GET /api/users responded 200 in 6.2289 ms
+2026-05-25 21:13:48.869 +05:45 [INF] HTTP GET /api/departments responded 200 in 5.8825 ms
+2026-05-25 21:14:06.144 +05:45 [INF] HTTP GET /api/users responded 200 in 4.5804 ms
+2026-05-25 21:14:06.144 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.2122 ms
+2026-05-25 21:14:25.229 +05:45 [INF] HTTP POST /api/users responded 200 in 136.1477 ms
+2026-05-25 21:14:25.235 +05:45 [INF] HTTP GET /api/users responded 200 in 2.8946 ms
+2026-05-25 21:14:43.418 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 47.0556 ms
+2026-05-25 21:15:00.432 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 56.2453 ms
+2026-05-25 21:15:04.857 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.2377 ms
+2026-05-25 21:15:04.857 +05:45 [INF] HTTP GET /api/users responded 200 in 4.5646 ms
+2026-05-25 21:15:06.899 +05:45 [INF] HTTP GET /api/users responded 200 in 4.9136 ms
+2026-05-25 21:15:06.899 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.7035 ms
+2026-05-25 21:15:08.308 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.5794 ms
+2026-05-25 21:15:08.308 +05:45 [INF] HTTP GET /api/users responded 200 in 4.8647 ms
+2026-05-25 21:15:15.042 +05:45 [INF] HTTP DELETE /api/users/807d7132-396c-4299-923e-2134e850def9 responded 204 in 26.6861 ms
+2026-05-25 21:15:15.049 +05:45 [INF] HTTP GET /api/users responded 200 in 2.6417 ms
+2026-05-25 21:15:24.121 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 157.1972 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 21:15:24.261 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 21:15:25.951 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 32.1258 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 21:15:25.975 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 21:15:32.973 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 57.9940 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 21:15:33.005 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 21:16:09.402 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 57.1901 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 21:16:09.436 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 21:16:21.752 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 30.2070 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 21:16:21.778 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 21:16:42.320 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 94.7017 ms
+2026-05-25 21:16:44.235 +05:45 [INF] HTTP GET /api/users responded 200 in 5.7829 ms
+2026-05-25 21:16:44.264 +05:45 [INF] HTTP GET /api/departments responded 200 in 33.6690 ms
+2026-05-25 21:16:47.379 +05:45 [INF] HTTP DELETE /api/users/dd879095-ad40-4df8-a4eb-3595225023b7 responded 204 in 13.5316 ms
+2026-05-25 21:16:47.386 +05:45 [INF] HTTP GET /api/users responded 200 in 2.6261 ms
+2026-05-25 21:16:50.750 +05:45 [INF] HTTP GET /api/users responded 200 in 4.5544 ms
+2026-05-25 21:16:50.751 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.5671 ms
+2026-05-25 21:17:52.201 +05:45 [INF] HTTP GET /api/users responded 200 in 10.6512 ms
+2026-05-25 21:17:52.205 +05:45 [INF] HTTP GET /api/departments responded 200 in 15.1411 ms
+2026-05-25 21:17:54.982 +05:45 [INF] HTTP GET /api/users responded 200 in 4.7913 ms
+2026-05-25 21:17:54.984 +05:45 [INF] HTTP GET /api/departments responded 200 in 6.1408 ms
+2026-05-25 21:17:57.129 +05:45 [INF] HTTP GET /api/users responded 200 in 4.6420 ms
+2026-05-25 21:17:57.129 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.4387 ms
+2026-05-25 21:17:59.317 +05:45 [INF] HTTP GET /api/users responded 200 in 6.6981 ms
+2026-05-25 21:17:59.317 +05:45 [INF] HTTP GET /api/departments responded 200 in 5.8671 ms
+2026-05-25 21:18:04.222 +05:45 [INF] HTTP GET /api/users responded 200 in 5.2921 ms
+2026-05-25 21:18:04.223 +05:45 [INF] HTTP GET /api/departments responded 200 in 6.7968 ms
+2026-05-25 21:18:27.288 +05:45 [INF] HTTP GET /api/users responded 200 in 5.7523 ms
+2026-05-25 21:18:27.293 +05:45 [INF] HTTP GET /api/departments responded 200 in 8.5714 ms
+2026-05-25 21:18:28.164 +05:45 [INF] HTTP GET /api/users responded 200 in 3.9157 ms
+2026-05-25 21:18:28.166 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.5809 ms
+2026-05-25 21:19:13.476 +05:45 [INF] HTTP GET /api/departments responded 200 in 12.9578 ms
+2026-05-25 21:19:13.476 +05:45 [INF] HTTP GET /api/users responded 200 in 13.3194 ms
+2026-05-25 21:45:51.447 +05:45 [INF] HTTP GET /api/users responded 401 in 3.3960 ms
+2026-05-25 21:45:51.447 +05:45 [INF] HTTP GET /api/departments responded 401 in 3.0480 ms
+2026-05-25 21:46:00.959 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 72.2713 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 21:46:01.026 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 21:57:23.734 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 77.6664 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 21:57:23.763 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 22:10:34.004 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 69.8327 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 22:10:34.030 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 22:10:39.737 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 31.4112 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 22:10:39.759 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 22:10:41.326 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 28.5119 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 22:10:41.347 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 22:17:17.809 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 103.2540 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 22:17:17.835 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken)
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 22:49:41.233 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 164.4554 ms
+2026-05-25 22:51:52.952 +05:45 [INF] HTTP GET /api/departments responded 200 in 59.6115 ms
+2026-05-25 22:51:52.984 +05:45 [INF] HTTP GET /api/users responded 200 in 90.8994 ms
+2026-05-25 22:53:29.820 +05:45 [INF] HTTP GET /api/departments responded 200 in 47.1868 ms
+2026-05-25 22:53:29.822 +05:45 [INF] HTTP GET /api/users responded 200 in 47.6467 ms
+2026-05-25 22:53:40.993 +05:45 [INF] HTTP GET /api/users responded 200 in 7.8697 ms
+2026-05-25 22:53:40.993 +05:45 [INF] HTTP GET /api/departments responded 200 in 7.4063 ms
+2026-05-25 22:56:27.774 +05:45 [INF] HTTP GET /api/users responded 200 in 19.8785 ms
+2026-05-25 22:56:27.775 +05:45 [INF] HTTP GET /api/departments responded 200 in 19.9369 ms
+2026-05-25 23:00:24.222 +05:45 [INF] HTTP GET /api/departments responded 200 in 61.1127 ms
+2026-05-25 23:00:24.313 +05:45 [INF] HTTP GET /api/users responded 200 in 152.1245 ms
+2026-05-25 23:06:15.968 +05:45 [INF] HTTP GET /api/departments responded 200 in 36.6216 ms
+2026-05-25 23:06:15.969 +05:45 [INF] HTTP GET /api/users responded 200 in 37.8974 ms
+2026-05-25 23:06:32.876 +05:45 [INF] HTTP GET /api/users responded 200 in 8.8828 ms
+2026-05-25 23:06:32.877 +05:45 [INF] HTTP GET /api/departments responded 200 in 10.4217 ms
+2026-05-25 23:06:48.953 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.5028 ms
+2026-05-25 23:06:48.954 +05:45 [INF] HTTP GET /api/users responded 200 in 5.0419 ms
+2026-05-25 23:07:31.024 +05:45 [INF] HTTP GET /api/departments responded 200 in 10.8303 ms
+2026-05-25 23:07:31.024 +05:45 [INF] HTTP GET /api/users responded 200 in 12.3398 ms
+2026-05-25 23:07:36.078 +05:45 [INF] HTTP GET /api/users responded 200 in 8.1761 ms
+2026-05-25 23:07:36.078 +05:45 [INF] HTTP GET /api/departments responded 200 in 8.4735 ms
+2026-05-25 23:07:37.225 +05:45 [INF] HTTP GET /api/users responded 200 in 6.0141 ms
+2026-05-25 23:07:37.225 +05:45 [INF] HTTP GET /api/departments responded 200 in 5.7566 ms
+2026-05-25 23:07:38.273 +05:45 [INF] HTTP GET /api/users responded 200 in 5.4144 ms
+2026-05-25 23:07:38.273 +05:45 [INF] HTTP GET /api/departments responded 200 in 5.3113 ms
+2026-05-25 23:08:58.535 +05:45 [INF] HTTP GET /api/departments responded 200 in 17.8261 ms
+2026-05-25 23:08:58.535 +05:45 [INF] HTTP GET /api/users responded 200 in 17.8266 ms
+2026-05-25 23:09:07.068 +05:45 [INF] HTTP GET /api/departments responded 200 in 5.0732 ms
+2026-05-25 23:09:07.068 +05:45 [INF] HTTP GET /api/users responded 200 in 5.3862 ms
+2026-05-25 23:09:26.276 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.8776 ms
+2026-05-25 23:09:26.276 +05:45 [INF] HTTP GET /api/users responded 200 in 5.8521 ms
+2026-05-25 23:31:44.190 +05:45 [INF] HTTP GET /api/users responded 401 in 8.3877 ms
+2026-05-25 23:31:44.190 +05:45 [INF] HTTP GET /api/departments responded 401 in 9.5572 ms
+2026-05-25 23:31:46.247 +05:45 [INF] HTTP GET /api/users responded 401 in 1.8112 ms
+2026-05-25 23:31:46.247 +05:45 [INF] HTTP GET /api/departments responded 401 in 1.8030 ms
+2026-05-25 23:35:11.105 +05:45 [INF] HTTP GET /api/users responded 401 in 2.1831 ms
+2026-05-25 23:35:11.105 +05:45 [INF] HTTP GET /api/departments responded 401 in 2.2087 ms
+2026-05-25 23:35:23.029 +05:45 [INF] HTTP GET /api/departments responded 401 in 0.3583 ms
+2026-05-25 23:35:23.029 +05:45 [INF] HTTP GET /api/users responded 401 in 0.7127 ms
+2026-05-25 23:38:12.459 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 159.0392 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 19
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 23:38:12.522 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 19
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 23:38:13.912 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 82.7350 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 19
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 23:38:13.941 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 19
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 23:38:14.505 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 72.3077 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 19
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 23:38:14.533 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 19
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 23:38:15.148 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 75.0694 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 19
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 23:38:15.174 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 19
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 23:38:17.925 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 74.8066 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 19
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-25 23:38:17.949 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 19
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in D:\taskmanagementsystem\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-25 23:38:20.909 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 54.2122 ms
+2026-05-25 23:48:23.515 +05:45 [INF] HTTP GET /api/departments responded 200 in 52.7272 ms
+2026-05-25 23:48:23.517 +05:45 [INF] HTTP GET /api/users responded 200 in 54.4636 ms
+2026-05-25 23:53:27.282 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 90.0931 ms
+2026-05-25 23:53:30.897 +05:45 [INF] HTTP GET /api/departments responded 200 in 30.4086 ms
+2026-05-25 23:53:30.929 +05:45 [INF] HTTP GET /api/users responded 200 in 63.6686 ms
