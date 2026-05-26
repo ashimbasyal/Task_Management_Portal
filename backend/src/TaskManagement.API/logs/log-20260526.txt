@@ -1,0 +1,9 @@
+2026-05-26 14:29:57.578 +05:45 [INF] HTTP POST /api/AuditLog responded 200 in 822.6357 ms
+2026-05-26 14:30:08.115 +05:45 [INF] HTTP GET /api/AuditLog responded 200 in 119.4586 ms
+2026-05-26 14:30:35.897 +05:45 [INF] HTTP GET /api/AuditLog responded 401 in 29.6437 ms
+2026-05-26 14:32:16.457 +05:45 [INF] HTTP GET /api/AuditLog responded 401 in 6.3763 ms
+2026-05-26 14:33:04.620 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 504.5718 ms
+2026-05-26 14:33:18.881 +05:45 [INF] HTTP GET /api/AuditLog responded 200 in 145.9215 ms
+2026-05-26 16:00:57.136 +05:45 [INF] HTTP GET /api/AuditLog responded 401 in 306.9373 ms
+2026-05-26 16:01:27.890 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 1486.4339 ms
+2026-05-26 16:01:43.519 +05:45 [INF] HTTP GET /api/AuditLog responded 200 in 351.9726 ms

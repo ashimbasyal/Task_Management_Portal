@@ -1,0 +1,9 @@
+2026-05-25 14:53:45.852 +05:45 [INF] HTTP GET /api/Departments responded 401 in 169.0197 ms
+2026-05-25 14:54:41.060 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 1165.1623 ms
+2026-05-25 14:55:15.639 +05:45 [INF] HTTP GET /api/Departments responded 401 in 33.9958 ms
+2026-05-25 14:55:42.199 +05:45 [INF] HTTP GET /api/Departments responded 401 in 3.7289 ms
+2026-05-25 14:56:02.734 +05:45 [INF] HTTP GET /api/Departments responded 200 in 173.8693 ms
+2026-05-25 22:42:08.475 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 1773.8205 ms
+2026-05-25 22:42:27.684 +05:45 [INF] HTTP GET /api/Departments responded 401 in 212.4146 ms
+2026-05-25 22:42:48.054 +05:45 [INF] HTTP GET /api/Departments responded 401 in 18.1787 ms
+2026-05-25 22:43:40.279 +05:45 [INF] HTTP GET /api/Departments responded 200 in 276.7714 ms

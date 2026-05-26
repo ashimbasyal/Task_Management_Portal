@@ -18,6 +18,7 @@ public static class DependencyInjection
 
         services.AddValidatorsFromAssembly(typeof(LoginCommandValidator).Assembly);
 
+
         return services;
     }
 }

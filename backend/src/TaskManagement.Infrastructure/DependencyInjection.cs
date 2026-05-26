@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TaskManagement.Application.Auth.Interfaces;
+using TaskManagement.Application.Common.Behaviours;
 using TaskManagement.Application.Departments.Interfaces;
 using TaskManagement.Application.Users.Interfaces;
 using TaskManagement.Domain.Entities;
@@ -18,6 +19,9 @@ public static class DependencyInjection
     {
         services.AddDbContext<AppDbContext>(opt =>
             opt.UseNpgsql(config.GetConnectionString("DefaultConnection")));
+
+        services.AddScoped<IApplicationDbContext>(provider =>
+             provider.GetRequiredService<AppDbContext>());
 
         services.AddIdentityCore<AppUser>(opt =>
         {
