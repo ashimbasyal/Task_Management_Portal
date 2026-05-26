@@ -34,6 +34,10 @@ import { AuthService } from '../../core/auth/auth.service';
             <i class="pi pi-users"></i>
             <span>Admin Panel</span>
           </a>
+          <a *ngIf="role === 'Admin'" routerLink="/admin/audit-log" routerLinkActive="active" class="nav-item">
+            <i class="pi pi-history"></i>
+            <span>Audit Log</span>
+          </a>
         </nav>
         <div class="sidebar-footer">
           <button class="logout-btn" (click)="logout()">
