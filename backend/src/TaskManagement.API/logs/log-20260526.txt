@@ -16,3 +16,14 @@
 2026-05-26 00:32:48.811 +05:45 [INF] HTTP GET /api/users responded 200 in 7.0572 ms
 2026-05-26 00:33:11.539 +05:45 [INF] HTTP GET /api/departments responded 200 in 5.5592 ms
 2026-05-26 00:33:11.539 +05:45 [INF] HTTP GET /api/users responded 200 in 5.6418 ms
+2026-05-26 22:15:39.592 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 773.2422 ms
+2026-05-26 22:15:41.125 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 0.6874 ms
+2026-05-26 22:15:41.673 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 1.3357 ms
+2026-05-26 22:15:41.844 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 0.0956 ms
+2026-05-26 22:15:42.007 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 0.0874 ms
+2026-05-26 22:15:42.164 +05:45 [INF] HTTP OPTIONS /api/auth/login responded 405 in 0.0848 ms
+2026-05-26 22:16:07.381 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 277.0184 ms
+2026-05-26 22:16:13.039 +05:45 [INF] HTTP GET /api/departments responded 200 in 68.5537 ms
+2026-05-26 22:16:13.065 +05:45 [INF] HTTP GET /api/users responded 200 in 94.3199 ms
+2026-05-26 22:16:16.180 +05:45 [INF] HTTP GET /api/users responded 200 in 12.3764 ms
+2026-05-26 22:16:16.207 +05:45 [INF] HTTP GET /api/departments responded 200 in 37.6506 ms
