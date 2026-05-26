@@ -43,6 +43,10 @@ export const routes: Routes = [
             path: 'users',
             loadComponent: () => import('./features/admin/users/user-list.component').then(c => c.UserListComponent),
           },
+          {
+            path: 'audit-log',
+            loadComponent: () => import('./features/admin/audit-log/audit-log.component').then(c => c.AuditLogComponent),
+          },
           { path: '', redirectTo: 'users', pathMatch: 'full' },
         ],
       },

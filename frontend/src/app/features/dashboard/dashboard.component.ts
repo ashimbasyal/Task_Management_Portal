@@ -1,6 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/auth/auth.service';
+import { AuditLogService, AuditLogDto } from '../../core/services/audit-log.service';
+import { relativeTime } from '../../shared/utils/relative-time';
 
 interface StatCard {
   label: string;
@@ -106,13 +108,17 @@ interface Activity {
             <h3>Recent Activity</h3>
           </div>
           <div class="activity-list">
-            <div class="activity-item" *ngFor="let act of activities">
+            @for (act of activities; track act.text + act.time) {
+            <div class="activity-item">
               <div class="activity-dot" [class.added]="act.type==='added'" [class.updated]="act.type==='updated'" [class.completed]="act.type==='completed'"></div>
               <div class="activity-body">
                 <span class="activity-text">{{ act.text }}</span>
                 <span class="activity-time">{{ act.time }}</span>
               </div>
             </div>
+            } @empty {
+            <div class="activity-empty">No recent activity</div>
+            }
           </div>
         </div>
       </div>
@@ -176,10 +182,13 @@ interface Activity {
     .activity-body { display: flex; flex-direction: column; gap: 0.15rem; }
     .activity-text { font-size: 0.85rem; color: #334155; }
     .activity-time { font-size: 0.75rem; color: #94a3b8; }
+    .activity-empty { padding: 1.5rem; text-align: center; color: #94a3b8; font-size: 0.9rem; }
   `]
 })
 export class DashboardComponent implements OnInit {
   private auth = inject(AuthService);
+  private auditLogService = inject(AuditLogService);
+  private cdr = inject(ChangeDetectorRef);
   fullName = this.auth.getFullName();
   role = this.auth.getRole();
 
@@ -200,13 +209,7 @@ export class DashboardComponent implements OnInit {
     { name: 'Quality Assurance', tasks: 10, pct: 45, color: '#8b5cf6' },
     { name: 'Support', tasks: 6, pct: 30, color: '#f59e0b' },
   ];
-  activities: Activity[] = [
-    { text: 'New backlog item "API docs" created', time: '10 min ago', type: 'added' },
-    { text: 'Task "Login page" moved to In Progress', time: '1 hour ago', type: 'updated' },
-    { text: 'Sprint 2 completed', time: '3 hours ago', type: 'completed' },
-    { text: 'New user "Charlie" added', time: '5 hours ago', type: 'added' },
-    { text: 'Task "Email module" updated', time: '1 day ago', type: 'updated' },
-  ];
+  activities: Activity[] = [];
   totalTasks = 38;
 
   ngOnInit() {
@@ -216,5 +219,50 @@ export class DashboardComponent implements OnInit {
       { label: 'Completed', value: 20, icon: 'pi pi-check-circle', color: '#22c55e', pct: 53 },
       { label: 'Active Sprints', value: 2, icon: 'pi pi-flag', color: '#8b5cf6', pct: 100 },
     ];
+    this.loadRecentActivity();
+  }
+
+  private loadRecentActivity() {
+    this.auditLogService.getAll().subscribe({
+      next: data => {
+        try {
+          this.activities = data.slice(0, 10).map(l => this.toActivity(l));
+        } catch (e) {
+          console.error('[Dashboard] map failed', e);
+        }
+        this.cdr.detectChanges();
+      },
+      error: err => console.error('Recent activity load failed:', err),
+    });
+  }
+
+  private toActivity(log: AuditLogDto): Activity {
+    try {
+      const type = log.action === 'CREATE' ? 'added'
+        : log.action === 'DELETE' ? 'completed'
+        : 'updated';
+      const name = this.extractName(log.newValues ?? log.oldValues);
+      const label = name ? `"${name}"` : `#${log.recordId ?? ''}`;
+      return {
+        text: `${log.tableName} ${label} ${log.action.toLowerCase()}d`,
+        time: relativeTime(log.changedAt),
+        type,
+      };
+    } catch (e) {
+      console.error('[Dashboard] toActivity error', e, log);
+      return { text: 'Unknown activity', time: '', type: 'updated' };
+    }
+  }
+
+  private extractName(json: string | null): string | null {
+    if (!json) return null;
+    try {
+      const obj = JSON.parse(json);
+      return obj?.FullName || obj?.fullName || obj?.Name || obj?.name
+        || obj?.Title || obj?.title || obj?.UserName || obj?.userName
+        || obj?.Email || obj?.email || null;
+    } catch {
+      return null;
+    }
   }
 }
