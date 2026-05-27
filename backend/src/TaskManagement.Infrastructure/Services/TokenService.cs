@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using TaskManagement.Application.Auth.Interfaces;
 using TaskManagement.Domain.Entities;
+using TaskManagement.Domain.Enums;
 
 namespace TaskManagement.Infrastructure.Services;
 
@@ -25,6 +26,17 @@ public class TokenService(IConfiguration config, UserManager<AppUser> userManage
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new(ClaimTypes.Role, user.Role.ToString())
         };
+
+        var permissions = RolePermissions.GetPermissions(user.Role);
+        foreach (var permission in permissions)
+        {
+            claims.Add(new Claim("Permission", permission.ToString()));
+        }
+
+        if (user.DepartmentId.HasValue)
+        {
+            claims.Add(new Claim("DepartmentId", user.DepartmentId.Value.ToString()));
+        }
 
         var token = new JwtSecurityToken(
             issuer: config["Jwt:Issuer"],
