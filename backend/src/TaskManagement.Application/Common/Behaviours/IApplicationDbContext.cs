@@ -12,6 +12,7 @@ namespace TaskManagement.Application.Common.Behaviours
     {
         DbSet<AuditLog> AuditLogs { get; }
         DbSet<BacklogTask> BacklogTasks { get; }
+        DbSet<SprintTask> SprintTasks { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

@@ -12,13 +12,8 @@ using TaskManagement.Infrastructure.Persistence;
 namespace TaskManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:backend/src/TaskManagement.Infrastructure/Migrations/20260525090409_initial.Designer.cs
-    [Migration("20260525090409_initial")]
+    [Migration("20260527070940_initial")]
     partial class initial
-========
-    [Migration("20260525170132_init")]
-    partial class init
->>>>>>>> bc5f2f6ffb374a55a49780188cac23ad0165adc4:backend/src/TaskManagement.Infrastructure/Migrations/20260525170132_init.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
