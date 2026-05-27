@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TaskManagement.Application.AuditLogs.Interfaces;
 using TaskManagement.Application.Auth.Interfaces;
 using TaskManagement.Application.Common.Behaviours;
 using TaskManagement.Application.Departments.Interfaces;
@@ -17,8 +18,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        services.AddDbContext<AppDbContext>(opt =>
-            opt.UseNpgsql(config.GetConnectionString("DefaultConnection")));
+        services.AddDbContext<AppDbContext>((sp, opt) =>
+            opt.UseNpgsql(config.GetConnectionString("DefaultConnection"))
+               .AddInterceptors(sp.GetRequiredService<AuditingInterceptor>()));
 
         services.AddScoped<IApplicationDbContext>(provider =>
              provider.GetRequiredService<AppDbContext>());
@@ -32,9 +34,11 @@ public static class DependencyInjection
         .AddEntityFrameworkStores<AppDbContext>()
         .AddDefaultTokenProviders();
 
+        services.AddScoped<AuditingInterceptor>();
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+        services.AddScoped<IAuditLogRepository, AuditLogRepository>();
 
         return services;
     }

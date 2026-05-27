@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 export interface UserDto {
   id: string;
@@ -26,7 +27,7 @@ export interface UpdatePermissionRequest {
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private http = inject(HttpClient);
-  private readonly API = 'http://localhost:5072/api/users';
+  private readonly API = `${environment.apiBaseUrl}/users`;
 
   getAll() {
     return this.http.get<UserDto[]>(this.API);

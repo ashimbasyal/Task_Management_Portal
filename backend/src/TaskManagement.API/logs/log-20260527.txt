@@ -1,227 +1,60 @@
-2026-05-27 13:25:31.222 +05:45 [INF] HTTP GET /api/SprintTasks/1 responded 401 in 206.5193 ms
-2026-05-27 13:26:41.098 +05:45 [INF] HTTP POST /api/Auth/login responded 200 in 608.9810 ms
-2026-05-27 13:26:57.548 +05:45 [INF] HTTP GET /api/SprintTasks/1 responded 404 in 380.9356 ms
-2026-05-27 13:27:27.794 +05:45 [INF] HTTP POST /api/SprintTasks responded 404 in 110.7451 ms
-2026-05-27 13:27:36.174 +05:45 [INF] HTTP POST /api/SprintTasks responded 404 in 10.7090 ms
-2026-05-27 13:28:06.005 +05:45 [ERR] Failed executing DbCommand (51ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?', @p4='?', @p5='?' (DbType = Boolean), @p6='?' (DbType = Int32), @p7='?', @p8='?', @p9='?' (DbType = Int32), @p10='?', @p11='?' (DbType = DateTime), @p12='?'], CommandType='"Text"', CommandTimeout='30']
-INSERT INTO "BacklogTasks" ("CreatedAt", "CreatedBy", "DepartmentId", "Description", "GitLabLink", "IsMovedToSprint", "PriorityId", "Remarks", "RequestedBy", "StatusId", "Title", "UpdatedAt", "UpdatedBy")
-VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12)
-RETURNING "Id";
-2026-05-27 13:28:06.084 +05:45 [ERR] An exception occurred in the database while saving changes for context type 'TaskManagement.Infrastructure.Persistence.AppDbContext'.
-Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
- ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-
-DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
-   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-  Exception data:
-    Severity: ERROR
-    SqlState: 23503
-    MessageText: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-    SchemaName: public
-    TableName: BacklogTasks
-    ConstraintName: FK_BacklogTasks_Departments_DepartmentId
-    File: ri_triggers.c
-    Line: 2619
-    Routine: ri_ReportViolation
-   --- End of inner exception stack trace ---
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
- ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-
-DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
-   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-  Exception data:
-    Severity: ERROR
-    SqlState: 23503
-    MessageText: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-    SchemaName: public
-    TableName: BacklogTasks
-    ConstraintName: FK_BacklogTasks_Departments_DepartmentId
-    File: ri_triggers.c
-    Line: 2619
-    Routine: ri_ReportViolation
-   --- End of inner exception stack trace ---
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-2026-05-27 13:28:06.280 +05:45 [ERR] HTTP POST /api/BacklogTask responded 500 in 479.8908 ms
-2026-05-27 13:28:19.479 +05:45 [ERR] Failed executing DbCommand (29ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?', @p4='?', @p5='?' (DbType = Boolean), @p6='?' (DbType = Int32), @p7='?', @p8='?', @p9='?' (DbType = Int32), @p10='?', @p11='?' (DbType = DateTime), @p12='?'], CommandType='"Text"', CommandTimeout='30']
-INSERT INTO "BacklogTasks" ("CreatedAt", "CreatedBy", "DepartmentId", "Description", "GitLabLink", "IsMovedToSprint", "PriorityId", "Remarks", "RequestedBy", "StatusId", "Title", "UpdatedAt", "UpdatedBy")
-VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12)
-RETURNING "Id";
-2026-05-27 13:28:19.487 +05:45 [ERR] An exception occurred in the database while saving changes for context type 'TaskManagement.Infrastructure.Persistence.AppDbContext'.
-Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
- ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-
-DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
-   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-  Exception data:
-    Severity: ERROR
-    SqlState: 23503
-    MessageText: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-    SchemaName: public
-    TableName: BacklogTasks
-    ConstraintName: FK_BacklogTasks_Departments_DepartmentId
-    File: ri_triggers.c
-    Line: 2619
-    Routine: ri_ReportViolation
-   --- End of inner exception stack trace ---
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
- ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-
-DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
-   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-  Exception data:
-    Severity: ERROR
-    SqlState: 23503
-    MessageText: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-    SchemaName: public
-    TableName: BacklogTasks
-    ConstraintName: FK_BacklogTasks_Departments_DepartmentId
-    File: ri_triggers.c
-    Line: 2619
-    Routine: ri_ReportViolation
-   --- End of inner exception stack trace ---
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-2026-05-27 13:28:19.591 +05:45 [ERR] HTTP POST /api/BacklogTask responded 500 in 146.2136 ms
-2026-05-27 13:29:50.953 +05:45 [ERR] Failed executing DbCommand (58ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?', @p4='?', @p5='?' (DbType = Boolean), @p6='?' (DbType = Int32), @p7='?', @p8='?', @p9='?' (DbType = Int32), @p10='?', @p11='?' (DbType = DateTime), @p12='?'], CommandType='"Text"', CommandTimeout='30']
-INSERT INTO "BacklogTasks" ("CreatedAt", "CreatedBy", "DepartmentId", "Description", "GitLabLink", "IsMovedToSprint", "PriorityId", "Remarks", "RequestedBy", "StatusId", "Title", "UpdatedAt", "UpdatedBy")
-VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12)
-RETURNING "Id";
-2026-05-27 13:29:50.962 +05:45 [ERR] An exception occurred in the database while saving changes for context type 'TaskManagement.Infrastructure.Persistence.AppDbContext'.
-Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
- ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-
-DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
-   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-  Exception data:
-    Severity: ERROR
-    SqlState: 23503
-    MessageText: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-    SchemaName: public
-    TableName: BacklogTasks
-    ConstraintName: FK_BacklogTasks_Departments_DepartmentId
-    File: ri_triggers.c
-    Line: 2619
-    Routine: ri_ReportViolation
-   --- End of inner exception stack trace ---
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
- ---> Npgsql.PostgresException (0x80004005): 23503: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-
-DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
-   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-  Exception data:
-    Severity: ERROR
-    SqlState: 23503
-    MessageText: insert or update on table "BacklogTasks" violates foreign key constraint "FK_BacklogTasks_Departments_DepartmentId"
-    Detail: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
-    SchemaName: public
-    TableName: BacklogTasks
-    ConstraintName: FK_BacklogTasks_Departments_DepartmentId
-    File: ri_triggers.c
-    Line: 2619
-    Routine: ri_ReportViolation
-   --- End of inner exception stack trace ---
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
-   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-2026-05-27 13:29:51.051 +05:45 [ERR] HTTP POST /api/BacklogTask responded 500 in 169.6894 ms
+2026-05-27 00:00:20.633 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 7.7343 ms
+2026-05-27 00:01:51.927 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 6.4153 ms
+2026-05-27 00:01:52.394 +05:45 [INF] HTTP GET /api/users responded 200 in 7.2345 ms
+2026-05-27 00:01:52.430 +05:45 [INF] HTTP GET /api/departments responded 200 in 41.9502 ms
+2026-05-27 00:01:52.680 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.8369 ms
+2026-05-27 00:01:54.835 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 6.0567 ms
+2026-05-27 00:03:03.206 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 12.3339 ms
+2026-05-27 00:03:08.644 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.7034 ms
+2026-05-27 00:03:25.406 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 52.7771 ms
+2026-05-27 00:03:25.422 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.6436 ms
+2026-05-27 00:03:27.406 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.7524 ms
+2026-05-27 00:06:26.862 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 5.7727 ms
+2026-05-27 00:06:28.730 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.3329 ms
+2026-05-27 00:06:36.874 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.2653 ms
+2026-05-27 00:06:43.871 +05:45 [INF] HTTP GET /api/users responded 200 in 3.3815 ms
+2026-05-27 00:06:43.876 +05:45 [INF] HTTP GET /api/departments responded 200 in 7.4502 ms
+2026-05-27 00:06:44.887 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.8751 ms
+2026-05-27 00:06:46.078 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.0379 ms
+2026-05-27 00:06:47.540 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.1592 ms
+2026-05-27 00:41:04.713 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 108.3319 ms
+2026-05-27 00:41:04.740 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.0320 ms
+2026-05-27 00:41:06.393 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.1014 ms
+2026-05-27 00:41:14.524 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.6281 ms
+2026-05-27 00:42:17.835 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 7.9747 ms
+2026-05-27 00:42:19.651 +05:45 [INF] HTTP GET /api/users responded 200 in 4.0474 ms
+2026-05-27 00:42:19.679 +05:45 [INF] HTTP GET /api/departments responded 200 in 31.9355 ms
+2026-05-27 00:42:20.147 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.9707 ms
+2026-05-27 00:42:21.793 +05:45 [INF] HTTP GET /api/departments responded 200 in 4.0650 ms
+2026-05-27 00:42:21.794 +05:45 [INF] HTTP GET /api/users responded 200 in 4.3924 ms
+2026-05-27 00:42:22.589 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.1720 ms
+2026-05-27 00:42:30.618 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.5193 ms
+2026-05-27 00:42:31.976 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.9010 ms
+2026-05-27 00:42:32.482 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.7969 ms
+2026-05-27 00:42:33.048 +05:45 [INF] HTTP GET /api/users responded 200 in 2.9526 ms
+2026-05-27 00:42:33.050 +05:45 [INF] HTTP GET /api/departments responded 200 in 3.6260 ms
+2026-05-27 00:42:33.784 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.0367 ms
+2026-05-27 00:42:36.168 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.8364 ms
+2026-05-27 00:43:08.928 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 9.6610 ms
+2026-05-27 00:43:10.335 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.9345 ms
+2026-05-27 00:43:10.519 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.7856 ms
+2026-05-27 00:43:10.773 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.5579 ms
+2026-05-27 00:43:14.045 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.8632 ms
+2026-05-27 00:43:29.501 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.0382 ms
+2026-05-27 00:43:47.548 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.5668 ms
+2026-05-27 00:43:48.530 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.7338 ms
+2026-05-27 00:43:50.591 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.0246 ms
+2026-05-27 00:43:58.029 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 49.4267 ms
+2026-05-27 00:43:58.042 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.3791 ms
+2026-05-27 00:44:00.727 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 2.7891 ms
+2026-05-27 21:34:30.716 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 1462.6355 ms
+2026-05-27 21:34:31.751 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 75.7763 ms
+2026-05-27 21:35:03.893 +05:45 [INF] HTTP GET /api/departments responded 200 in 43.8985 ms
+2026-05-27 21:35:03.916 +05:45 [INF] HTTP GET /api/users responded 200 in 67.8125 ms
+2026-05-27 21:35:19.279 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 5.4329 ms
+2026-05-27 21:35:21.885 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 6.1321 ms
+2026-05-27 21:35:33.348 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 4.2448 ms
+2026-05-27 21:35:35.429 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 3.9448 ms
+2026-05-27 21:35:41.291 +05:45 [INF] HTTP GET /api/departments responded 200 in 5.3373 ms
+2026-05-27 21:35:41.335 +05:45 [INF] HTTP GET /api/users responded 200 in 49.6409 ms
+2026-05-27 21:35:47.119 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 4.2388 ms
