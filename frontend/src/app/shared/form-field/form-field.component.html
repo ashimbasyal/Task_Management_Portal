@@ -1,0 +1,8 @@
+<div class="field">
+  <label [for]="fieldId">{{ label }}<span *ngIf="required" style="color:#ef4444"> *</span></label>
+  <ng-content />
+  <span class="field-error" *ngIf="control && control.invalid && (control.dirty || control.touched)">
+    <i class="pi pi-exclamation-triangle"></i>
+    {{ errorMessage }}
+  </span>
+</div>
