@@ -2,6 +2,8 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Permission } from './permission.enum';
+import { RolePermissions } from './role-permissions';
 import { environment } from '../../../environments/environment';
 
 export interface AuthResponse {
@@ -14,6 +16,8 @@ interface TokenPayload {
   email: string;
   name: string;
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role': string;
+  Permission?: string | string[];
+  DepartmentId?: string;
   exp: number;
 }
 
@@ -70,6 +74,32 @@ export class AuthService {
     const payload = this.getPayload();
     if (!payload) return '';
     return payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] ?? '';
+  }
+
+  getPermissions(): Permission[] {
+    const payload = this.getPayload();
+    if (!payload) return [];
+
+    const raw = payload.Permission;
+    if (Array.isArray(raw)) return raw as Permission[];
+    if (typeof raw === 'string') return [raw as Permission];
+
+    const roleNum = this.getRoleNumber();
+    return RolePermissions[roleNum] ?? [];
+  }
+
+  getRoleNumber(): number {
+    const roleMap: Record<string, number> = { Admin: 1, Developer: 2, Officer: 3 };
+    return roleMap[this.getRole()] ?? 0;
+  }
+
+  hasPermission(permission: Permission): boolean {
+    return this.getPermissions().includes(permission);
+  }
+
+  getDepartmentId(): number | null {
+    const raw = this.getPayload()?.DepartmentId;
+    return raw ? parseInt(raw, 10) : null;
   }
 
   getFullName(): string {
