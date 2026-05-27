@@ -2,6 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 export interface AuthResponse {
   accessToken: string;
@@ -20,7 +21,7 @@ interface TokenPayload {
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
-  private readonly API = 'http://localhost:5072/api';
+  private readonly API = environment.apiBaseUrl;
   private readonly TOKEN_KEY = 'access_token';
   private readonly REFRESH_KEY = 'refresh_token';
 

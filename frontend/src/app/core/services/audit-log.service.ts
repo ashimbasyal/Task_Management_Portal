@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 export interface AuditLogDto {
   id: number;
@@ -15,7 +16,7 @@ export interface AuditLogDto {
 @Injectable({ providedIn: 'root' })
 export class AuditLogService {
   private http = inject(HttpClient);
-  private readonly API = 'http://localhost:5072/api/auditlogs';
+  private readonly API = `${environment.apiBaseUrl}/auditlogs`;
 
   getAll() {
     return this.http.get<AuditLogDto[]>(this.API + '?_=' + Date.now());
