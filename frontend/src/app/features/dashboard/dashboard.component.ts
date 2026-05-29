@@ -1,7 +1,10 @@
 import { Component, ChangeDetectorRef, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../core/auth/auth.service';
+import { SelectModule } from 'primeng/select';
 import { AuditLogService, AuditLogDto } from '../../core/services/audit-log.service';
+import { DashboardService, DashboardData, DashboardFilter } from '../../core/services/dashboard.service';
 import { relativeTime } from '../../shared/utils/relative-time';
 
 interface StatCard {
@@ -21,7 +24,7 @@ interface Activity {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, SelectModule],
   template: `
     <div class="dashboard">
       <div class="welcome-section">
@@ -30,6 +33,13 @@ interface Activity {
           <p class="welcome-sub">Here's what's happening with your tasks today.</p>
         </div>
         <div class="role-badge">{{ role }}</div>
+      </div>
+
+      <div class="filter-bar">
+        <p-select [options]="sprintOptions" placeholder="All Sprints" [(ngModel)]="filter.sprint" (onChange)="applyFilter()" [showClear]="true" styleClass="filter-select"></p-select>
+        <p-select [options]="priorityOptions" placeholder="All Priorities" [(ngModel)]="filter.priority" (onChange)="applyFilter()" [showClear]="true" styleClass="filter-select"></p-select>
+        <p-select [options]="statusOptions" placeholder="All Statuses" [(ngModel)]="filter.status" (onChange)="applyFilter()" [showClear]="true" styleClass="filter-select"></p-select>
+        <p-select [options]="deptOptions" placeholder="All Departments" [(ngModel)]="filter.department" (onChange)="applyFilter()" [showClear]="true" styleClass="filter-select"></p-select>
       </div>
 
       <div class="stats-grid">
@@ -105,12 +115,62 @@ interface Activity {
 
         <div class="card">
           <div class="card-header">
+            <h3>Assigned Users</h3>
+          </div>
+          <table class="dept-table">
+            <thead>
+              <tr><th>User</th><th>Tasks</th></tr>
+            </thead>
+            <tbody>
+              @for (user of assignedUsers; track user.userName) {
+              <tr>
+                <td>{{ user.userName }}</td>
+                <td><span class="user-count">{{ user.taskCount }}</span></td>
+              </tr>
+              } @empty {
+              <tr><td colspan="2" class="empty-cell">No assigned tasks</td></tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <div class="card">
+          <div class="card-header">
+            <h3>Sprint Distribution</h3>
+          </div>
+          <table class="dept-table">
+            <thead>
+              <tr><th>Sprint</th><th>Tasks</th><th>Completed</th></tr>
+            </thead>
+            <tbody>
+              @for (sprint of sprintData; track sprint.sprintName) {
+              <tr>
+                <td>{{ sprint.sprintName }}</td>
+                <td>{{ sprint.taskCount }}</td>
+                <td>
+                  <div class="dept-bar">
+                    <div class="dept-bar-fill" [style.width.%]="sprint.taskCount > 0 ? (sprint.completedCount / sprint.taskCount * 100) : 0" [style.background]="'#22c55e'"></div>
+                  </div>
+                  <span class="sprint-pct">{{ sprint.pct }}%</span>
+                </td>
+              </tr>
+              } @empty {
+              <tr><td colspan="3" class="empty-cell">No sprints yet</td></tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
             <h3>Recent Activity</h3>
           </div>
           <div class="activity-list">
             @for (act of activities; track act.text + act.time) {
             <div class="activity-item">
-              <div class="activity-dot" [class.added]="act.type==='added'" [class.updated]="act.type==='updated'" [class.completed]="act.type==='completed'"></div>
+              <div class="activity-dot" [class.added]="act.type==='added'" [class.updated]="act.type==='updated'" [class.completed]="act.type==='completed'" [class.login]="act.type==='login'"></div>
               <div class="activity-body">
                 <span class="activity-text">{{ act.text }}</span>
                 <span class="activity-time">{{ act.time }}</span>
@@ -133,6 +193,8 @@ interface Activity {
       font-size: 0.75rem; font-weight: 600; color: #2563eb; background: #eff6ff;
       padding: 0.3rem 0.75rem; border-radius: 999px; text-transform: uppercase;
     }
+    .filter-bar { display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    :host ::ng-deep .filter-select .p-select { min-width: 160px; }
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
     .stat-card {
       display: flex; align-items: center; gap: 1rem;
@@ -179,54 +241,77 @@ interface Activity {
     .activity-dot.added { background: #22c55e; }
     .activity-dot.updated { background: #3b82f6; }
     .activity-dot.completed { background: #8b5cf6; }
+    .activity-dot.login { background: #14b8a6; }
     .activity-body { display: flex; flex-direction: column; gap: 0.15rem; }
     .activity-text { font-size: 0.85rem; color: #334155; }
     .activity-time { font-size: 0.75rem; color: #94a3b8; }
     .activity-empty { padding: 1.5rem; text-align: center; color: #94a3b8; font-size: 0.9rem; }
+    .user-count { display: inline-block; background: #eff6ff; color: #2563eb; font-weight: 600; padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.8rem; }
+    .sprint-pct { display: inline-block; margin-left: 0.5rem; font-size: 0.8rem; font-weight: 600; color: #475569; }
+    .empty-cell { text-align: center; color: #94a3b8; padding: 1rem !important; }
   `]
 })
 export class DashboardComponent implements OnInit {
   private auth = inject(AuthService);
+  private dashboardService = inject(DashboardService);
   private auditLogService = inject(AuditLogService);
   private cdr = inject(ChangeDetectorRef);
   fullName = this.auth.getFullName();
   role = this.auth.getRole();
 
   stats: StatCard[] = [];
-  priorityData = [
-    { label: 'High', count: 12, pct: 100, color: '#ef4444' },
-    { label: 'Medium', count: 18, pct: 75, color: '#f59e0b' },
-    { label: 'Low', count: 8, pct: 40, color: '#22c55e' },
-  ];
-  statusData = [
-    { label: 'Open', count: 15, pct: 40, color: '#3b82f6' },
-    { label: 'In Progress', count: 8, pct: 21, color: '#f59e0b' },
-    { label: 'Completed', count: 20, pct: 53, color: '#22c55e' },
-    { label: 'On Hold', count: 5, pct: 13, color: '#ef4444' },
-  ];
-  deptData = [
-    { name: 'Engineering', tasks: 22, pct: 75, color: '#3b82f6' },
-    { name: 'Quality Assurance', tasks: 10, pct: 45, color: '#8b5cf6' },
-    { name: 'Support', tasks: 6, pct: 30, color: '#f59e0b' },
-  ];
+  priorityData: { label: string; count: number; pct: number; color: string }[] = [];
+  statusData: { label: string; count: number; pct: number; color: string }[] = [];
+  deptData: { name: string; tasks: number; pct: number; color: string }[] = [];
+  assignedUsers: { userName: string; taskCount: number }[] = [];
+  sprintData: { sprintName: string; taskCount: number; completedCount: number; pct: number }[] = [];
   activities: Activity[] = [];
-  totalTasks = 38;
+  totalTasks = 0;
+
+  filter: DashboardFilter = {};
+  sprintOptions = ['Sprint 1', 'Sprint 2'];
+  priorityOptions = ['High', 'Medium', 'Low'];
+  statusOptions = ['Open', 'In Progress', 'Completed', 'On Hold'];
+  deptOptions = ['Engineering', 'QA', 'Support'];
 
   ngOnInit() {
-    this.stats = [
-      { label: 'Total Tasks', value: 38, icon: 'pi pi-list', color: '#3b82f6', pct: 100 },
-      { label: 'In Progress', value: 8, icon: 'pi pi-clock', color: '#f59e0b', pct: 21 },
-      { label: 'Completed', value: 20, icon: 'pi pi-check-circle', color: '#22c55e', pct: 53 },
-      { label: 'Active Sprints', value: 2, icon: 'pi pi-flag', color: '#8b5cf6', pct: 100 },
-    ];
+    this.loadDashboard();
     this.loadRecentActivity();
   }
 
+  applyFilter() {
+    this.loadDashboard();
+  }
+
+  private loadDashboard() {
+    this.dashboardService.get(this.filter).subscribe({
+      next: (data: DashboardData) => {
+        this.stats = [
+          { label: 'Total Tasks', value: data.totalTasks, icon: 'pi pi-list', color: '#3b82f6', pct: 100 },
+          { label: 'In Progress', value: data.inProgress, icon: 'pi pi-clock', color: '#f59e0b', pct: data.totalTasks > 0 ? Math.round(data.inProgress / data.totalTasks * 100) : 0 },
+          { label: 'Completed', value: data.completed, icon: 'pi pi-check-circle', color: '#22c55e', pct: data.totalTasks > 0 ? Math.round(data.completed / data.totalTasks * 100) : 0 },
+          { label: 'Active Sprints', value: data.activeSprints, icon: 'pi pi-flag', color: '#8b5cf6', pct: 100 },
+        ];
+        this.priorityData = data.priorityDistribution;
+        this.statusData = data.statusDistribution;
+        this.deptData = data.departmentDistribution;
+        this.assignedUsers = data.assignedUserCounts;
+        this.sprintData = data.sprintDistribution.map(s => ({
+          ...s,
+          pct: s.taskCount > 0 ? Math.round(s.completedCount / s.taskCount * 100) : 0
+        }));
+        this.totalTasks = data.totalTasks;
+        this.cdr.detectChanges();
+      },
+      error: err => console.error('[Dashboard] load failed:', err),
+    });
+  }
+
   private loadRecentActivity() {
-    this.auditLogService.getAll().subscribe({
+    this.auditLogService.getAll({ pageSize: 10 }).subscribe({
       next: data => {
         try {
-          this.activities = data.slice(0, 10).map(l => this.toActivity(l));
+          this.activities = data.items.map(l => this.toActivity(l));
         } catch (e) {
           console.error('[Dashboard] map failed', e);
         }
@@ -240,7 +325,18 @@ export class DashboardComponent implements OnInit {
     try {
       const type = log.action === 'CREATE' ? 'added'
         : log.action === 'DELETE' ? 'completed'
+        : log.action === 'LOGIN' ? 'login'
         : 'updated';
+
+      if (log.action === 'LOGIN' || (log.tableName === 'AppUser' && log.action === 'UPDATE')) {
+        const name = this.extractName(log.newValues ?? log.oldValues);
+        return {
+          text: `${name || log.changedBy || 'User'} logged in`,
+          time: relativeTime(log.changedAt),
+          type,
+        };
+      }
+
       const name = this.extractName(log.newValues ?? log.oldValues);
       const label = name ? `"${name}"` : `#${log.recordId ?? ''}`;
       return {

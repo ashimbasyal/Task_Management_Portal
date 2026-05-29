@@ -10,3 +10,10 @@ public record AuditLogDto(
     string? ChangedBy,
     DateTime ChangedAt
 );
+
+public record PaginatedAuditLogsDto(
+    IReadOnlyList<AuditLogDto> Items,
+    int TotalCount,
+    int Page,
+    int PageSize
+);

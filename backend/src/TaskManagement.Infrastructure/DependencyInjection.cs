@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TaskManagement.Application.AuditLogs.Interfaces;
 using TaskManagement.Application.Auth.Interfaces;
+using TaskManagement.Application.Backlog.Interfaces;
+using TaskManagement.Application.Dashboard.Interfaces;
 using TaskManagement.Application.Departments.Interfaces;
 using TaskManagement.Application.Users.Interfaces;
 using TaskManagement.Domain.Entities;
@@ -35,6 +37,8 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IDepartmentRepository, DepartmentRepository>();
         services.AddScoped<IAuditLogRepository, AuditLogRepository>();
+        services.AddScoped<IDashboardRepository, DashboardRepository>();
+        services.AddScoped<IBacklogRepository, BacklogRepository>();
 
         return services;
     }

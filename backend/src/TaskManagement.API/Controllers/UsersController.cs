@@ -33,6 +33,21 @@ public class UsersController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> UpdatePermission(string id, [FromBody] UpdatePermissionRequest request) =>
         Ok(await mediator.Send(new UpdateUserPermissionCommand(id, request.CanViewAllDepartments)));
 
+    [HttpPatch("{id}/role")]
+    [RequirePermission(Permission.EditUsers)]
+    public async Task<IActionResult> UpdateRole(string id, [FromBody] UpdateRoleRequest request) =>
+        Ok(await mediator.Send(new UpdateUserRoleCommand(id, request.Role, request.DepartmentId)));
+
+    [HttpGet("{id}/permissions")]
+    [RequirePermission(Permission.ManageUserPermissions)]
+    public async Task<IActionResult> GetPermissions(string id) =>
+        Ok(await mediator.Send(new GetUserPermissionsQuery(id)));
+
+    [HttpPut("{id}/permissions")]
+    [RequirePermission(Permission.ManageUserPermissions)]
+    public async Task<IActionResult> UpdatePermissions(string id, [FromBody] UpdatePermissionsRequest request) =>
+        Ok(await mediator.Send(new UpdateUserPermissionsCommand(id, request.GrantedPermissions)));
+
     [HttpDelete("{id}")]
     [RequirePermission(Permission.DeleteUsers)]
     public async Task<IActionResult> Delete(string id)
@@ -43,3 +58,5 @@ public class UsersController(IMediator mediator) : ControllerBase
 }
 
 public record UpdatePermissionRequest(bool CanViewAllDepartments);
+public record UpdateRoleRequest(int Role, int? DepartmentId);
+public record UpdatePermissionsRequest(List<int> GrantedPermissions);

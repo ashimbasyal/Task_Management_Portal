@@ -11,11 +11,14 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TooltipModule } from 'primeng/tooltip';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService, UserDto, CreateUserRequest } from '../../../core/services/user.service';
 import { DepartmentService, DepartmentDto } from '../../../core/services/department.service';
 import { AuthService } from '../../../core/auth/auth.service';
+import { Permission, PermissionValues, PermissionLabels } from '../../../core/auth/permission.enum';
 
 @Component({
   selector: 'app-user-list',
@@ -34,6 +37,8 @@ import { AuthService } from '../../../core/auth/auth.service';
     ToastModule,
     ConfirmDialogModule,
     TooltipModule,
+    CheckboxModule,
+    ScrollPanelModule,
   ],
   providers: [MessageService, ConfirmationService],
   template: `
@@ -41,7 +46,7 @@ import { AuthService } from '../../../core/auth/auth.service';
     <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 
     <div class="page-header">
-      <h2>User Management</h2>
+      <h2>User & Role Management</h2>
       @if (ready()) {
       <p-button label="Create User" icon="pi pi-plus" (onClick)="showCreateDialog()"></p-button>
       }
@@ -71,6 +76,8 @@ import { AuthService } from '../../../core/auth/auth.service';
             </span>
           </td>
           <td>
+            <button pButton icon="pi pi-lock" class="p-button-rounded p-button-text" (click)="showPermissionDialog(user)" pTooltip="Manage Permissions"></button>
+            <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text" (click)="showEditDialog(user)" pTooltip="Edit Role"></button>
             <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="confirmDelete(user)" [disabled]="user.id === currentUserId" [pTooltip]="user.id === currentUserId ? 'Cannot delete yourself' : ''"></button>
           </td>
         </tr>
@@ -117,6 +124,42 @@ import { AuthService } from '../../../core/auth/auth.service';
         <button pButton label="Create" [loading]="saving()" (click)="onCreate()"></button>
       </ng-template>
     </p-dialog>
+
+    <p-dialog header="Edit Role" [modal]="true" [(visible)]="editDialogVisible" [style]="{ width: '400px' }">
+      <div class="form" *ngIf="editingUser">
+        <p style="margin:0 0 1rem;color:#475569;font-size:0.9rem;">Editing role for <strong>{{ editingUser.fullName }}</strong></p>
+        <div class="field">
+          <label>Role</label>
+          <p-select [options]="roles" [(ngModel)]="editRole" optionLabel="label" optionValue="value" placeholder="Select Role" styleClass="w-full" appendTo="body"></p-select>
+        </div>
+        <div class="field" *ngIf="editRole === 3">
+          <label>Department</label>
+          <p-select [options]="departments()" [(ngModel)]="editDepartmentId" optionLabel="name" optionValue="id" placeholder="Select Department" styleClass="w-full" appendTo="body"></p-select>
+        </div>
+      </div>
+      <ng-template pTemplate="footer">
+        <button pButton label="Cancel" class="p-button-text" (click)="editDialogVisible = false"></button>
+        <button pButton label="Save" [loading]="savingRole()" (click)="onUpdateRole()"></button>
+      </ng-template>
+    </p-dialog>
+
+    <p-dialog header="Manage Permissions" [modal]="true" [(visible)]="permDialogVisible" [style]="{ width: '500px' }">
+      <div class="form" *ngIf="permUser">
+        <p style="margin:0 0 1rem;color:#475569;font-size:0.9rem;">Override permissions for <strong>{{ permUser.fullName }}</strong></p>
+        <p-scrollpanel [style]="{ height: '350px' }">
+          <div class="perm-grid">
+            <div *ngFor="let perm of allPermissions" class="perm-item">
+              <p-checkbox [binary]="true" [(ngModel)]="permChecked[perm.value]" [inputId]="'perm_' + perm.value" />
+              <label [for]="'perm_' + perm.value" style="margin-left:0.5rem;cursor:pointer;">{{ perm.label }}</label>
+            </div>
+          </div>
+        </p-scrollpanel>
+      </div>
+      <ng-template pTemplate="footer">
+        <button pButton label="Cancel" class="p-button-text" (click)="permDialogVisible = false"></button>
+        <button pButton label="Save" [loading]="savingPerms()" (click)="onUpdatePermissions()"></button>
+      </ng-template>
+    </p-dialog>
   `,
   styles: [`
     .page-header {
@@ -156,6 +199,17 @@ import { AuthService } from '../../../core/auth/auth.service';
       font-size: 0.78rem;
       color: #e11d48;
     }
+    .perm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      padding: 0.25rem;
+    }
+    .perm-item {
+      display: flex;
+      align-items: center;
+      padding: 0.35rem 0;
+    }
   `]
 })
 export class UserListComponent implements OnInit {
@@ -178,8 +232,24 @@ export class UserListComponent implements OnInit {
   departments = signal<DepartmentDto[]>([]);
   loading = signal(false);
   saving = signal(false);
+  savingRole = signal(false);
   submitted = signal(false);
   dialogVisible = false;
+  editDialogVisible = false;
+
+  editingUser: UserDto | null = null;
+  editRole: number | null = null;
+  editDepartmentId: number | null = null;
+
+  permDialogVisible = false;
+  savingPerms = signal(false);
+  permUser: UserDto | null = null;
+  permChecked: Record<number, boolean> = {};
+
+  allPermissions = Object.keys(PermissionValues).map(key => ({
+    label: PermissionLabels[key],
+    value: PermissionValues[key],
+  }));
 
   roles = [
     { label: 'Admin', value: 1 },
@@ -218,6 +288,56 @@ export class UserListComponent implements OnInit {
     this.dialogVisible = true;
   }
 
+  showEditDialog(user: UserDto) {
+    this.editingUser = user;
+    this.editRole = user.role;
+    this.editDepartmentId = user.departmentId;
+    this.editDialogVisible = true;
+  }
+
+  showPermissionDialog(user: UserDto) {
+    this.permUser = user;
+    this.permChecked = {};
+    this.savingPerms.set(false);
+    this.permDialogVisible = true;
+    const permKeyByValue = Object.fromEntries(
+      Object.entries(PermissionValues).map(([k, v]) => [v, k])
+    );
+    this.userService.getPermissions(user.id).subscribe({
+      next: perms => {
+        for (const p of this.allPermissions) {
+          this.permChecked[p.value] = user.role === 1 || perms.includes(permKeyByValue[p.value]);
+        }
+      },
+      error: () => {
+        if (user.role === 1) {
+          for (const p of this.allPermissions) {
+            this.permChecked[p.value] = true;
+          }
+        }
+      },
+    });
+  }
+
+  onUpdatePermissions() {
+    if (!this.permUser) return;
+    this.savingPerms.set(true);
+    const granted = this.allPermissions
+      .filter(p => this.permChecked[p.value])
+      .map(p => p.value);
+    this.userService.updatePermissions(this.permUser.id, granted).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'success', summary: 'Updated', detail: 'Permissions updated', key: 'br' });
+        this.permDialogVisible = false;
+        this.savingPerms.set(false);
+      },
+      error: () => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update permissions', key: 'br' });
+        this.savingPerms.set(false);
+      },
+    });
+  }
+
   onCreate() {
     this.submitted.set(true);
     if (this.userForm.invalid) return;
@@ -239,6 +359,26 @@ export class UserListComponent implements OnInit {
         this.loadUsers();
       },
       error: () => this.saving.set(false),
+    });
+  }
+
+  onUpdateRole() {
+    if (!this.editingUser || this.editRole == null) return;
+    this.savingRole.set(true);
+    this.userService.updateRole(this.editingUser.id, {
+      role: this.editRole,
+      departmentId: this.editRole === 3 ? this.editDepartmentId : null,
+    }).subscribe({
+      next: updated => {
+        this.users.update(list => list.map(u => u.id === updated.id ? updated : u));
+        this.messageService.add({ severity: 'success', summary: 'Updated', detail: 'Role updated', key: 'br' });
+        this.editDialogVisible = false;
+        this.savingRole.set(false);
+      },
+      error: () => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update role', key: 'br' });
+        this.savingRole.set(false);
+      },
     });
   }
 

@@ -7,15 +7,17 @@ import { DialogModule } from 'primeng/dialog';
 import { SelectModule } from 'primeng/select';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
+import { DatePickerModule } from 'primeng/datepicker';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { BacklogService, BacklogItem } from '../../core/services/backlog.service';
 
-interface BacklogItem {
-  sn: number;
+interface BacklogForm {
+  id?: number;
   title: string;
   description: string;
   requestedBy: string;
@@ -26,12 +28,20 @@ interface BacklogItem {
   department: string;
 }
 
+interface SprintForm {
+  sprintName: string;
+  assigneeId: number | null;
+  startDate: Date | null;
+  endDate: Date | null;
+  remarks: string;
+}
+
 @Component({
   selector: 'app-backlog',
   standalone: true,
   imports: [
     CommonModule, FormsModule, TableModule, ButtonModule, DialogModule,
-    SelectModule, InputTextModule, TextareaModule, FileUploadModule, TagModule,
+    SelectModule, InputTextModule, TextareaModule, DatePickerModule, FileUploadModule, TagModule,
     ToastModule, ConfirmDialogModule, TooltipModule,
   ],
   providers: [MessageService, ConfirmationService],
@@ -41,12 +51,10 @@ interface BacklogItem {
 
     <div class="page-header">
       <h2>Backlog Management</h2>
-        @if (ready()) {
-        <div class="header-actions">
+      <div class="header-actions">
         <p-button label="Excel Upload" icon="pi pi-upload" severity="secondary" (onClick)="uploadVisible = true" styleClass="p-button-outlined"></p-button>
         <p-button label="Create Backlog" icon="pi pi-plus" (onClick)="showCreate()"></p-button>
       </div>
-      }
     </div>
 
     <div class="filters">
@@ -56,15 +64,14 @@ interface BacklogItem {
     </div>
 
     <p-table [value]="filteredItems()" [paginator]="true" [rows]="10" [loading]="loading()"
-      styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '70rem' }">
+      styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '75rem' }">
       <ng-template pTemplate="header">
         <tr>
-          <th>SN</th><th>Title</th><th>Priority</th><th>Status</th><th>Department</th><th>Requested By</th><th>Actions</th>
+          <th>Title</th><th>Priority</th><th>Status</th><th>Department</th><th>Requested By</th><th>Actions</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-item>
         <tr>
-          <td>{{ item.sn }}</td>
           <td>{{ item.title }}</td>
           <td><p-tag [value]="item.priority" [severity]="item.priority === 'High' ? 'danger' : item.priority === 'Medium' ? 'warn' : 'success'"></p-tag></td>
           <td>{{ item.status }}</td>
@@ -72,12 +79,13 @@ interface BacklogItem {
           <td>{{ item.requestedBy }}</td>
           <td>
             <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text" (click)="editItem(item)" pTooltip="Edit"></button>
+            <button pButton icon="pi pi-send" class="p-button-rounded p-button-text p-button-info" (click)="showMoveToSprint(item)" [disabled]="item.isMovedToSprint" pTooltip="Move to Sprint"></button>
             <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="confirmDelete(item)" pTooltip="Delete"></button>
           </td>
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
-        <tr><td colspan="7" style="text-align:center;padding:2rem;">No backlog items found</td></tr>
+        <tr><td colspan="6" style="text-align:center;padding:2rem;">No backlog items found</td></tr>
       </ng-template>
     </p-table>
 
@@ -126,6 +134,38 @@ interface BacklogItem {
       </ng-template>
     </p-dialog>
 
+    <p-dialog header="Move to Sprint" [modal]="true" [(visible)]="sprintDialogVisible" [style]="{ width: '500px' }">
+      <div class="form" *ngIf="selectedItem">
+        <p class="move-info">Moving: <strong>{{ selectedItem.title }}</strong></p>
+        <div class="field">
+          <label>Sprint Name <span class="req">*</span></label>
+          <input pInputText [(ngModel)]="sprintForm.sprintName" class="w-full" placeholder="e.g. Sprint 3" />
+        </div>
+        <div class="field">
+          <label>Assignee</label>
+          <p-select [options]="assigneeOptions" [(ngModel)]="sprintForm.assigneeId" placeholder="Select assignee" appendTo="body" styleClass="w-full" optionLabel="label" optionValue="value"></p-select>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Start Date</label>
+            <p-datepicker [(ngModel)]="sprintForm.startDate" dateFormat="dd/mm/yy" styleClass="w-full"></p-datepicker>
+          </div>
+          <div class="field">
+            <label>End Date</label>
+            <p-datepicker [(ngModel)]="sprintForm.endDate" dateFormat="dd/mm/yy" styleClass="w-full"></p-datepicker>
+          </div>
+        </div>
+        <div class="field">
+          <label>Remarks</label>
+          <textarea pTextarea [(ngModel)]="sprintForm.remarks" rows="2" class="w-full"></textarea>
+        </div>
+      </div>
+      <ng-template pTemplate="footer">
+        <button pButton label="Cancel" class="p-button-text" (click)="sprintDialogVisible = false"></button>
+        <button pButton label="Move to Sprint" icon="pi pi-send" [loading]="movingToSprint()" (click)="moveToSprint()"></button>
+      </ng-template>
+    </p-dialog>
+
     <p-dialog header="Excel Upload" [modal]="true" [(visible)]="uploadVisible" [style]="{ width: '450px' }">
       <p-fileUpload mode="basic" chooseLabel="Choose Excel File" accept=".xlsx,.xls" (onSelect)="onUpload($event)"></p-fileUpload>
       <p style="margin-top:1rem;color:#64748b;font-size:0.9rem;">Upload an Excel file with backlog entries. The file should match the system fields.</p>
@@ -147,26 +187,21 @@ interface BacklogItem {
     .field label { font-size: 0.85rem; font-weight: 600; color: #374151; }
     .req { color: #ef4444; }
     .w-full { width: 100%; }
+    .move-info { margin: 0 0 0.5rem; font-size: 0.9rem; color: #475569; }
   `]
 })
 export class BacklogComponent {
+  private backlogService = inject(BacklogService);
   private messageService = inject(MessageService);
   private confirmationService = inject(ConfirmationService);
 
-  ready = signal(false);
-
-  items: BacklogItem[] = [
-    { sn: 1, title: 'User authentication flow', description: 'Implement JWT login flow', requestedBy: 'Admin', gitlabLink: 'https://gitlab.com/proj/1', priority: 'High', remarks: '', status: 'Open', department: 'Engineering' },
-    { sn: 2, title: 'Dashboard charts', description: 'Build dynamic charts', requestedBy: 'Admin', gitlabLink: 'https://gitlab.com/proj/2', priority: 'Medium', remarks: '', status: 'In Progress', department: 'Engineering' },
-    { sn: 3, title: 'Excel export feature', description: 'Allow exporting reports', requestedBy: 'Officer', gitlabLink: 'https://gitlab.com/proj/3', priority: 'Low', remarks: '', status: 'Open', department: 'QA' },
-    { sn: 4, title: 'Sprint planning board', description: 'Drag and drop sprint board', requestedBy: 'Admin', gitlabLink: 'https://gitlab.com/proj/4', priority: 'High', remarks: '', status: 'Completed', department: 'Engineering' },
-    { sn: 5, title: 'Notification system', description: 'Email and in-app notifications', requestedBy: 'Developer', gitlabLink: 'https://gitlab.com/proj/5', priority: 'Medium', remarks: '', status: 'On Hold', department: 'Engineering' },
-  ];
-
+  allItems: BacklogItem[] = [];
   filteredItems = signal<BacklogItem[]>([]);
   loading = signal(false);
   saving = signal(false);
+  movingToSprint = signal(false);
   dialogVisible = false;
+  sprintDialogVisible = false;
   uploadVisible = false;
   filterPriority: string | null = null;
   filterStatus: string | null = null;
@@ -175,13 +210,29 @@ export class BacklogComponent {
   priorityOptions = ['High', 'Medium', 'Low'];
   statusOptions = ['Open', 'In Progress', 'Completed', 'On Hold'];
   deptOptions = ['Engineering', 'QA', 'Support'];
+  assigneeOptions = [{ label: 'Alice', value: 1 }, { label: 'Bob', value: 2 }, { label: 'Charlie', value: 3 }];
 
-  formItem: Partial<BacklogItem> = {};
-  private nextSn = 6;
+  formItem: Partial<BacklogForm> = {};
+  selectedItem: BacklogItem | null = null;
+  sprintForm: SprintForm = { sprintName: '', assigneeId: null, startDate: null, endDate: null, remarks: '' };
 
   constructor() {
-    afterNextRender(() => this.ready.set(true));
-    this.applyFilters();
+    afterNextRender(() => this.loadItems());
+  }
+
+  private loadItems() {
+    this.loading.set(true);
+    this.backlogService.getAll().subscribe({
+      next: data => {
+        this.allItems = data;
+        this.applyFilters();
+        this.loading.set(false);
+      },
+      error: err => {
+        console.error('[Backlog] load failed', err);
+        this.loading.set(false);
+      },
+    });
   }
 
   showCreate() {
@@ -190,7 +241,17 @@ export class BacklogComponent {
   }
 
   editItem(item: BacklogItem) {
-    this.formItem = { ...item };
+    this.formItem = {
+      id: item.id,
+      title: item.title,
+      description: item.description ?? '',
+      requestedBy: item.requestedBy,
+      gitlabLink: item.gitLabLink ?? '',
+      priority: item.priority,
+      remarks: item.remarks ?? '',
+      status: item.status,
+      department: item.department,
+    };
     this.dialogVisible = true;
   }
 
@@ -200,18 +261,27 @@ export class BacklogComponent {
       return;
     }
     this.saving.set(true);
-    const idx = this.items.findIndex(i => i.sn === this.formItem.sn);
-    if (idx >= 0) {
-      this.items[idx] = { ...this.formItem as BacklogItem };
-      this.messageService.add({ severity: 'success', summary: 'Updated', detail: 'Backlog item updated', key: 'br' });
-    } else {
-      this.formItem.sn = this.nextSn++;
-      this.items.push({ ...this.formItem as BacklogItem });
-      this.messageService.add({ severity: 'success', summary: 'Created', detail: 'Backlog item created', key: 'br' });
-    }
-    this.applyFilters();
-    this.dialogVisible = false;
-    this.saving.set(false);
+    this.backlogService.create({
+      title: this.formItem.title,
+      description: this.formItem.description || null,
+      requestedBy: this.formItem.requestedBy || 'Unknown',
+      gitLabLink: this.formItem.gitlabLink || null,
+      remarks: this.formItem.remarks || null,
+      priority: this.formItem.priority,
+      status: this.formItem.status || 'Open',
+      department: this.formItem.department,
+    }).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'success', summary: 'Created', detail: 'Backlog item created', key: 'br' });
+        this.dialogVisible = false;
+        this.saving.set(false);
+        this.loadItems();
+      },
+      error: err => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to create backlog item', key: 'br' });
+        this.saving.set(false);
+      },
+    });
   }
 
   confirmDelete(item: BacklogItem) {
@@ -220,21 +290,50 @@ export class BacklogComponent {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.items = this.items.filter(i => i.sn !== item.sn);
-        this.applyFilters();
         this.messageService.add({ severity: 'success', summary: 'Deleted', detail: 'Backlog item deleted', key: 'br' });
+        this.loadItems();
+      },
+    });
+  }
+
+  showMoveToSprint(item: BacklogItem) {
+    this.selectedItem = item;
+    this.sprintForm = { sprintName: '', assigneeId: null, startDate: null, endDate: null, remarks: '' };
+    this.sprintDialogVisible = true;
+  }
+
+  moveToSprint() {
+    if (!this.selectedItem || !this.sprintForm.sprintName) {
+      this.messageService.add({ severity: 'warn', summary: 'Validation', detail: 'Sprint name is required', key: 'br' });
+      return;
+    }
+    this.movingToSprint.set(true);
+    this.backlogService.moveToSprint(this.selectedItem.id, {
+      sprintName: this.sprintForm.sprintName,
+      assigneeId: this.sprintForm.assigneeId,
+      startDate: this.sprintForm.startDate?.toISOString() ?? null,
+      endDate: this.sprintForm.endDate?.toISOString() ?? null,
+      remarks: this.sprintForm.remarks || null,
+    }).subscribe({
+      next: res => {
+        this.messageService.add({ severity: 'success', summary: 'Moved', detail: `Task moved to sprint (ID: ${res.sprintId})`, key: 'br' });
+        this.sprintDialogVisible = false;
+        this.movingToSprint.set(false);
+        this.loadItems();
+      },
+      error: err => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to move to sprint', key: 'br' });
+        this.movingToSprint.set(false);
       },
     });
   }
 
   applyFilters() {
-    this.loading.set(true);
-    this.filteredItems.set(this.items.filter(i =>
+    this.filteredItems.set(this.allItems.filter(i =>
       (!this.filterPriority || i.priority === this.filterPriority) &&
       (!this.filterStatus || i.status === this.filterStatus) &&
       (!this.filterDept || i.department === this.filterDept)
     ));
-    this.loading.set(false);
   }
 
   onUpload(event: any) {

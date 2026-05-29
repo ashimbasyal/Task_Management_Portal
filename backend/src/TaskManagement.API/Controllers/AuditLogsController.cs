@@ -14,6 +14,12 @@ public class AuditLogsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
     [RequirePermission(Permission.ViewAuditLogs)]
-    public async Task<IActionResult> GetAll() =>
-        Ok(await mediator.Send(new GetAuditLogsQuery()));
+    public async Task<IActionResult> GetAll(
+        [FromQuery] string? tableName,
+        [FromQuery] string? action,
+        [FromQuery] DateTime? from,
+        [FromQuery] DateTime? to,
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 50) =>
+        Ok(await mediator.Send(new GetAuditLogsQuery(tableName, action, from, to, page, pageSize)));
 }

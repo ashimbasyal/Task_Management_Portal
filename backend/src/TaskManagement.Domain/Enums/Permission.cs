@@ -17,10 +17,11 @@ public enum Permission
 
     // Sprint
     ViewSprint = 20,
-    AssignSprintTask = 21,
-    UpdateSprintProgress = 22,
-    UpdateSprintRemarks = 23,
-    UpdateSprintStatus = 24,
+    CreateSprint = 21,
+    AssignSprintTask = 22,
+    UpdateSprintProgress = 23,
+    UpdateSprintRemarks = 24,
+    UpdateSprintStatus = 25,
 
     // Dashboard
     ViewDashboard = 30,

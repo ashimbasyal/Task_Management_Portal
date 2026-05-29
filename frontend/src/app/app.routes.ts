@@ -44,7 +44,7 @@ export const routes: Routes = [
         canActivate: [permissionGuard([Permission.ViewUsers])],
         children: [
           {
-            path: 'users',
+            path: 'user-role',
             loadComponent: () => import('./features/admin/users/user-list.component').then(c => c.UserListComponent),
           },
           {
@@ -52,7 +52,7 @@ export const routes: Routes = [
             canActivate: [permissionGuard([Permission.ViewAuditLogs])],
             loadComponent: () => import('./features/admin/audit-log/audit-log.component').then(c => c.AuditLogComponent),
           },
-          { path: '', redirectTo: 'users', pathMatch: 'full' },
+          { path: '', redirectTo: 'user-role', pathMatch: 'full' },
         ],
       },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Permission } from './permission.enum';
 import { RolePermissions } from './role-permissions';
 import { environment } from '../../../environments/environment';
+import { ActivityTrackerService } from './activity-tracker.service';
 
 export interface AuthResponse {
   accessToken: string;
@@ -25,33 +26,84 @@ interface TokenPayload {
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
+  private activity = inject(ActivityTrackerService);
   private readonly API = environment.apiBaseUrl;
   private readonly TOKEN_KEY = 'access_token';
   private readonly REFRESH_KEY = 'refresh_token';
 
   isLoggedIn = signal(!!localStorage.getItem(this.TOKEN_KEY));
+  /** tracks an in-flight refresh so concurrent 401s share one attempt */
+  private refreshInProgress: Promise<void> | null = null;
+  private refreshTimer: ReturnType<typeof setInterval> | null = null;
+
+  constructor() {
+    if (this.isLoggedIn()) {
+      this.startSessionKeepAlive();
+    }
+  }
+
+  private startSessionKeepAlive() {
+    this.activity.start();
+    this.scheduleRefresh();
+  }
+
+  private scheduleRefresh() {
+    if (this.refreshTimer) clearInterval(this.refreshTimer);
+    this.refreshTimer = setInterval(() => {
+      if (this.activity.isActive()) {
+        this.refresh().catch(() => {});
+      }
+    }, 4 * 60 * 1000);
+  }
 
   login(email: string, password: string) {
     return this.http.post<AuthResponse>(`${this.API}/auth/login`, { email, password }).pipe(
-      tap(res => this.setTokens(res))
+      tap(res => {
+        this.setTokens(res);
+        this.startSessionKeepAlive();
+      })
     );
   }
 
   register(email: string, password: string) {
     return this.http.post<AuthResponse>(`${this.API}/auth/register`, { email, password }).pipe(
-      tap(res => this.setTokens(res))
+      tap(res => {
+        this.setTokens(res);
+        this.startSessionKeepAlive();
+      })
     );
   }
 
-  refresh() {
+  refresh(): Promise<void> {
+    if (this.refreshInProgress) return this.refreshInProgress;
     const refreshToken = localStorage.getItem(this.REFRESH_KEY);
-    if (!refreshToken) throw new Error('No refresh token');
-    return this.http.post<AuthResponse>(`${this.API}/auth/refresh`, { refreshToken }).pipe(
-      tap(res => this.setTokens(res))
-    );
+    if (!refreshToken) {
+      this.logout();
+      return Promise.reject('No refresh token');
+    }
+    this.refreshInProgress = new Promise((resolve, reject) => {
+      this.http.post<AuthResponse>(`${this.API}/auth/refresh`, { refreshToken }).subscribe({
+        next: res => {
+          this.setTokens(res);
+          this.refreshInProgress = null;
+          resolve();
+        },
+        error: err => {
+          this.refreshInProgress = null;
+          this.logout();
+          reject(err);
+        }
+      });
+    });
+    return this.refreshInProgress;
   }
 
   logout() {
+    if (this.refreshTimer) {
+      clearInterval(this.refreshTimer);
+      this.refreshTimer = null;
+    }
+    this.activity.stop();
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.REFRESH_KEY);
     this.isLoggedIn.set(false);
