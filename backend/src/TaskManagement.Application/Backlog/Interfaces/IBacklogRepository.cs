@@ -4,7 +4,7 @@ namespace TaskManagement.Application.Backlog.Interfaces;
 
 public interface IBacklogRepository
 {
-    Task<IReadOnlyList<BacklogListItem>> GetAllAsync(CancellationToken ct = default);
+    Task<IReadOnlyList<BacklogListItem>> GetAllAsync(int? departmentId = null, CancellationToken ct = default);
     Task<int> CreateAsync(CreateBacklogCommand command, CancellationToken ct = default);
     Task<int> MoveToSprintAsync(MoveToSprintCommand command, CancellationToken ct = default);
 }

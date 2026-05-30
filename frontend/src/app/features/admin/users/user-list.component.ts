@@ -113,10 +113,10 @@ import { Permission, PermissionValues, PermissionLabels } from '../../../core/au
           <p-select id="role" [options]="roles" formControlName="role" optionLabel="label" optionValue="value" placeholder="Select Role" styleClass="w-full" appendTo="body"></p-select>
           <small class="error" *ngIf="submitted() && userForm.get('role')?.errors?.['required']">Required</small>
         </div>
-        <div class="field" *ngIf="userForm.get('role')?.value === 3">
-          <label for="department">Department</label>
+        <div class="field" *ngIf="departmentRequired()">
+          <label for="department">Department <span class="req">*</span></label>
           <p-select id="department" [options]="departments()" formControlName="departmentId" optionLabel="name" optionValue="id" placeholder="Select Department" styleClass="w-full" appendTo="body"></p-select>
-          <small class="error" *ngIf="submitted() && userForm.get('departmentId')?.errors?.['required']">Required for Officer</small>
+          <small class="error" *ngIf="submitted() && userForm.get('departmentId')?.errors?.['required']">Department is required for Officer role</small>
         </div>
       </form>
       <ng-template pTemplate="footer">
@@ -268,6 +268,21 @@ export class UserListComponent implements OnInit {
   ngOnInit() {
     this.loadUsers();
     this.departmentService.getAll().subscribe(deps => this.departments.set(deps));
+
+    this.userForm.get('role')?.valueChanges.subscribe(role => {
+      const deptControl = this.userForm.get('departmentId');
+      if (role === 3) {
+        deptControl?.setValidators([Validators.required]);
+      } else {
+        deptControl?.clearValidators();
+        deptControl?.setValue(null);
+      }
+      deptControl?.updateValueAndValidity();
+    });
+  }
+
+  departmentRequired(): boolean {
+    return this.userForm.get('role')?.value === 3;
   }
 
   roleLabel(role: number): string {

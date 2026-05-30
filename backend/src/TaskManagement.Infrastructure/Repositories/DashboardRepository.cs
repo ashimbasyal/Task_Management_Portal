@@ -14,6 +14,7 @@ public class DashboardRepository(AppDbContext db) : IDashboardRepository
 
     public async Task<DashboardDataDto> GetDashboardDataAsync(
         string? sprint = null, string? priority = null, string? status = null, string? department = null,
+        int? userDepartmentId = null,
         CancellationToken ct = default)
     {
         IQueryable<BacklogTask> backlogQuery = db.BacklogTasks.AsNoTracking()
@@ -38,8 +39,13 @@ public class DashboardRepository(AppDbContext db) : IDashboardRepository
             sprintQuery = sprintQuery.Where(s => s.Status!.Value == status);
         }
 
-        if (!string.IsNullOrWhiteSpace(department))
-            backlogQuery = backlogQuery.Where(b => b.Department!.Name == department);
+        // Officer department visibility enforcement takes precedence
+        var effectiveDepartment = userDepartmentId.HasValue
+            ? (await db.Departments.FindAsync([userDepartmentId.Value], ct))?.Name
+            : department;
+
+        if (!string.IsNullOrWhiteSpace(effectiveDepartment))
+            backlogQuery = backlogQuery.Where(b => b.Department!.Name == effectiveDepartment);
 
         if (!string.IsNullOrWhiteSpace(sprint))
             sprintQuery = sprintQuery.Where(s => s.SprintName == sprint);

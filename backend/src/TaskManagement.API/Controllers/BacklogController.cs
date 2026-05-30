@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,8 +16,24 @@ public class BacklogController(IMediator mediator, IBacklogRepository repository
 {
     [HttpGet]
     [RequirePermission(Permission.ViewBacklog)]
-    public async Task<IActionResult> GetAll() =>
-        Ok(await repository.GetAllAsync());
+    public async Task<IActionResult> GetAll()
+    {
+        var role = User.FindFirstValue(ClaimTypes.Role);
+        int? departmentId = null;
+
+        if (role == UserRole.Officer.ToString())
+        {
+            var canViewAll = User.FindFirstValue("CanViewAllDepartments") == "True";
+            if (!canViewAll)
+            {
+                var deptClaim = User.FindFirstValue("DepartmentId");
+                if (int.TryParse(deptClaim, out var deptId))
+                    departmentId = deptId;
+            }
+        }
+
+        return Ok(await repository.GetAllAsync(departmentId));
+    }
 
     [HttpPost]
     [RequirePermission(Permission.CreateBacklog)]

@@ -9,13 +9,18 @@ namespace TaskManagement.Infrastructure.Repositories;
 
 public class BacklogRepository(AppDbContext db) : IBacklogRepository
 {
-    public async Task<IReadOnlyList<BacklogListItem>> GetAllAsync(CancellationToken ct = default)
+    public async Task<IReadOnlyList<BacklogListItem>> GetAllAsync(int? departmentId = null, CancellationToken ct = default)
     {
-        return await db.BacklogTasks
+        IQueryable<BacklogTask> query = db.BacklogTasks
             .AsNoTracking()
             .Include(b => b.Priority)
             .Include(b => b.Status)
-            .Include(b => b.Department)
+            .Include(b => b.Department);
+
+        if (departmentId.HasValue)
+            query = query.Where(b => b.DepartmentId == departmentId.Value);
+
+        return await query
             .OrderByDescending(b => b.CreatedAt)
             .Select(b => new BacklogListItem(
                 b.Id,

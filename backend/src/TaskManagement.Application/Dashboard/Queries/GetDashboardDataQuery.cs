@@ -7,5 +7,6 @@ public record GetDashboardDataQuery(
     string? Sprint = null,
     string? Priority = null,
     string? Status = null,
-    string? Department = null
+    string? Department = null,
+    int? UserDepartmentId = null
 ) : IRequest<DashboardDataDto>;

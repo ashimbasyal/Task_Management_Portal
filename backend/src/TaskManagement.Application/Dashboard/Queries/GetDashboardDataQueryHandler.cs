@@ -9,5 +9,6 @@ public sealed class GetDashboardDataQueryHandler(IDashboardRepository repository
 {
     public async Task<DashboardDataDto> Handle(GetDashboardDataQuery request, CancellationToken cancellationToken) =>
         await repository.GetDashboardDataAsync(
-            request.Sprint, request.Priority, request.Status, request.Department, cancellationToken);
+            request.Sprint, request.Priority, request.Status, request.Department,
+            request.UserDepartmentId, cancellationToken);
 }

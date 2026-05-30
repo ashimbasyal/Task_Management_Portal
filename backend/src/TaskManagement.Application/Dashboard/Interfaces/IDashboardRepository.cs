@@ -9,5 +9,6 @@ public interface IDashboardRepository
         string? priority = null,
         string? status = null,
         string? department = null,
+        int? userDepartmentId = null,
         CancellationToken ct = default);
 }

@@ -54,6 +54,8 @@ public class TokenService(IConfiguration config, UserManager<AppUser> userManage
             claims.Add(new Claim("DepartmentId", user.DepartmentId.Value.ToString()));
         }
 
+        claims.Add(new Claim("CanViewAllDepartments", user.CanViewAllDepartments.ToString()));
+
         var token = new JwtSecurityToken(
             issuer: config["Jwt:Issuer"],
             audience: config["Jwt:Audience"],
