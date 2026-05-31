@@ -381,6 +381,38 @@ namespace TaskManagement.Infrastructure.Migrations
                     b.ToTable("MasterData");
                 });
 
+            modelBuilder.Entity("TaskManagement.Domain.Entities.Priority", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Priorities");
+                });
+
+            modelBuilder.Entity("TaskManagement.Domain.Entities.SprintStatusTrigger", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SprintStatuses");
+                });
+
             modelBuilder.Entity("TaskManagement.Domain.Entities.SprintTask", b =>
                 {
                     b.Property<int>("Id")
@@ -433,6 +465,25 @@ namespace TaskManagement.Infrastructure.Migrations
                     b.HasIndex("StatusId");
 
                     b.ToTable("SprintTasks");
+                });
+
+            modelBuilder.Entity("TaskManagement.Domain.Entities.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Statuses");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

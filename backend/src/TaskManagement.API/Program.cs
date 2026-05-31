@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using OfficeOpenXml;
 using Serilog;
 using TaskManagement.API;
 using TaskManagement.API.Middleware;
@@ -8,6 +9,8 @@ using TaskManagement.Domain.Entities;
 using TaskManagement.Infrastructure;
 using TaskManagement.Infrastructure.Persistence;
 
+
+ExcelPackage.License.SetNonCommercialPersonal("Avishek");
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateBootstrapLogger();

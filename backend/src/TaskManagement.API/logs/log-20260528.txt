@@ -1,0 +1,12 @@
+2026-05-28 12:32:57.020 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 1219.6999 ms
+2026-05-28 12:32:57.349 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 188.0323 ms
+2026-05-28 12:36:03.002 +05:45 [INF] HTTP GET /api/departments responded 200 in 113.9352 ms
+2026-05-28 12:36:03.138 +05:45 [INF] HTTP GET /api/users responded 200 in 249.7361 ms
+2026-05-28 12:51:09.566 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 238.5156 ms
+2026-05-28 12:51:09.632 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 13.5388 ms
+2026-05-28 12:51:27.358 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 14.1871 ms
+2026-05-28 12:51:52.020 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 32.4081 ms
+2026-05-28 12:52:57.200 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 35.7495 ms
+2026-05-28 12:53:59.992 +05:45 [INF] HTTP GET /api/departments responded 200 in 41.9080 ms
+2026-05-28 12:54:00.036 +05:45 [INF] HTTP GET /api/users responded 200 in 86.4056 ms
+2026-05-28 12:54:12.778 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 8.6462 ms

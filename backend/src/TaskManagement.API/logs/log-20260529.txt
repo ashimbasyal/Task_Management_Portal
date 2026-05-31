@@ -1,0 +1,154 @@
+2026-05-29 15:03:23.070 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 1942.9665 ms
+2026-05-29 15:03:23.632 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 307.3792 ms
+2026-05-29 15:07:10.390 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 69.2621 ms
+2026-05-29 15:07:14.648 +05:45 [INF] HTTP GET /api/departments responded 200 in 83.8086 ms
+2026-05-29 15:07:14.816 +05:45 [INF] HTTP GET /api/users responded 200 in 251.4772 ms
+2026-05-29 15:07:19.961 +05:45 [INF] HTTP GET /api/users responded 200 in 24.4460 ms
+2026-05-29 15:07:20.036 +05:45 [INF] HTTP GET /api/departments responded 200 in 100.2264 ms
+2026-05-29 15:07:55.566 +05:45 [INF] HTTP POST /api/users responded 200 in 433.1482 ms
+2026-05-29 15:07:55.586 +05:45 [INF] HTTP GET /api/users responded 200 in 14.0950 ms
+2026-05-29 15:08:11.596 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 179.3438 ms
+2026-05-29 15:08:11.632 +05:45 [INF] HTTP GET /api/auditlogs responded 403 in 7.8295 ms
+2026-05-29 15:08:27.810 +05:45 [INF] HTTP GET /api/auditlogs responded 403 in 0.5907 ms
+2026-05-29 15:08:38.687 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 223.8320 ms
+2026-05-29 15:08:38.747 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 26.0523 ms
+2026-05-29 15:08:40.810 +05:45 [INF] HTTP GET /api/users responded 200 in 14.0447 ms
+2026-05-29 15:08:40.822 +05:45 [INF] HTTP GET /api/departments responded 200 in 20.0339 ms
+2026-05-29 15:09:20.083 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 197.9083 ms
+2026-05-29 15:09:20.143 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 21.3575 ms
+2026-05-29 15:09:21.578 +05:45 [INF] HTTP GET /api/users responded 200 in 24.1814 ms
+2026-05-29 15:09:21.664 +05:45 [INF] HTTP GET /api/departments responded 200 in 109.2919 ms
+2026-05-29 15:09:46.826 +05:45 [ERR] HTTP POST /api/users responded 500 in 203.3187 ms
+FluentValidation.ValidationException: Validation failed: 
+ -- DepartmentId: Department is required for Officer role. Severity: Error
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 21
+   at TaskManagement.API.Controllers.UsersController.Create(CreateUserCommand command) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\UsersController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-29 15:09:46.929 +05:45 [ERR] Unhandled exception for POST /api/users
+FluentValidation.ValidationException: Validation failed: 
+ -- DepartmentId: Department is required for Officer role. Severity: Error
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 21
+   at TaskManagement.API.Controllers.UsersController.Create(CreateUserCommand command) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\UsersController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-29 15:09:49.716 +05:45 [ERR] HTTP POST /api/users responded 500 in 97.7104 ms
+FluentValidation.ValidationException: Validation failed: 
+ -- DepartmentId: Department is required for Officer role. Severity: Error
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 21
+   at TaskManagement.API.Controllers.UsersController.Create(CreateUserCommand command) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\UsersController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-29 15:09:49.745 +05:45 [ERR] Unhandled exception for POST /api/users
+FluentValidation.ValidationException: Validation failed: 
+ -- DepartmentId: Department is required for Officer role. Severity: Error
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 21
+   at TaskManagement.API.Controllers.UsersController.Create(CreateUserCommand command) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\UsersController.cs:line 18
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-29 15:09:56.324 +05:45 [INF] HTTP POST /api/users responded 200 in 236.5270 ms
+2026-05-29 15:09:56.364 +05:45 [INF] HTTP GET /api/users responded 200 in 24.6279 ms
+2026-05-29 15:10:19.042 +05:45 [ERR] HTTP POST /api/auth/login responded 500 in 264.8911 ms
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 15
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-29 15:10:19.180 +05:45 [ERR] Unhandled exception for POST /api/auth/login
+System.UnauthorizedAccessException: Invalid credentials.
+   at TaskManagement.Application.Auth.Commands.LoginCommandHandler.Handle(LoginCommand request, CancellationToken cancellationToken) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.Application\Auth\Commands\LoginCommandHandler.cs:line 15
+   at TaskManagement.Application.Common.Behaviours.ValidationBehaviour`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.Application\Common\Behaviours\ValidationBehaviour.cs:line 23
+   at TaskManagement.API.Controllers.AuthController.Login(LoginCommand command) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.API\Controllers\AuthController.cs:line 17
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at TaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Task Management\Task_Management_Portal\backend\src\TaskManagement.API\Middleware\ExceptionMiddleware.cs:line 13
+2026-05-29 15:10:58.933 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 218.1660 ms
+2026-05-29 15:10:58.964 +05:45 [INF] HTTP GET /api/auditlogs responded 403 in 0.8186 ms
+2026-05-29 15:29:19.511 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 397.0896 ms
+2026-05-29 15:29:19.626 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 18.9777 ms
+2026-05-29 15:29:21.093 +05:45 [INF] HTTP GET /api/departments responded 200 in 43.8536 ms
+2026-05-29 15:29:21.174 +05:45 [INF] HTTP GET /api/users responded 200 in 125.1576 ms
+2026-05-29 15:42:15.548 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 140.4385 ms
+2026-05-29 15:42:53.454 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 169.2234 ms
+2026-05-29 15:42:53.494 +05:45 [INF] HTTP GET /api/auditlogs responded 403 in 0.9720 ms
+2026-05-29 15:43:42.311 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 195.1418 ms
+2026-05-29 15:43:42.340 +05:45 [INF] HTTP GET /api/auditlogs responded 403 in 0.5800 ms
+2026-05-29 15:47:43.055 +05:45 [INF] HTTP GET /api/auditlogs responded 403 in 0.9557 ms
+2026-05-29 15:49:07.002 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 304.0564 ms
+2026-05-29 15:49:07.099 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 45.5328 ms
+2026-05-29 15:57:42.190 +05:45 [INF] HTTP POST /api/auth/login responded 200 in 414.7351 ms
+2026-05-29 15:57:42.311 +05:45 [INF] HTTP GET /api/auditlogs responded 200 in 19.6547 ms
+2026-05-29 16:24:32.484 +05:45 [INF] HTTP GET /api/auditlogs responded 401 in 47.3305 ms

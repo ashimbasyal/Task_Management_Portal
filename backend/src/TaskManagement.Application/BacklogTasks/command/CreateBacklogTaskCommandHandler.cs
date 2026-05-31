@@ -42,10 +42,13 @@ namespace TaskManagement.Application.BacklogTasks.command
 
                 return new APIResponse
                 {
-                    StatusCode = 200,
+                    StatusCode = 201,
                     Message = "Backlog task created successfully.",
-                    Data = backlogTask,
-                    Error = null
+                    Data = new
+                    {
+                        backlogTask.Id,
+                        backlogTask.Title
+                    }
                 };
             }
             catch (Exception ex)
@@ -54,11 +57,9 @@ namespace TaskManagement.Application.BacklogTasks.command
                 {
                     StatusCode = 500,
                     Message = "Failed to create backlog task.",
-                    Data = null,
                     Error = ex.Message
                 };
             }
-        
         }
     }
 }

@@ -54,5 +54,18 @@ namespace TaskManagement.API.Controllers
 
             return StatusCode(response.StatusCode, response);
         }
+
+        [HttpPost("bulk-upload")]
+        public async Task<IActionResult> BulkUploadBacklogTask(
+        IFormFile file)
+        {
+            var response = await mediator.Send(
+                new BulkUploadBacklogTaskCommand
+                {
+                    File = file
+                });
+
+            return StatusCode(response.StatusCode, response);
+        }
     }
 }

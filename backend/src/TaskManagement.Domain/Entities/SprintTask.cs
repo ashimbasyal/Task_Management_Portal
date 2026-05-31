@@ -4,7 +4,6 @@ public class SprintTask
 {
     public int Id { get; set; }
 
-    // Link back to originating backlog task (1-to-1)
     public int BacklogTaskId { get; set; }
     public BacklogTask BacklogTask { get; set; } = null!;
 
@@ -19,7 +18,7 @@ public class SprintTask
 
     
     public int? StatusId { get; set; }
-    public MasterData? Status { get; set; }
+    public Status? Status { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public string? CreatedBy { get; set; }

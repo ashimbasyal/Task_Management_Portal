@@ -47,5 +47,37 @@ public static class DbSeeder
             await userManager.CreateAsync(admin, password);
             await userManager.AddToRoleAsync(admin, UserRole.Admin.ToString());
         }
+
+        if (!await db.Statuses.AnyAsync())
+        {
+            db.Statuses.AddRange(
+                new Status { Name = "Open" },
+                new Status { Name = "In Progress" },
+                new Status { Name = "Completed" },
+                new Status { Name = "On Hold" },
+                new Status { Name = "Closed" }
+            );
+
+            await db.SaveChangesAsync();
+        }
+
+        if(!await db.Priorities.AnyAsync())
+        {
+            db.Priorities.AddRange(
+                new Priority { Name = "High" },
+                new Priority { Name = "Medium" },
+                new Priority { Name = "Low" }
+                );
+            await db.SaveChangesAsync();
+        }
+
+        if (!await db.SprintStatuses.AnyAsync())
+        {
+            db.SprintStatuses.AddRange(
+                new SprintStatusTrigger { Name = "Completed" },
+                new SprintStatusTrigger { Name = "Closed" }
+                );
+            await db.SaveChangesAsync();
+        }
     }
 }

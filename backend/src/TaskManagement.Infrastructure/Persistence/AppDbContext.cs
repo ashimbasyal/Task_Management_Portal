@@ -13,9 +13,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<BacklogTask> BacklogTasks => Set<BacklogTask>();
     public DbSet<SprintTask> SprintTasks => Set<SprintTask>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
+    public DbSet<Status> Statuses => Set<Status>();
+    public DbSet<Priority> Priorities => Set<Priority>();
 
-   
-
+    public DbSet<SprintStatusTrigger> SprintStatuses => Set<SprintStatusTrigger>();
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -38,31 +39,22 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
 
         // BacklogTask → Priority (MasterData)
         builder.Entity<BacklogTask>()
-            .HasOne(b => b.Priority)
-            .WithMany()
-            .HasForeignKey(b => b.PriorityId)
-            .OnDelete(DeleteBehavior.SetNull);
+     .HasOne(b => b.Priority)
+     .WithMany(p => p.BacklogTasks)
+     .HasForeignKey(b => b.PriorityId)
+     .OnDelete(DeleteBehavior.SetNull);
 
-        // BacklogTask → Status (MasterData)
         builder.Entity<BacklogTask>()
             .HasOne(b => b.Status)
-            .WithMany()
+            .WithMany(s => s.BacklogTasks)
             .HasForeignKey(b => b.StatusId)
             .OnDelete(DeleteBehavior.SetNull);
 
-        // BacklogTask → Department
         builder.Entity<BacklogTask>()
             .HasOne(b => b.Department)
-            .WithMany()
+            .WithMany(d => d.BacklogTasks)
             .HasForeignKey(b => b.DepartmentId)
             .OnDelete(DeleteBehavior.SetNull);
-
-        // SprintTask → BacklogTask (1-to-1)
-        builder.Entity<SprintTask>()
-            .HasOne(s => s.BacklogTask)
-            .WithOne(b => b.SprintTask)
-            .HasForeignKey<SprintTask>(s => s.BacklogTaskId)
-            .OnDelete(DeleteBehavior.Cascade);
 
         // SprintTask → Assignee (MasterData)
         builder.Entity<SprintTask>()
@@ -77,5 +69,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
             .WithMany()
             .HasForeignKey(s => s.StatusId)
             .OnDelete(DeleteBehavior.SetNull);
+
     }
 }

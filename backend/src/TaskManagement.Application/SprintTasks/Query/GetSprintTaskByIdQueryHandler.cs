@@ -47,7 +47,7 @@ namespace TaskManagement.Application.SprintTasks.Query
                     Remarks = sprintTask.Remarks,
                     AssigneeId = sprintTask.AssigneeId,
                     AssigneeName = sprintTask.Assignee != null
-                        ? sprintTask.Assignee.Value
+                        ? sprintTask.Assignee.Type.ToString()
                         : null,
                     StatusId = sprintTask.StatusId,
                     StatusName = sprintTask.Status != null
