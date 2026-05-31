@@ -12,7 +12,7 @@ using TaskManagement.Infrastructure.Persistence;
 namespace TaskManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260531101146_init")]
+    [Migration("20260531131614_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -337,6 +337,9 @@ namespace TaskManagement.Infrastructure.Migrations
                     b.HasIndex("PriorityId");
 
                     b.HasIndex("StatusId");
+
+                    b.HasIndex("Title")
+                        .IsUnique();
 
                     b.ToTable("BacklogTasks");
                 });

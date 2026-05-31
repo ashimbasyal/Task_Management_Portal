@@ -92,11 +92,11 @@ import { UserService, UserDto } from '../../core/services/user.service';
         <div class="field-row">
           <div class="field">
             <label>Start Date</label>
-            <p-datepicker [(ngModel)]="editTaskData.startDate" [minDate]="today" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
+            <p-datepicker [(ngModel)]="editTaskData.startDate" [minDate]="today" [keepInvalid]="true" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
           </div>
           <div class="field">
             <label>End Date</label>
-            <p-datepicker [(ngModel)]="editTaskData.endDate" [minDate]="today" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
+            <p-datepicker [(ngModel)]="editTaskData.endDate" [minDate]="today" [keepInvalid]="true" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
           </div>
         </div>
         <div class="field">
@@ -158,7 +158,17 @@ export class SprintComponent {
   triggerOpts = signal<SprintStatusTriggerDto[]>([]);
 
   today = new Date();
-  editTaskData: Partial<SprintTaskDto> = {};
+
+  editTaskData: {
+    id?: number;
+    backlogTaskTitle?: string | null;
+    sprintName?: string | null;
+    startDate: Date | null;
+    endDate: Date | null;
+    remarks?: string | null;
+    assigneeId?: string | null;
+    statusId?: number | null;
+  } = { startDate: null, endDate: null };
 
   constructor() {
     this.loadReferenceData();
@@ -196,20 +206,27 @@ export class SprintComponent {
 
   editTask(task: SprintTaskDto) {
     this.editTaskData = {
-      ...task,
+      id: task.id,
+      backlogTaskTitle: task.backlogTaskTitle,
+      sprintName: task.sprintName,
       startDate: task.startDate ? new Date(task.startDate) : null,
       endDate: task.endDate ? new Date(task.endDate) : null,
-    } as unknown as Partial<SprintTaskDto>;
+      remarks: task.remarks,
+      assigneeId: task.assigneeId,
+      statusId: task.statusId,
+    };
     this.dialogVisible = true;
   }
 
   saveTask() {
     if (!this.editTaskData.id) return;
     this.saving.set(true);
+    const d = this.editTaskData.startDate;
+    const ed = this.editTaskData.endDate;
     this.sprintTaskService.update(this.editTaskData.id, {
       sprintName: this.editTaskData.sprintName ?? null,
-      startDate: this.editTaskData.startDate ? new Date(this.editTaskData.startDate).toISOString() : null,
-      endDate: this.editTaskData.endDate ? new Date(this.editTaskData.endDate).toISOString() : null,
+      startDate: d ? `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}T00:00:00.000Z` : null,
+      endDate: ed ? `${ed.getFullYear()}-${String(ed.getMonth() + 1).padStart(2, '0')}-${String(ed.getDate()).padStart(2, '0')}T00:00:00.000Z` : null,
       remarks: this.editTaskData.remarks ?? null,
       assigneeId: this.editTaskData.assigneeId ?? null,
       statusId: this.editTaskData.statusId ?? null,

@@ -335,6 +335,9 @@ namespace TaskManagement.Infrastructure.Migrations
 
                     b.HasIndex("StatusId");
 
+                    b.HasIndex("Title")
+                        .IsUnique();
+
                     b.ToTable("BacklogTasks");
                 });
 

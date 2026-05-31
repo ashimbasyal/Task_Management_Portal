@@ -54,9 +54,8 @@ namespace TaskManagement.Application.SprintTasks.command
                     Remarks = request.Remarks,
                     AssigneeId = request.AssigneeId,
 
-                    // copied automatically from backlog
                     PriorityId = backlogTask.PriorityId,
-                    StatusId = backlogTask.StatusId,
+                    StatusId = backlogTask.StatusId ?? 1,
                     DepartmentId = backlogTask.DepartmentId,
 
                     CreatedAt = DateTime.UtcNow,
@@ -73,7 +72,7 @@ namespace TaskManagement.Application.SprintTasks.command
                 {
                     StatusCode = 200,
                     Message = "Task moved to sprint successfully.",
-                    Data = sprintTask
+                    Data = sprintTask.Id
                 };
             }
             catch (Exception ex)

@@ -15,6 +15,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BacklogService, BacklogItem } from '../../core/services/backlog.service';
+import { SprintTaskService } from '../../core/services/sprint-task.service';
 import { PriorityService, PriorityDto } from '../../core/services/priority.service';
 import { StatusService, StatusDto } from '../../core/services/status.service';
 import { DepartmentService, DepartmentDto } from '../../core/services/department.service';
@@ -239,6 +240,7 @@ interface SprintForm {
 })
 export class BacklogComponent {
   private backlogService = inject(BacklogService);
+  private sprintTaskService = inject(SprintTaskService);
   private priorityService = inject(PriorityService);
   private statusService = inject(StatusService);
   private deptService = inject(DepartmentService);
@@ -270,6 +272,14 @@ export class BacklogComponent {
   formItem: Partial<BacklogForm> = {};
   selectedItem: BacklogItem | null = null;
   sprintForm: SprintForm = { sprintName: '', assigneeId: null, startDate: null, endDate: null, remarks: '' };
+
+  private toUTCDateString(date: Date | null): string | null {
+    if (!date) return null;
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}T00:00:00.000Z`;
+  }
   assigneeInput = '';
   showAssigneeOverlay = false;
   requestedByInput = '';
@@ -493,11 +503,12 @@ export class BacklogComponent {
       return;
     }
     this.movingToSprint.set(true);
-    this.backlogService.moveToSprint(this.selectedItem.id, {
+    this.sprintTaskService.create({
+      backlogTaskId: this.selectedItem.id,
       sprintName: this.sprintForm.sprintName,
       assigneeId: this.sprintForm.assigneeId,
-      startDate: this.sprintForm.startDate?.toISOString() ?? null,
-      endDate: this.sprintForm.endDate?.toISOString() ?? null,
+      startDate: this.toUTCDateString(this.sprintForm.startDate),
+      endDate: this.toUTCDateString(this.sprintForm.endDate),
       remarks: this.sprintForm.remarks || null,
     }).subscribe({
       next: () => {

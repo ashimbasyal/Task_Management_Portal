@@ -29,7 +29,6 @@ export interface CreateSprintTaskRequest {
   endDate: string | null;
   remarks: string | null;
   assigneeId: string | null;
-  statusId: number | null;
 }
 
 export interface UpdateSprintTaskRequest {
