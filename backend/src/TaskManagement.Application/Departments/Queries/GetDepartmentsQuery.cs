@@ -1,6 +1,6 @@
 using MediatR;
-using TaskManagement.Application.Departments.DTOs;
+using TaskManagement.Application.Common.Behaviours;
 
 namespace TaskManagement.Application.Departments.Queries;
 
-public record GetDepartmentsQuery : IRequest<IReadOnlyList<DepartmentDto>>;
+public record GetDepartmentsQuery : IRequest<APIResponse>;

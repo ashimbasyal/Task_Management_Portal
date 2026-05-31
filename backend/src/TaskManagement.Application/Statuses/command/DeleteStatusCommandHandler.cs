@@ -32,13 +32,13 @@ namespace TaskManagement.Application.Statuses.command
                     };
                 }
 
-
+                status.IsActive = false;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new APIResponse
                 {
                     StatusCode = 200,
-                    Message = "Status deleted successfully"
+                    Message = "Status deactivated successfully"
                 };
             }
             catch (Exception ex)

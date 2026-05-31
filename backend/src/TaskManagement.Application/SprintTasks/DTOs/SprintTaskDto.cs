@@ -12,6 +12,8 @@ namespace TaskManagement.Application.SprintTasks.DTOs
 
         public int BacklogTaskId { get; set; }
 
+        public int? BacklogTaskSN { get; set; }
+
         public string? BacklogTaskTitle { get; set; }
 
         public string? SprintName { get; set; }
@@ -29,6 +31,8 @@ namespace TaskManagement.Application.SprintTasks.DTOs
         public int? StatusId { get; set; }
 
         public string? StatusName { get; set; }
+
+        public string? PriorityName { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

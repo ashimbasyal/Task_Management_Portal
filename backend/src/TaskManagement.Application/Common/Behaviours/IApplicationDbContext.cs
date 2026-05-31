@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TaskManagement.Domain.Entities;
 
 namespace TaskManagement.Application.Common.Behaviours
@@ -16,6 +11,9 @@ namespace TaskManagement.Application.Common.Behaviours
         DbSet<Status> Statuses { get; }
         DbSet<Priority> Priorities { get; }
         DbSet<SprintStatusTrigger> SprintStatuses { get; }
+        DbSet<Department> Departments { get; }
+        DbSet<UserPermission> UserPermissions { get; }
+        DbSet<Domain.Entities.MasterData> MasterData { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

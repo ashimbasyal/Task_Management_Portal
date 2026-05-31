@@ -1,4 +1,5 @@
 using MediatR;
+using TaskManagement.Application.Common.Behaviours;
 
 namespace TaskManagement.Application.BacklogTasks.command;
 
@@ -8,5 +9,5 @@ public record MoveToSprintCommand(
     DateTime? StartDate,
     DateTime? EndDate,
     string? Remarks,
-    int? AssigneeId
-) : IRequest<int>;
+    string? AssigneeId
+) : IRequest<APIResponse>;

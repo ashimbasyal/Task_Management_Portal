@@ -43,9 +43,14 @@ public static class RolePermissions
 
             [UserRole.Officer] = new HashSet<Permission>
             {
+                Permission.ViewUsers,
                 Permission.ViewBacklog,
                 Permission.CreateBacklog,
                 Permission.EditBacklog,
+                Permission.ViewSprint,
+                Permission.AssignSprintTask,
+                Permission.UpdateSprintProgress,
+                Permission.UpdateSprintRemarks,
                 Permission.ViewDashboard,
             }.ToFrozenSet(),
         };

@@ -1,10 +1,7 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Application.AuditLogs.Command;
-using TaskManagement.Application.AuditLogs.Query;
-using TaskManagement.Application.Auth.Commands;
 
 namespace TaskManagement.API.Controllers
 {
@@ -22,13 +19,6 @@ namespace TaskManagement.API.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAuditLog()
-        {
-            var response = await mediator.Send(
-                new GetAuditLogQuery());
 
-            return StatusCode(response.StatusCode, response);
-        }
     }
 }

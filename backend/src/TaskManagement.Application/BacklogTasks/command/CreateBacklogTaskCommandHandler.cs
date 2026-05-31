@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using TaskManagement.Application.Common.Behaviours;
 using TaskManagement.Domain.Entities;
 
@@ -21,8 +22,12 @@ namespace TaskManagement.Application.BacklogTasks.command
         {
             try
             {
+                var maxSN = await _context.BacklogTasks
+                    .MaxAsync(x => (int?)x.SN, cancellationToken) ?? 0;
+
                 var backlogTask = new BacklogTask
                 {
+                    SN = maxSN + 1,
                     Title = request.Title,
                     Description = request.Description,
                     RequestedBy = request.RequestedBy,

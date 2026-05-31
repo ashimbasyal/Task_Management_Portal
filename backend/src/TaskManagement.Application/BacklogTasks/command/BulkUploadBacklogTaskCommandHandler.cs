@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using TaskManagement.Application.Common.Behaviours;
 using TaskManagement.Domain.Entities;
@@ -33,6 +34,9 @@ namespace TaskManagement.Application.BacklogTasks.command
 
                 var backlogTasks = new List<BacklogTask>();
 
+                var currentMaxSN = await _context.BacklogTasks
+                    .MaxAsync(x => (int?)x.SN, cancellationToken) ?? 0;
+
                 using var stream = new MemoryStream();
 
                 await request.File.CopyToAsync(stream, cancellationToken);
@@ -47,6 +51,7 @@ namespace TaskManagement.Application.BacklogTasks.command
                 {
                     var task = new BacklogTask
                     {
+                        SN = ++currentMaxSN,
                         Title = worksheet.Cells[row, 1].Text,
                         Description = worksheet.Cells[row, 2].Text,
                         RequestedBy = worksheet.Cells[row, 3].Text,

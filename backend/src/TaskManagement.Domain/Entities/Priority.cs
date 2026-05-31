@@ -10,6 +10,7 @@ namespace TaskManagement.Domain.Entities
     {
         public int ID {  get; set; }
         public string? Name { get; set; }
+        public bool IsActive { get; set; } = true;
         public ICollection<BacklogTask> BacklogTasks { get; set; }
         = new List<BacklogTask>();
     }

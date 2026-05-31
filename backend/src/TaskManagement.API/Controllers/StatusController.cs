@@ -12,7 +12,6 @@ namespace TaskManagement.API.Controllers
     public class StatusController(IMediator mediator) : ControllerBase
     {
         [HttpPost]
-        [HttpPost]
         public async Task<IActionResult> Create(
         CreateStatusCommand command)
         {
@@ -40,7 +39,7 @@ namespace TaskManagement.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var response = await mediator.Send(new DeleteStatusCommand());
+            var response = await mediator.Send(new DeleteStatusCommand { Id = id });
             return StatusCode(response.StatusCode, response);
         }
     }
