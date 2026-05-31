@@ -3,14 +3,17 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using TaskManagement.Application.Auth.Interfaces;
 using TaskManagement.Domain.Entities;
+using TaskManagement.Domain.Enums;
+using TaskManagement.Infrastructure.Persistence;
 
 namespace TaskManagement.Infrastructure.Services;
 
-public class TokenService(IConfiguration config, UserManager<AppUser> userManager) : ITokenService
+public class TokenService(IConfiguration config, UserManager<AppUser> userManager, AppDbContext db) : ITokenService
 {
     public string GenerateAccessToken(AppUser user)
     {
@@ -25,6 +28,33 @@ public class TokenService(IConfiguration config, UserManager<AppUser> userManage
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new(ClaimTypes.Role, user.Role.ToString())
         };
+
+        var permissions = RolePermissions.GetPermissions(user.Role);
+
+        // apply user-level permission overrides
+        var overrides = db.UserPermissions
+            .Where(up => up.UserId == user.Id)
+            .ToLookup(up => up.Permission, up => up.IsGranted);
+
+        foreach (var permission in permissions)
+        {
+            if (!overrides.Contains(permission) || overrides[permission].First())
+                claims.Add(new Claim("Permission", permission.ToString()));
+        }
+
+        // add extra granted permissions not in the role
+        foreach (var group in overrides)
+        {
+            if (!permissions.Contains(group.Key) && group.First())
+                claims.Add(new Claim("Permission", group.Key.ToString()));
+        }
+
+        if (user.DepartmentId.HasValue)
+        {
+            claims.Add(new Claim("DepartmentId", user.DepartmentId.Value.ToString()));
+        }
+
+        claims.Add(new Claim("CanViewAllDepartments", user.CanViewAllDepartments.ToString()));
 
         var token = new JwtSecurityToken(
             issuer: config["Jwt:Issuer"],

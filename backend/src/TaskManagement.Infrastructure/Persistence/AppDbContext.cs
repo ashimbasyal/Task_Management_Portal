@@ -13,6 +13,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<BacklogTask> BacklogTasks => Set<BacklogTask>();
     public DbSet<SprintTask> SprintTasks => Set<SprintTask>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
+    public DbSet<UserPermission> UserPermissions => Set<UserPermission>();
     public DbSet<Status> Statuses => Set<Status>();
     public DbSet<Priority> Priorities => Set<Priority>();
 
@@ -70,5 +71,19 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
             .HasForeignKey(s => s.StatusId)
             .OnDelete(DeleteBehavior.SetNull);
 
+        // UserPermission → AppUser
+        builder.Entity<UserPermission>()
+            .HasOne(up => up.User)
+            .WithMany()
+            .HasForeignKey(up => up.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Entity<UserPermission>()
+            .Property(up => up.Permission)
+            .HasConversion<int>();
+
+        builder.Entity<UserPermission>()
+            .HasIndex(up => new { up.UserId, up.Permission })
+            .IsUnique();
     }
 }

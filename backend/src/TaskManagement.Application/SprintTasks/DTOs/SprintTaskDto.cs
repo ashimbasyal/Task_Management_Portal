@@ -26,7 +26,6 @@ namespace TaskManagement.Application.SprintTasks.DTOs
 
         public int? StatusId { get; set; }
 
-        public string? StatusName { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

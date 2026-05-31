@@ -1,0 +1,70 @@
+export enum Permission {
+  ViewUsers = 'ViewUsers',
+  CreateUsers = 'CreateUsers',
+  EditUsers = 'EditUsers',
+  DeleteUsers = 'DeleteUsers',
+  ManageUserPermissions = 'ManageUserPermissions',
+
+  ViewBacklog = 'ViewBacklog',
+  CreateBacklog = 'CreateBacklog',
+  EditBacklog = 'EditBacklog',
+  DeleteBacklog = 'DeleteBacklog',
+
+  ViewSprint = 'ViewSprint',
+  CreateSprint = 'CreateSprint',
+  AssignSprintTask = 'AssignSprintTask',
+  UpdateSprintProgress = 'UpdateSprintProgress',
+  UpdateSprintRemarks = 'UpdateSprintRemarks',
+  UpdateSprintStatus = 'UpdateSprintStatus',
+
+  ViewDashboard = 'ViewDashboard',
+
+  ViewMasterData = 'ViewMasterData',
+  ManageMasterData = 'ManageMasterData',
+
+  ViewAuditLogs = 'ViewAuditLogs',
+}
+
+export const PermissionValues: Record<string, number> = {
+  ViewUsers: 1,
+  CreateUsers: 2,
+  EditUsers: 3,
+  DeleteUsers: 4,
+  ManageUserPermissions: 5,
+  ViewBacklog: 10,
+  CreateBacklog: 11,
+  EditBacklog: 12,
+  DeleteBacklog: 13,
+  ViewSprint: 20,
+  CreateSprint: 21,
+  AssignSprintTask: 22,
+  UpdateSprintProgress: 23,
+  UpdateSprintRemarks: 24,
+  UpdateSprintStatus: 25,
+  ViewDashboard: 30,
+  ViewMasterData: 40,
+  ManageMasterData: 41,
+  ViewAuditLogs: 50,
+};
+
+export const PermissionLabels: Record<string, string> = {
+  ViewUsers: 'View Users',
+  CreateUsers: 'Create Users',
+  EditUsers: 'Edit Users',
+  DeleteUsers: 'Delete Users',
+  ManageUserPermissions: 'Manage User Permissions',
+  ViewBacklog: 'View Backlog',
+  CreateBacklog: 'Create Backlog',
+  EditBacklog: 'Edit Backlog',
+  DeleteBacklog: 'Delete Backlog',
+  ViewSprint: 'View Sprint',
+  CreateSprint: 'Create Sprint',
+  AssignSprintTask: 'Assign Sprint Task',
+  UpdateSprintProgress: 'Update Sprint Progress',
+  UpdateSprintRemarks: 'Update Sprint Remarks',
+  UpdateSprintStatus: 'Update Sprint Status',
+  ViewDashboard: 'View Dashboard',
+  ViewMasterData: 'View Master Data',
+  ManageMasterData: 'Manage Master Data',
+  ViewAuditLogs: 'View Audit Logs',
+};

@@ -2,6 +2,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using TaskManagement.Domain.Enums;
 
 namespace TaskManagement.API;
 
@@ -27,7 +28,15 @@ public static class ServiceExtensions
                 };
             });
 
-        services.AddAuthorization();
+        services.AddAuthorization(options =>
+        {
+            foreach (var permission in Enum.GetValues<Permission>())
+            {
+                options.AddPolicy(permission.ToString(), policy =>
+                    policy.RequireClaim("Permission", permission.ToString()));
+            }
+        });
+
         return services;
     }
 }

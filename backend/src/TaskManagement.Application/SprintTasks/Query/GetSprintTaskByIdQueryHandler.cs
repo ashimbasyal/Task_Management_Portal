@@ -50,9 +50,6 @@ namespace TaskManagement.Application.SprintTasks.Query
                         ? sprintTask.Assignee.Type.ToString()
                         : null,
                     StatusId = sprintTask.StatusId,
-                    StatusName = sprintTask.Status != null
-                        ? sprintTask.Status.Value
-                        : null,
                     CreatedAt = sprintTask.CreatedAt,
                     CreatedBy = sprintTask.CreatedBy,
                     UpdatedAt = sprintTask.UpdatedAt,

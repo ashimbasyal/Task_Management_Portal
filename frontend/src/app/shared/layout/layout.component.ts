@@ -30,9 +30,9 @@ import { AuthService } from '../../core/auth/auth.service';
             <i class="pi pi-cog"></i>
             <span>Master Data</span>
           </a>
-          <a *ngIf="role === 'Admin'" routerLink="/admin/users" routerLinkActive="active" class="nav-item">
+          <a *ngIf="role === 'Admin'" routerLink="/admin/user-role" routerLinkActive="active" class="nav-item">
             <i class="pi pi-users"></i>
-            <span>Admin Panel</span>
+            <span>User & Role</span>
           </a>
           <a *ngIf="role === 'Admin'" routerLink="/admin/audit-log" routerLinkActive="active" class="nav-item">
             <i class="pi pi-history"></i>
