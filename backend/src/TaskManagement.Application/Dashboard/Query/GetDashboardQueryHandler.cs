@@ -28,8 +28,8 @@ namespace TaskManagement.Application.Dashboard.Query
                 var query = _context.SprintTasks.AsQueryable();
 
                 
-                if (request.SprintId.HasValue)
-                    query = query.Where(x => x.Id == request.SprintId.Value);
+                if (!string.IsNullOrEmpty(request.SprintName))
+                    query = query.Where(x => x.SprintName == request.SprintName);
 
                 if (request.PriorityId.HasValue)
                     query = query.Where(x => x.PriorityId == request.PriorityId.Value);
@@ -61,30 +61,30 @@ namespace TaskManagement.Application.Dashboard.Query
 
                 var statusWise = await query
                     .Include(x => x.Status)
-                    .GroupBy(x => x.Status.Name)
+                    .GroupBy(x => x.StatusId)
                     .Select(g => new StatusDistributionDto
                     {
-                        StatusName = g.Key,
+                        StatusName = g.Min(x => x.Status.Name) ?? "Unassigned",
                         Count = g.Count()
                     })
                     .ToListAsync(cancellationToken);
 
                 var priorityWise = await query
                     .Include(x => x.Priority)
-                    .GroupBy(x => x.Priority.Name)
+                    .GroupBy(x => x.PriorityId)
                     .Select(g => new PriorityDistributionDto
                     {
-                        PriorityName = g.Key,
+                        PriorityName = g.Min(x => x.Priority.Name) ?? "Unassigned",
                         Count = g.Count()
                     })
                     .ToListAsync(cancellationToken);
 
                 var departmentWise = await query
                     .Include(x => x.Department)
-                    .GroupBy(x => x.Department.Name)
+                    .GroupBy(x => x.DepartmentId)
                     .Select(g => new DepartmentDistributionDto
                     {
-                        DepartmentName = g.Key,
+                        DepartmentName = g.Min(x => x.Department.Name) ?? "Unassigned",
                         Count = g.Count()
                     })
                     .ToListAsync(cancellationToken);

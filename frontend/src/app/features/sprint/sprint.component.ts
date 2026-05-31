@@ -14,6 +14,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { SprintTaskService, SprintTaskDto } from '../../core/services/sprint-task.service';
+import { SprintStatusTriggerService, SprintStatusTriggerDto } from '../../core/services/sprint-status-trigger.service';
 import { StatusService, StatusDto } from '../../core/services/status.service';
 import { UserService, UserDto } from '../../core/services/user.service';
 
@@ -34,7 +35,14 @@ import { UserService, UserDto } from '../../core/services/user.service';
       <h2>Sprint Management</h2>
       <div class="header-actions">
         <p-select [options]="sprintNameOpts()" placeholder="All Sprints" [(ngModel)]="selectedSprint" (onChange)="applyFilter()" appendTo="body" styleClass="sprint-select" [showClear]="true"></p-select>
+        <p-select [options]="triggerOpts()" placeholder="Sprint Status" [(ngModel)]="selectedTriggerId" appendTo="body" styleClass="trigger-select" optionLabel="name" optionValue="id" [showClear]="true"></p-select>
       </div>
+    </div>
+
+    <div class="sprint-status-bar" *ngIf="selectedTriggerId">
+      <span class="status-indicator" [class.active]="selectedTriggerName !== 'Closed'" [class.closed]="selectedTriggerName === 'Closed'">
+        Sprint Status: <strong>{{ selectedTriggerName }}</strong>
+      </span>
     </div>
 
     <p-table [value]="filteredTasks()" [paginator]="true" [rows]="10" [loading]="loading()"
@@ -84,11 +92,11 @@ import { UserService, UserDto } from '../../core/services/user.service';
         <div class="field-row">
           <div class="field">
             <label>Start Date</label>
-            <p-datepicker [(ngModel)]="editTaskData.startDate" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
+            <p-datepicker [(ngModel)]="editTaskData.startDate" [minDate]="today" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
           </div>
           <div class="field">
             <label>End Date</label>
-            <p-datepicker [(ngModel)]="editTaskData.endDate" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
+            <p-datepicker [(ngModel)]="editTaskData.endDate" [minDate]="today" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
           </div>
         </div>
         <div class="field">
@@ -111,6 +119,14 @@ import { UserService, UserDto } from '../../core/services/user.service';
     .page-header h2 { margin: 0; font-size: 1.5rem; color: #1e293b; }
     .header-actions { display: flex; gap: 0.5rem; }
     :host ::ng-deep .sprint-select .p-select { min-width: 180px; }
+    :host ::ng-deep .trigger-select .p-select { min-width: 160px; }
+    .sprint-status-bar { margin-bottom: 0.75rem; }
+    .status-indicator {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.85rem; padding: 0.3rem 0.75rem; border-radius: 999px;
+      background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0;
+    }
+    .status-indicator.closed { background: #fef2f2; color: #dc2626; border-color: #fecaca; }
     .form { display: flex; flex-direction: column; gap: 0.75rem; }
     .field-row { display: flex; gap: 0.75rem; }
     .field-row .field { flex: 1; }
@@ -122,6 +138,7 @@ import { UserService, UserDto } from '../../core/services/user.service';
 })
 export class SprintComponent {
   private sprintTaskService = inject(SprintTaskService);
+  private sprintStatusTriggerService = inject(SprintStatusTriggerService);
   private statusService = inject(StatusService);
   private userService = inject(UserService);
   private messageService = inject(MessageService);
@@ -133,16 +150,20 @@ export class SprintComponent {
   saving = signal(false);
   dialogVisible = false;
   selectedSprint: string | null = null;
+  selectedTriggerId: number | null = null;
 
   statusOpts = signal<StatusDto[]>([]);
   assigneeOpts = signal<{ label: string; value: string }[]>([]);
   sprintNameOpts = signal<{ label: string; value: string }[]>([]);
+  triggerOpts = signal<SprintStatusTriggerDto[]>([]);
 
+  today = new Date();
   editTaskData: Partial<SprintTaskDto> = {};
 
   constructor() {
     this.loadReferenceData();
     this.loadTasks();
+    this.loadTriggers();
   }
 
   private loadReferenceData() {
@@ -150,6 +171,12 @@ export class SprintComponent {
     this.userService.getAll().subscribe({
       next: users => this.assigneeOpts.set(users.map(u => ({ label: `${u.fullName} (${u.email})`, value: u.id }))),
       error: () => this.assigneeOpts.set([]),
+    });
+  }
+
+  private loadTriggers() {
+    this.sprintStatusTriggerService.getAll().subscribe({
+      next: triggers => this.triggerOpts.set(triggers),
     });
   }
 
@@ -168,7 +195,11 @@ export class SprintComponent {
   }
 
   editTask(task: SprintTaskDto) {
-    this.editTaskData = { ...task };
+    this.editTaskData = {
+      ...task,
+      startDate: task.startDate ? new Date(task.startDate) : null,
+      endDate: task.endDate ? new Date(task.endDate) : null,
+    } as unknown as Partial<SprintTaskDto>;
     this.dialogVisible = true;
   }
 
@@ -211,6 +242,11 @@ export class SprintComponent {
         });
       },
     });
+  }
+
+  get selectedTriggerName(): string {
+    const found = this.triggerOpts().find(t => t.id === this.selectedTriggerId);
+    return found?.name ?? '';
   }
 
   applyFilter() {

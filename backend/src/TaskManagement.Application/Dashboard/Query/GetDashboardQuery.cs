@@ -10,7 +10,7 @@ namespace TaskManagement.Application.Dashboard.Query
 {
     public class GetDashboardQuery:IRequest<APIResponse>
     {
-        public int? SprintId { get; set; }
+        public string? SprintName { get; set; }
         public int? PriorityId { get; set; }
         public int? StatusId { get; set; }
         public int? DepartmentId { get; set; }

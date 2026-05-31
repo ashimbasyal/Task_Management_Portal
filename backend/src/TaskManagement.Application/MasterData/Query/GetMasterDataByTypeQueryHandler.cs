@@ -22,7 +22,7 @@ namespace TaskManagement.Application.MasterData.Query
                         .Where(x => x.IsActive)
                         .Select(x => new
                         {
-                            Id = x.Id,
+                            x.Id,
                             Type = (int)MasterDataType.Status,
                             Value = x.Name ?? string.Empty,
                             DisplayOrder = x.Id
@@ -33,7 +33,7 @@ namespace TaskManagement.Application.MasterData.Query
                         .Where(x => x.IsActive)
                         .Select(x => new
                         {
-                            Id = x.ID,
+                            x.ID,
                             Type = (int)MasterDataType.Priority,
                             Value = x.Name ?? string.Empty,
                             DisplayOrder = x.ID
@@ -41,10 +41,10 @@ namespace TaskManagement.Application.MasterData.Query
                         .ToListAsync(cancellationToken),
 
                     MasterDataType.SprintStatusTrigger => await _context.SprintStatuses
-                        .Where(x => x.IsActive)
+                      
                         .Select(x => new
                         {
-                            Id = x.Id,
+                            x.Id,
                             Type = (int)MasterDataType.SprintStatusTrigger,
                             Value = x.Name ?? string.Empty,
                             DisplayOrder = x.Id
@@ -54,7 +54,7 @@ namespace TaskManagement.Application.MasterData.Query
                     MasterDataType.Assignee => await _context.Users
                         .Select(x => new
                         {
-                            Id = x.Id,
+                             x.Id,
                             Type = (int)MasterDataType.Assignee,
                             Value = x.FullName,
                             DisplayOrder = 0
@@ -65,7 +65,7 @@ namespace TaskManagement.Application.MasterData.Query
                         .Where(x => x.IsActive)
                         .Select(x => new
                         {
-                            Id = x.Id,
+                             x.Id,
                             Type = (int)MasterDataType.Department,
                             Value = x.Name,
                             DisplayOrder = x.Id

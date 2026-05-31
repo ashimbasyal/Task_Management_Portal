@@ -42,6 +42,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
      .OnDelete(DeleteBehavior.SetNull);
 
         builder.Entity<BacklogTask>()
+    .HasIndex(b => b.Title)
+    .IsUnique();
+
+        builder.Entity<BacklogTask>()
             .HasOne(b => b.Status)
             .WithMany(s => s.BacklogTasks)
             .HasForeignKey(b => b.StatusId)

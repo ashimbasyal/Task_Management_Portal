@@ -91,6 +91,10 @@ export class BacklogService {
     return this.http.post<number>(`${this.API}/${id}/move-to-sprint`, request);
   }
 
+  downloadSample() {
+    return this.http.get(`${this.API}/download-sample`, { responseType: 'blob' });
+  }
+
   bulkUpload(file: File) {
     const formData = new FormData();
     formData.append('file', file);

@@ -76,7 +76,7 @@ public static class DbSeeder
             db.SprintStatuses.AddRange(
                 new SprintStatusTrigger { Name = "In Progress" },
                 new SprintStatusTrigger { Name = "Closed", IsActive = false }
-                );
+                );  
             await db.SaveChangesAsync();
         }
 
