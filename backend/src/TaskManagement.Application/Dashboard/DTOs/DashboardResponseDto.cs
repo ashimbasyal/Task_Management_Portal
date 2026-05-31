@@ -13,6 +13,8 @@ namespace TaskManagement.Application.Dashboard.DTOs
         public List<PriorityDistributionDto> PriorityWiseDistribution { get; set; }
         public List<DepartmentDistributionDto> DepartmentWiseDistribution { get; set; }
         public List<UserTaskCountDto> AssignedUserTaskCounts { get; set; }
+        public int TotalTasks { get; set; }
+        public int InProgressTasks { get; set; }
 
         public int PendingTasks { get; set; }
         public int CompletedTasks { get; set; }

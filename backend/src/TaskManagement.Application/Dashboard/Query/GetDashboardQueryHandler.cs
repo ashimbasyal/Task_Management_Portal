@@ -80,6 +80,11 @@ namespace TaskManagement.Application.Dashboard.Query
                 {
                     u.UserName = users.FirstOrDefault(x => x.Id == u.UserId)?.UserName;
                 }
+                var totalTasks = await _context.SprintTasks
+                    .CountAsync(cancellationToken);
+
+                var inProgressTasks = await _context.SprintTasks
+                    .CountAsync(x => x.StatusId == 2, cancellationToken);
 
                 var pending = await _context.SprintTasks
                     .CountAsync(x => x.Status.Name == "Pending", cancellationToken);
@@ -94,6 +99,8 @@ namespace TaskManagement.Application.Dashboard.Query
                     PriorityWiseDistribution = priorityWise,
                     DepartmentWiseDistribution = departmentWise,
                     AssignedUserTaskCounts = userTasks,
+                    TotalTasks = totalTasks,
+                    InProgressTasks = totalTasks,
                     PendingTasks = pending,
                     CompletedTasks = completed
                 };
