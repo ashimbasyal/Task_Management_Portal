@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TaskManagement.Application.Common.Behaviours;
@@ -16,16 +11,46 @@ namespace TaskManagement.Application.Dashboard.Query
     {
         private readonly IApplicationDbContext _context;
         private readonly UserManager<AppUser> _userManager;
-        public GetDashboardQueryHandler(IApplicationDbContext context, UserManager<AppUser> userManager)
+
+        public GetDashboardQueryHandler(
+            IApplicationDbContext context,
+            UserManager<AppUser> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
+
         public async Task<APIResponse> Handle(GetDashboardQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                var sprintWise = await _context.SprintTasks
+                
+                var query = _context.SprintTasks.AsQueryable();
+
+                
+                if (request.SprintId.HasValue)
+                    query = query.Where(x => x.Id == request.SprintId.Value);
+
+                if (request.PriorityId.HasValue)
+                    query = query.Where(x => x.PriorityId == request.PriorityId.Value);
+
+                if (request.StatusId.HasValue)
+                    query = query.Where(x => x.StatusId == request.StatusId.Value);
+
+                if (request.DepartmentId.HasValue)
+                    query = query.Where(x => x.DepartmentId == request.DepartmentId.Value);
+
+                var totalTasks = await query.CountAsync(cancellationToken);
+
+                var inProgressTasks = await query.CountAsync(x => x.StatusId == 2, cancellationToken);
+
+                var pendingTasks = await query.CountAsync(x => x.Status.Name == "Pending", cancellationToken);
+
+                var completedTasks = await query.CountAsync(x => x.Status.Name == "Completed", cancellationToken);
+
+               
+
+                var sprintWise = await query
                     .GroupBy(x => x.SprintName)
                     .Select(g => new SprintTaskCountDto
                     {
@@ -34,7 +59,7 @@ namespace TaskManagement.Application.Dashboard.Query
                     })
                     .ToListAsync(cancellationToken);
 
-                var statusWise = await _context.SprintTasks
+                var statusWise = await query
                     .Include(x => x.Status)
                     .GroupBy(x => x.Status.Name)
                     .Select(g => new StatusDistributionDto
@@ -44,7 +69,7 @@ namespace TaskManagement.Application.Dashboard.Query
                     })
                     .ToListAsync(cancellationToken);
 
-                var priorityWise = await _context.SprintTasks
+                var priorityWise = await query
                     .Include(x => x.Priority)
                     .GroupBy(x => x.Priority.Name)
                     .Select(g => new PriorityDistributionDto
@@ -54,7 +79,7 @@ namespace TaskManagement.Application.Dashboard.Query
                     })
                     .ToListAsync(cancellationToken);
 
-                var departmentWise = await _context.SprintTasks
+                var departmentWise = await query
                     .Include(x => x.Department)
                     .GroupBy(x => x.Department.Name)
                     .Select(g => new DepartmentDistributionDto
@@ -64,7 +89,7 @@ namespace TaskManagement.Application.Dashboard.Query
                     })
                     .ToListAsync(cancellationToken);
 
-                var userTasks = await _context.SprintTasks
+                var userTasks = await query
                     .GroupBy(x => x.AssigneeId)
                     .Select(g => new UserTaskCountDto
                     {
@@ -73,24 +98,14 @@ namespace TaskManagement.Application.Dashboard.Query
                     })
                     .ToListAsync(cancellationToken);
 
-                // get users once (avoid N+1 problem)
-                var users = await _userManager.Users.ToListAsync(cancellationToken);
+                var users = await _userManager.Users
+                    .Select(x => new { x.Id, x.UserName })
+                    .ToListAsync(cancellationToken);
 
-                foreach (var u in userTasks)
+                foreach (var item in userTasks)
                 {
-                    u.UserName = users.FirstOrDefault(x => x.Id == u.UserId)?.UserName;
+                    item.UserName = users.FirstOrDefault(x => x.Id == item.UserId)?.UserName;
                 }
-                var totalTasks = await _context.SprintTasks
-                    .CountAsync(cancellationToken);
-
-                var inProgressTasks = await _context.SprintTasks
-                    .CountAsync(x => x.StatusId == 2, cancellationToken);
-
-                var pending = await _context.SprintTasks
-                    .CountAsync(x => x.Status.Name == "Pending", cancellationToken);
-
-                var completed = await _context.SprintTasks
-                    .CountAsync(x => x.Status.Name == "Completed", cancellationToken);
 
                 var result = new DashboardResponseDto
                 {
@@ -99,10 +114,11 @@ namespace TaskManagement.Application.Dashboard.Query
                     PriorityWiseDistribution = priorityWise,
                     DepartmentWiseDistribution = departmentWise,
                     AssignedUserTaskCounts = userTasks,
+
                     TotalTasks = totalTasks,
-                    InProgressTasks = totalTasks,
-                    PendingTasks = pending,
-                    CompletedTasks = completed
+                    InProgressTasks = inProgressTasks,
+                    PendingTasks = pendingTasks,
+                    CompletedTasks = completedTasks
                 };
 
                 return new APIResponse
