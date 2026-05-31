@@ -40,21 +40,27 @@ namespace TaskManagement.Application.SprintTasks.command
                     return new APIResponse
                     {
                         StatusCode = 400,
-                        Message = "Task is moved to sprint."
+                        Message = "Task already moved to sprint."
                     };
                 }
 
                 var sprintTask = new SprintTask
                 {
-                    BacklogTaskId = request.BacklogTaskId,
+                    BacklogTaskId = backlogTask.Id,
+
                     SprintName = request.SprintName,
                     StartDate = request.StartDate,
                     EndDate = request.EndDate,
                     Remarks = request.Remarks,
                     AssigneeId = request.AssigneeId,
-                    StatusId = request.StatusId,
-                    CreatedBy = request.CreatedBy,
-                    CreatedAt = DateTime.UtcNow
+
+                    // copied automatically from backlog
+                    PriorityId = backlogTask.PriorityId,
+                    StatusId = backlogTask.StatusId,
+                    DepartmentId = backlogTask.DepartmentId,
+
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = request.CreatedBy
                 };
 
                 _context.SprintTasks.Add(sprintTask);
@@ -65,8 +71,8 @@ namespace TaskManagement.Application.SprintTasks.command
 
                 return new APIResponse
                 {
-                    StatusCode = 201,
-                    Message = "Sprint task created successfully.",
+                    StatusCode = 200,
+                    Message = "Task moved to sprint successfully.",
                     Data = sprintTask
                 };
             }
@@ -75,8 +81,8 @@ namespace TaskManagement.Application.SprintTasks.command
                 return new APIResponse
                 {
                     StatusCode = 500,
-                    Message = "Failed to create sprint task.",
-                    Error = ex.InnerException?.Message
+                    Message = "Failed",
+                    Error = ex.Message
                 };
             }
         }

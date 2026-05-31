@@ -60,22 +60,6 @@ namespace TaskManagement.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MasterData",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Type = table.Column<int>(type: "integer", nullable: false),
-                    Value = table.Column<string>(type: "text", nullable: false),
-                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
-                    DisplayOrder = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MasterData", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Priorities",
                 columns: table => new
                 {
@@ -338,6 +322,8 @@ namespace TaskManagement.Infrastructure.Migrations
                     Remarks = table.Column<string>(type: "text", nullable: true),
                     AssigneeId = table.Column<string>(type: "text", nullable: true),
                     StatusId = table.Column<int>(type: "integer", nullable: true),
+                    PriorityId = table.Column<int>(type: "integer", nullable: true),
+                    DepartmentId = table.Column<int>(type: "integer", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -358,6 +344,16 @@ namespace TaskManagement.Infrastructure.Migrations
                         principalTable: "BacklogTasks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SprintTasks_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SprintTasks_Priorities_PriorityId",
+                        column: x => x.PriorityId,
+                        principalTable: "Priorities",
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SprintTasks_Statuses_StatusId",
                         column: x => x.StatusId,
@@ -435,6 +431,16 @@ namespace TaskManagement.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_SprintTasks_DepartmentId",
+                table: "SprintTasks",
+                column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SprintTasks_PriorityId",
+                table: "SprintTasks",
+                column: "PriorityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SprintTasks_StatusId",
                 table: "SprintTasks",
                 column: "StatusId");
@@ -466,9 +472,6 @@ namespace TaskManagement.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AuditLogs");
-
-            migrationBuilder.DropTable(
-                name: "MasterData");
 
             migrationBuilder.DropTable(
                 name: "SprintStatuses");

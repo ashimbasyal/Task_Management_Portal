@@ -358,32 +358,6 @@ namespace TaskManagement.Infrastructure.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("TaskManagement.Domain.Entities.MasterData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MasterData");
-                });
-
             modelBuilder.Entity("TaskManagement.Domain.Entities.Priority", b =>
                 {
                     b.Property<int>("ID")
@@ -442,8 +416,14 @@ namespace TaskManagement.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int?>("PriorityId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnType("text");
@@ -470,6 +450,10 @@ namespace TaskManagement.Infrastructure.Migrations
 
                     b.HasIndex("BacklogTaskId")
                         .IsUnique();
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("PriorityId");
 
                     b.HasIndex("StatusId");
 
@@ -619,6 +603,14 @@ namespace TaskManagement.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TaskManagement.Domain.Entities.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId");
+
+                    b.HasOne("TaskManagement.Domain.Entities.Priority", "Priority")
+                        .WithMany()
+                        .HasForeignKey("PriorityId");
+
                     b.HasOne("TaskManagement.Domain.Entities.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
@@ -627,6 +619,10 @@ namespace TaskManagement.Infrastructure.Migrations
                     b.Navigation("Assignee");
 
                     b.Navigation("BacklogTask");
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Priority");
 
                     b.Navigation("Status");
                 });

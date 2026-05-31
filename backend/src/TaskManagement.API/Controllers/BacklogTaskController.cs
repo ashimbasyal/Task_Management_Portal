@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 using TaskManagement.Application.AuditLogs.Command;
 using TaskManagement.Application.BacklogTasks.command;
 using TaskManagement.Application.BacklogTasks.Query;
@@ -21,7 +22,7 @@ namespace TaskManagement.API.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateBacklogTask(int id, UpdateBacklogTaskCommand command)
         {
             command.Id = id;
@@ -31,7 +32,7 @@ namespace TaskManagement.API.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetBacklogTaskById(int id)
         {
             var response = await mediator.Send(new GetBacklogTaskByIdQuery { Id = id });
@@ -39,7 +40,7 @@ namespace TaskManagement.API.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteBacklogTask(int id)
         {
             var response = await mediator.Send(new DeleteBacklogTaskCommand { Id = id });
@@ -63,12 +64,40 @@ namespace TaskManagement.API.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
-        [HttpPost("{id}/move-to-sprint")]
+        [HttpPost("{id:int}/move-to-sprint")]
         public async Task<IActionResult> MoveToSprint(int id, [FromBody] MoveToSprintRequestDto request)
         {
             var command = new MoveToSprintCommand(id, request.SprintName, request.StartDate, request.EndDate, request.Remarks, request.AssigneeId);
             var response = await mediator.Send(command);
             return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpGet("download-sample")]
+        public async Task<IActionResult> DownloadSample()
+        {
+            using var package = new ExcelPackage();
+            var worksheet = package.Workbook.Worksheets.Add("Backlog");
+
+            worksheet.Cells[1, 1].Value = "Title";
+            worksheet.Cells[1, 2].Value = "Description";
+            worksheet.Cells[1, 3].Value = "RequestedBy";
+            worksheet.Cells[1, 4].Value = "GitLabLink";
+            worksheet.Cells[1, 5].Value = "Remarks";
+            worksheet.Cells[1, 6].Value = "PriorityId";
+            worksheet.Cells[1, 7].Value = "StatusId";
+            worksheet.Cells[1, 8].Value = "DepartmentId";
+            worksheet.Cells[1, 9].Value = "CreatedBy";
+
+            worksheet.Cells[1, 1, 1, 9].Style.Font.Bold = true;
+            worksheet.Cells[1, 1, 1, 9].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            worksheet.Cells[1, 1, 1, 9].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
+            worksheet.Cells.AutoFitColumns();
+
+            var stream = new MemoryStream();
+            await package.SaveAsAsync(stream);
+            stream.Position = 0;
+
+            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "backlog_sample.xlsx");
         }
 
         [HttpPost("bulk-upload")]

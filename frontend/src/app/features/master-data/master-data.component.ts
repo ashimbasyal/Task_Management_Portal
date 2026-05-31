@@ -22,6 +22,7 @@ const MASTER_TYPES = [
   { type: 2, label: 'Priority' },
   { type: 3, label: 'Sprint Status Trigger' },
   { type: 4, label: 'Assignee' },
+  { type: 5, label: 'Department' },
 ];
 
 @Component({
@@ -45,12 +46,12 @@ const MASTER_TYPES = [
         <div class="config-card" *ngFor="let config of configs()">
           <div class="config-header">
             <h3>{{ config.label }}</h3>
-            <button pButton icon="pi pi-plus" class="p-button-rounded p-button-text" (click)="openAdd(config)"></button>
+            <button *ngIf="config.type !== 4" pButton icon="pi pi-plus" class="p-button-rounded p-button-text" (click)="openAdd(config)"></button>
           </div>
           <ul class="value-list">
             <li *ngFor="let entry of config.values">
               <span>{{ entry.value }}</span>
-              <div>
+              <div *ngIf="config.type !== 4">
                 <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text" (click)="openEdit(config, entry)"></button>
                 <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="confirmDelete(config, entry)"></button>
               </div>
@@ -140,6 +141,7 @@ export class MasterDataComponent {
       this.masterDataService.update(this.editingEntry.id, {
         value: this.newValue.trim(),
         displayOrder: this.editingEntry.displayOrder,
+        type: this.activeConfig.type,
       }).subscribe({
         next: () => {
           this.messageService.add({ severity: 'success', summary: 'Updated', detail: 'Value updated', key: 'br' });
@@ -178,7 +180,7 @@ export class MasterDataComponent {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.masterDataService.delete(entry.id).subscribe({
+        this.masterDataService.delete(entry.id, config.type).subscribe({
           next: () => {
             this.messageService.add({ severity: 'success', summary: 'Deleted', detail: 'Value removed', key: 'br' });
             this.loadAll();

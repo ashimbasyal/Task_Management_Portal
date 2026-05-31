@@ -1,4 +1,4 @@
-import { Component, inject, signal, afterNextRender } from '@angular/core';
+import { Component, inject, signal, afterNextRender, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
@@ -8,7 +8,7 @@ import { SelectModule } from 'primeng/select';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
 import { DatePickerModule } from 'primeng/datepicker';
-import { FileUploadModule } from 'primeng/fileupload';
+import { FileUploadModule, FileUpload } from 'primeng/fileupload';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -56,6 +56,7 @@ interface SprintForm {
     <div class="page-header">
       <h2>Backlog Management</h2>
       <div class="header-actions">
+        <p-button label="Sample" icon="pi pi-download" severity="secondary" (onClick)="downloadSample()" styleClass="p-button-outlined"></p-button>
         <p-button label="Excel Upload" icon="pi pi-upload" severity="secondary" (onClick)="uploadVisible = true" styleClass="p-button-outlined"></p-button>
         <p-button label="Create Backlog" icon="pi pi-plus" (onClick)="showCreate()"></p-button>
       </div>
@@ -119,9 +120,18 @@ interface SprintForm {
             <label>Status</label>
             <p-select [options]="statusOpts()" [(ngModel)]="formItem.statusId" placeholder="Select" appendTo="body" styleClass="w-full" optionLabel="name" optionValue="id"></p-select>
           </div>
-          <div class="field">
+          <div class="field assignee-field">
             <label>Requested By</label>
-            <input pInputText [(ngModel)]="formItem.requestedBy" class="w-full" />
+            <div class="assignee-wrapper">
+              <input pInputText [(ngModel)]="requestedByInput" (input)="onRequestedByInput()" (focus)="onRequestedByFocus()" (blur)="onRequestedByBlur()" class="w-full" placeholder="Type @ to search users" autocomplete="off" />
+              <div *ngIf="showRequestedByOverlay" class="assignee-overlay">
+                <div *ngFor="let user of filteredRequestedByUsers()" class="assignee-option" (mousedown)="selectRequestedBy(user)">
+                  <span>{{ user.fullName }}</span>
+                  <small>{{ user.email }}</small>
+                </div>
+                <div *ngIf="filteredRequestedByUsers().length === 0" class="assignee-option no-results">No users found</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="field">
@@ -162,11 +172,11 @@ interface SprintForm {
         <div class="field-row">
           <div class="field">
             <label>Start Date</label>
-            <p-datepicker [(ngModel)]="sprintForm.startDate" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
+            <p-datepicker [(ngModel)]="sprintForm.startDate" [minDate]="today" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
           </div>
           <div class="field">
             <label>End Date</label>
-            <p-datepicker [(ngModel)]="sprintForm.endDate" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
+            <p-datepicker [(ngModel)]="sprintForm.endDate" [minDate]="today" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
           </div>
         </div>
         <div class="field">
@@ -180,8 +190,8 @@ interface SprintForm {
       </ng-template>
     </p-dialog>
 
-    <p-dialog header="Excel Upload" [modal]="true" [(visible)]="uploadVisible" [style]="{ width: '450px' }">
-      <p-fileUpload mode="basic" chooseLabel="Choose Excel File" accept=".xlsx,.xls" (onSelect)="onUpload($event)" [auto]="false"></p-fileUpload>
+    <p-dialog header="Excel Upload" [modal]="true" [(visible)]="uploadVisible" [style]="{ width: '450px' }" (onShow)="onUploadDialogShow()">
+      <p-fileUpload #fileUpload mode="basic" chooseLabel="Choose Excel File" accept=".xlsx,.xls" (onSelect)="onUpload($event)" [auto]="false"></p-fileUpload>
       <p style="margin-top:1rem;color:#64748b;font-size:0.9rem;">Upload an Excel file with backlog entries.</p>
       <ng-template pTemplate="footer">
         <button pButton label="Upload" [loading]="uploading()" (click)="confirmUpload()"></button>
@@ -245,6 +255,7 @@ export class BacklogComponent {
   sprintDialogVisible = false;
   uploadVisible = false;
   selectedFile: File | null = null;
+  @ViewChild('fileUpload') fileUpload!: FileUpload;
 
   filterPriorityId: number | null = null;
   filterStatusId: number | null = null;
@@ -255,11 +266,14 @@ export class BacklogComponent {
   deptOpts = signal<DepartmentDto[]>([]);
   assigneeOpts = signal<{ label: string; value: string }[]>([]);
 
+  today = new Date();
   formItem: Partial<BacklogForm> = {};
   selectedItem: BacklogItem | null = null;
   sprintForm: SprintForm = { sprintName: '', assigneeId: null, startDate: null, endDate: null, remarks: '' };
   assigneeInput = '';
   showAssigneeOverlay = false;
+  requestedByInput = '';
+  showRequestedByOverlay = false;
   allUsers: UserDto[] = [];
 
   constructor() {
@@ -295,6 +309,8 @@ export class BacklogComponent {
 
   showCreate() {
     this.formItem = {};
+    this.requestedByInput = '';
+    this.showRequestedByOverlay = false;
     this.dialogVisible = true;
   }
 
@@ -310,6 +326,8 @@ export class BacklogComponent {
       statusId: item.statusId,
       departmentId: item.departmentId,
     };
+    this.requestedByInput = item.requestedBy || '';
+    this.showRequestedByOverlay = false;
     this.dialogVisible = true;
   }
 
@@ -418,6 +436,45 @@ export class BacklogComponent {
     this.showAssigneeOverlay = false;
   }
 
+  onRequestedByInput() {
+    const hasAt = this.requestedByInput.includes('@');
+    if (hasAt && !this.showRequestedByOverlay) {
+      this.showRequestedByOverlay = true;
+    } else if (!hasAt) {
+      this.showRequestedByOverlay = false;
+    }
+  }
+
+  onRequestedByFocus() {
+    if (this.requestedByInput.includes('@')) {
+      this.showRequestedByOverlay = true;
+    }
+  }
+
+  onRequestedByBlur() {
+    setTimeout(() => {
+      this.showRequestedByOverlay = false;
+    }, 200);
+  }
+
+  selectRequestedBy(user: UserDto) {
+    this.requestedByInput = user.fullName;
+    this.formItem.requestedBy = user.fullName;
+    this.showRequestedByOverlay = false;
+  }
+
+  filteredRequestedByUsers(): UserDto[] {
+    if (!this.showRequestedByOverlay) return [];
+    const atIndex = this.requestedByInput.lastIndexOf('@');
+    if (atIndex === -1) return [];
+    const query = this.requestedByInput.slice(atIndex + 1).toLowerCase();
+    if (!query) return this.allUsers;
+    return this.allUsers.filter(u =>
+      u.fullName.toLowerCase().includes(query) ||
+      u.email.toLowerCase().includes(query)
+    );
+  }
+
   filteredAssigneeUsers(): UserDto[] {
     if (!this.showAssigneeOverlay) return [];
     const atIndex = this.assigneeInput.lastIndexOf('@');
@@ -456,11 +513,27 @@ export class BacklogComponent {
     });
   }
 
+  downloadSample() {
+    this.backlogService.downloadSample().subscribe(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'backlog_sample.xlsx';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+
   onUpload(event: any) {
     this.selectedFile = event.files?.[0] || null;
     if (this.selectedFile) {
       this.messageService.add({ severity: 'info', summary: 'File selected', detail: this.selectedFile.name, key: 'br' });
     }
+  }
+
+  onUploadDialogShow() {
+    this.selectedFile = null;
+    this.fileUpload?.clear();
   }
 
   confirmUpload() {
@@ -470,14 +543,24 @@ export class BacklogComponent {
     }
     this.uploading.set(true);
     this.backlogService.bulkUpload(this.selectedFile).subscribe({
-      next: () => {
-        this.messageService.add({ severity: 'success', summary: 'Uploaded', detail: 'Backlog items uploaded', key: 'br' });
+      next: (res) => {
+        const skipped = res?.data?.skipped ?? 0;
+        const inserted = res?.data?.inserted ?? 0;
+        const detail = res?.message || `Inserted: ${inserted}, Skipped: ${skipped}`;
+        if (skipped > 0) {
+          this.messageService.add({ severity: 'warn', summary: 'Uploaded with warnings', detail: `${detail} — ${skipped} row(s) skipped (duplicate or invalid)`, key: 'br' });
+        } else {
+          this.messageService.add({ severity: 'success', summary: 'Uploaded', detail, key: 'br' });
+        }
         this.uploadVisible = false;
         this.uploading.set(false);
         this.selectedFile = null;
+        this.fileUpload?.clear();
         this.loadItems();
       },
-      error: () => {
+      error: (err) => {
+        const detail = err.error?.message || 'Bulk upload failed';
+        this.messageService.add({ severity: 'error', summary: 'Upload Failed', detail, key: 'br' });
         this.uploading.set(false);
       },
     });

@@ -18,11 +18,9 @@ namespace TaskManagement.Application.SprintTasks.command
 
         public DateTime? EndDate { get; set; }
 
-        public string? Remarks { get; set; }
-
         public string? AssigneeId { get; set; }
 
-        public int? StatusId { get; set; }
+        public string? Remarks { get; set; }
 
         public string? CreatedBy { get; set; }
     }

@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TaskManagement.Application.Common.Behaviours;
+using TaskManagement.Domain.Enums;
 
 namespace TaskManagement.Application.MasterData.command
 {
@@ -15,29 +16,33 @@ namespace TaskManagement.Application.MasterData.command
         {
             try
             {
-                var entry = await _context.MasterData
-                    .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+                if (request.Type == MasterDataType.Assignee)
+                    return new APIResponse
+                    {
+                        StatusCode = 400,
+                        Message = "Cannot update assignee from master data. Use User Management instead."
+                    };
 
-                if (entry == null)
+                bool found = request.Type switch
                 {
+                    MasterDataType.Status => await UpdateStatus(request, cancellationToken),
+                    MasterDataType.Priority => await UpdatePriority(request, cancellationToken),
+                    MasterDataType.SprintStatusTrigger => await UpdateSprintStatusTrigger(request, cancellationToken),
+                    MasterDataType.Department => await UpdateDepartment(request, cancellationToken),
+                    _ => false
+                };
+
+                if (!found)
                     return new APIResponse
                     {
                         StatusCode = 404,
                         Message = "Master data not found"
                     };
-                }
-
-                if (request.Value != null)
-                    entry.Value = request.Value;
-
-                entry.DisplayOrder = request.DisplayOrder;
-                await _context.SaveChangesAsync(cancellationToken);
 
                 return new APIResponse
                 {
                     StatusCode = 200,
-                    Message = "Master data updated successfully",
-                    Data = entry
+                    Message = "Master data updated successfully"
                 };
             }
             catch (Exception ex)
@@ -49,6 +54,42 @@ namespace TaskManagement.Application.MasterData.command
                     Error = ex.Message
                 };
             }
+        }
+
+        private async Task<bool> UpdateStatus(UpdateMasterDataCommand request, CancellationToken ct)
+        {
+            var entity = await _context.Statuses.FirstOrDefaultAsync(x => x.Id == request.Id, ct);
+            if (entity == null) return false;
+            entity.Name = request.Value;
+            await _context.SaveChangesAsync(ct);
+            return true;
+        }
+
+        private async Task<bool> UpdatePriority(UpdateMasterDataCommand request, CancellationToken ct)
+        {
+            var entity = await _context.Priorities.FirstOrDefaultAsync(x => x.ID == request.Id, ct);
+            if (entity == null) return false;
+            entity.Name = request.Value;
+            await _context.SaveChangesAsync(ct);
+            return true;
+        }
+
+        private async Task<bool> UpdateSprintStatusTrigger(UpdateMasterDataCommand request, CancellationToken ct)
+        {
+            var entity = await _context.SprintStatuses.FirstOrDefaultAsync(x => x.Id == request.Id, ct);
+            if (entity == null) return false;
+            entity.Name = request.Value;
+            await _context.SaveChangesAsync(ct);
+            return true;
+        }
+
+        private async Task<bool> UpdateDepartment(UpdateMasterDataCommand request, CancellationToken ct)
+        {
+            var entity = await _context.Departments.FirstOrDefaultAsync(x => x.Id == request.Id, ct);
+            if (entity == null) return false;
+            entity.Name = request.Value ?? entity.Name;
+            await _context.SaveChangesAsync(ct);
+            return true;
         }
     }
 }

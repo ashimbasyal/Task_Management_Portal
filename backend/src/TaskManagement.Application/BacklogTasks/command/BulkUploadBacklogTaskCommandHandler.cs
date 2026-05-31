@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using TaskManagement.Application.Common.Behaviours;
@@ -11,13 +6,16 @@ using TaskManagement.Domain.Entities;
 
 namespace TaskManagement.Application.BacklogTasks.command
 {
-    public class BulkUploadBacklogTaskCommandHandler : IRequestHandler<BulkUploadBacklogTaskCommand, APIResponse>
+    public class BulkUploadBacklogTaskCommandHandler
+        : IRequestHandler<BulkUploadBacklogTaskCommand, APIResponse>
     {
         private readonly IApplicationDbContext _context;
+
         public BulkUploadBacklogTaskCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }
+
         public async Task<APIResponse> Handle(BulkUploadBacklogTaskCommand request, CancellationToken cancellationToken)
         {
             try
@@ -31,28 +29,54 @@ namespace TaskManagement.Application.BacklogTasks.command
                     };
                 }
 
-
                 var backlogTasks = new List<BacklogTask>();
+                var skippedRows = new List<int>();
 
                 var currentMaxSN = await _context.BacklogTasks
                     .MaxAsync(x => (int?)x.SN, cancellationToken) ?? 0;
 
-                using var stream = new MemoryStream();
+                var existingTitles = await _context.BacklogTasks
+                    .Select(x => x.Title.ToLower())
+                    .ToListAsync(cancellationToken);
 
+                var excelTitles = new HashSet<string>();
+
+                using var stream = new MemoryStream();
                 await request.File.CopyToAsync(stream, cancellationToken);
 
                 using var package = new ExcelPackage(stream);
-
                 var worksheet = package.Workbook.Worksheets[0];
 
                 int rowCount = worksheet.Dimension.Rows;
 
                 for (int row = 2; row <= rowCount; row++)
                 {
+                    var title = worksheet.Cells[row, 1].Text?.Trim();
+
+                    if (string.IsNullOrWhiteSpace(title))
+                    {
+                        skippedRows.Add(row);
+                        continue;
+                    }
+
+                    var normalizedTitle = title.ToLower();
+
+                    if (existingTitles.Contains(normalizedTitle))
+                    {
+                        skippedRows.Add(row);
+                        continue;
+                    }
+
+                    if (!excelTitles.Add(normalizedTitle))
+                    {
+                        skippedRows.Add(row);
+                        continue;
+                    }
+
                     var task = new BacklogTask
                     {
                         SN = ++currentMaxSN,
-                        Title = worksheet.Cells[row, 1].Text,
+                        Title = title,
                         Description = worksheet.Cells[row, 2].Text,
                         RequestedBy = worksheet.Cells[row, 3].Text,
                         GitLabLink = worksheet.Cells[row, 4].Text,
@@ -60,24 +84,17 @@ namespace TaskManagement.Application.BacklogTasks.command
 
                         PriorityId = int.TryParse(
                             worksheet.Cells[row, 6].Text,
-                            out var priorityId)
-                            ? priorityId
-                            : null,
+                            out var priorityId) ? priorityId : null,
 
                         StatusId = int.TryParse(
                             worksheet.Cells[row, 7].Text,
-                            out var statusId)
-                            ? statusId
-                            : null,
+                            out var statusId) ? statusId : null,
 
                         DepartmentId = int.TryParse(
                             worksheet.Cells[row, 8].Text,
-                            out var departmentId)
-                            ? departmentId
-                            : null,
+                            out var departmentId) ? departmentId : null,
 
                         CreatedBy = worksheet.Cells[row, 9].Text,
-
                         CreatedAt = DateTime.UtcNow,
                         IsMovedToSprint = false
                     };
@@ -86,14 +103,17 @@ namespace TaskManagement.Application.BacklogTasks.command
                 }
 
                 _context.BacklogTasks.AddRange(backlogTasks);
-
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new APIResponse
                 {
                     StatusCode = 200,
-                    Message = $"{backlogTasks.Count} tasks uploaded successfully.",
-                    Data = backlogTasks.Count
+                    Message = $"Upload completed. Inserted: {backlogTasks.Count}, Skipped: {skippedRows.Count}",
+                    Data = new
+                    {
+                        Inserted = backlogTasks.Count,
+                        Skipped = skippedRows.Count
+                    }
                 };
             }
             catch (Exception ex)
