@@ -334,6 +334,8 @@ namespace TaskManagement.Infrastructure.Migrations
                     Remarks = table.Column<string>(type: "text", nullable: true),
                     AssigneeId = table.Column<string>(type: "text", nullable: true),
                     StatusId = table.Column<int>(type: "integer", nullable: true),
+                    PriorityId = table.Column<int>(type: "integer", nullable: true),
+                    DepartmentId = table.Column<int>(type: "integer", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -354,6 +356,16 @@ namespace TaskManagement.Infrastructure.Migrations
                         principalTable: "BacklogTasks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SprintTasks_Departments_DepartmentId",
+                        column: x => x.DepartmentId,
+                        principalTable: "Departments",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SprintTasks_Priorities_PriorityId",
+                        column: x => x.PriorityId,
+                        principalTable: "Priorities",
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_SprintTasks_Statuses_StatusId",
                         column: x => x.StatusId,
@@ -429,6 +441,16 @@ namespace TaskManagement.Infrastructure.Migrations
                 table: "SprintTasks",
                 column: "BacklogTaskId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SprintTasks_DepartmentId",
+                table: "SprintTasks",
+                column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SprintTasks_PriorityId",
+                table: "SprintTasks",
+                column: "PriorityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SprintTasks_StatusId",

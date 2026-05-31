@@ -24,6 +24,12 @@ public class SprintTask
 
     public Status? Status { get; set; }
 
+    public int? PriorityId { get; set; }
+    public Priority? Priority { get; set; }
+
+    public int? DepartmentId { get; set; }
+    public Department? Department { get; set; }
+
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public string? CreatedBy { get; set; }
