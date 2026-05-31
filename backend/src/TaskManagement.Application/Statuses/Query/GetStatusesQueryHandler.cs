@@ -22,6 +22,7 @@ namespace TaskManagement.Application.Statuses.Query
             try
             {
                 var statuses = await _context.Statuses
+                .Where(x => x.IsActive)
                 .Select(x => new StatusDto
                 {
                     Id = x.Id,

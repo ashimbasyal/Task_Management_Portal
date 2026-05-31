@@ -28,7 +28,8 @@ export const RolePermissions: Record<number, Permission[]> = {
     Permission.UpdateSprintStatus,
     Permission.ViewDashboard,
   ],
-  3: [
+   3: [
+    Permission.ViewUsers,
     Permission.ViewBacklog,
     Permission.CreateBacklog,
     Permission.EditBacklog,

@@ -32,13 +32,13 @@ namespace TaskManagement.Application.Priorities.command
                     };
                 }
 
-
+                priority.IsActive = false;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new APIResponse
                 {
                     StatusCode = 200,
-                    Message = "Priority deleted successfully"
+                    Message = "Priority deactivated successfully"
                 };
             }
             catch (Exception ex)

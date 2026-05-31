@@ -22,6 +22,7 @@ namespace TaskManagement.Application.Priorities.Query
             try
             {
                 var priorities = await _context.Priorities
+                    .Where(x => x.IsActive)
                     .Select(x => new PriorityDto
                     {
                         Id = x.ID,

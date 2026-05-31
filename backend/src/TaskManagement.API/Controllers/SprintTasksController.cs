@@ -12,6 +12,13 @@ namespace TaskManagement.API.Controllers
     [Route("api/[controller]")]
     public class SprintTasksController(IMediator mediator) : ControllerBase
     {
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var response = await mediator.Send(new GetAllSprintTasksQuery());
+            return StatusCode(response.StatusCode, response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateSprintTask(CreateSprintTaskCommand command)
         {

@@ -1,11 +1,15 @@
 using MediatR;
-using TaskManagement.Application.Users.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using TaskManagement.Application.Common.Behaviours;
 
 namespace TaskManagement.Application.Users.Queries;
 
-public sealed class GetUserPermissionsQueryHandler(IUserRepository userRepository)
+public sealed class GetUserPermissionsQueryHandler(IApplicationDbContext context)
     : IRequestHandler<GetUserPermissionsQuery, List<string>>
 {
     public async Task<List<string>> Handle(GetUserPermissionsQuery request, CancellationToken cancellationToken) =>
-        await userRepository.GetGrantedPermissionsAsync(request.UserId, cancellationToken);
+        await context.UserPermissions
+            .Where(up => up.UserId == request.UserId && up.IsGranted)
+            .Select(up => up.Permission.ToString())
+            .ToListAsync(cancellationToken);
 }

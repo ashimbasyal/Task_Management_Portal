@@ -26,14 +26,18 @@ namespace TaskManagement.Application.BacklogTasks.Query
                     .Select(x => new BacklogTaskDto
                     {
                         Id = x.Id,
+                        SN = x.SN,
                         Title = x.Title,
                         Description = x.Description,
                         RequestedBy = x.RequestedBy,
                         GitLabLink = x.GitLabLink,
                         Remarks = x.Remarks,
                         PriorityId = x.PriorityId,
+                        PriorityName = x.Priority != null ? x.Priority.Name : null,
                         StatusId = x.StatusId,
+                        StatusName = x.Status != null ? x.Status.Name : null,
                         DepartmentId = x.DepartmentId,
+                        DepartmentName = x.Department != null ? x.Department.Name : null,
                         IsMovedToSprint = x.IsMovedToSprint,
                         CreatedAt = x.CreatedAt,
                         CreatedBy = x.CreatedBy,

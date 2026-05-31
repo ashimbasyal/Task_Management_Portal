@@ -36,11 +36,32 @@ namespace TaskManagement.Application.SprintTasks.Query
                     };
                 }
 
+                var dto = new SprintTaskDto
+                {
+                    Id = task.Id,
+                    BacklogTaskId = task.BacklogTaskId,
+                    BacklogTaskSN = task.BacklogTask?.SN,
+                    BacklogTaskTitle = task.BacklogTask?.Title,
+                    SprintName = task.SprintName,
+                    StartDate = task.StartDate,
+                    EndDate = task.EndDate,
+                    Remarks = task.Remarks,
+                    AssigneeId = task.AssigneeId,
+                    AssigneeName = task.Assignee?.FullName,
+                    StatusId = task.StatusId,
+                    StatusName = task.Status?.Name,
+                    PriorityName = task.BacklogTask != null && task.BacklogTask.Priority != null ? task.BacklogTask.Priority.Name : null,
+                    CreatedAt = task.CreatedAt,
+                    CreatedBy = task.CreatedBy,
+                    UpdatedAt = task.UpdatedAt,
+                    UpdatedBy = task.UpdatedBy
+                };
+
                 return new APIResponse
                 {
                     StatusCode = 200,
                     Message = "Success",
-                    Data = task
+                    Data = dto
                 };
             }
             catch (Exception ex)

@@ -10,5 +10,8 @@ namespace TaskManagement.Application.BacklogTasks.command
 {
     public class GetAllBacklogTaskQuery: IRequest<APIResponse>
     {
+        public int? PriorityId { get; set; }
+        public int? StatusId { get; set; }
+        public int? DepartmentId { get; set; }
     }
 }

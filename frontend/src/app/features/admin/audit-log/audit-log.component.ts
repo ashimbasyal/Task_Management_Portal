@@ -53,7 +53,6 @@ import { relativeTime } from '../../../shared/utils/relative-time';
           <th pSortableColumn="changedAt">Date <p-sortIcon field="changedAt"></p-sortIcon></th>
           <th pSortableColumn="action">Action <p-sortIcon field="action"></p-sortIcon></th>
           <th>Table</th>
-          <th>Record ID</th>
           <th pSortableColumn="changedBy">Changed By <p-sortIcon field="changedBy"></p-sortIcon></th>
           <th>Details</th>
         </tr>
@@ -69,7 +68,6 @@ import { relativeTime } from '../../../shared/utils/relative-time';
             </span>
           </td>
           <td>{{ log.tableName }}</td>
-          <td>{{ log.recordId ?? '-' }}</td>
           <td>{{ log.changedBy || '-' }}</td>
           <td>
             <button pButton icon="pi pi-eye" class="p-button-rounded p-button-text"
@@ -79,7 +77,7 @@ import { relativeTime } from '../../../shared/utils/relative-time';
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td colspan="6" style="text-align:center;padding:2rem;">No audit logs found</td>
+          <td colspan="5" style="text-align:center;padding:2rem;">No audit logs found</td>
         </tr>
       </ng-template>
     </p-table>
@@ -94,10 +92,6 @@ import { relativeTime } from '../../../shared/utils/relative-time';
       <div class="detail-row">
         <span class="detail-label">Table:</span>
         <span class="detail-value">{{ selectedLog.tableName }}</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-label">Record ID:</span>
-        <span class="detail-value">{{ selectedLog.recordId ?? '-' }}</span>
       </div>
       <div class="detail-row">
         <span class="detail-label">Changed By:</span>

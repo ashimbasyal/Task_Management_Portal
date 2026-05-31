@@ -12,6 +12,7 @@ dist/
 # Logs
 *.log
 log/
+nul
 
 # Secrets (use appsettings.Development.json instead)
 appsettings.Development.json

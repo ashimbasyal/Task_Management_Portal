@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TaskManagement.Application.Common.Behaviours;
+using TaskManagement.Domain.Entities;
 
 namespace TaskManagement.Application.BacklogTasks.command
 {
@@ -34,6 +35,7 @@ namespace TaskManagement.Application.BacklogTasks.command
                     };
                 }
 
+                var oldStatusId = backlogTask.StatusId;
                 backlogTask.Title = request.Title;
                 backlogTask.Description = request.Description;
                 backlogTask.RequestedBy = request.RequestedBy;
@@ -48,6 +50,35 @@ namespace TaskManagement.Application.BacklogTasks.command
                 _context.BacklogTasks.Update(backlogTask);
 
                 await _context.SaveChangesAsync(cancellationToken);
+
+                if (!backlogTask.IsMovedToSprint && request.StatusId.HasValue
+                    && oldStatusId != request.StatusId)
+                {
+                    var newStatus = await _context.Statuses
+                        .FirstOrDefaultAsync(x => x.Id == request.StatusId, cancellationToken);
+
+                    if (newStatus != null)
+                    {
+                        var triggerExists = await _context.SprintStatuses
+                            .AnyAsync(x => x.Name == newStatus.Name && x.IsActive, cancellationToken);
+
+                        if (triggerExists)
+                        {
+                            var sprintTask = new SprintTask
+                            {
+                                BacklogTaskId = backlogTask.Id,
+                                SprintName = $"Sprint-{backlogTask.Id}",
+                                StatusId = request.StatusId,
+                                Remarks = backlogTask.Remarks,
+                                CreatedAt = DateTime.UtcNow
+                            };
+
+                            _context.SprintTasks.Add(sprintTask);
+                            backlogTask.IsMovedToSprint = true;
+                            await _context.SaveChangesAsync(cancellationToken);
+                        }
+                    }
+                }
 
                 return new APIResponse
                 {

@@ -35,7 +35,7 @@ namespace TaskManagement.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var response = await mediator.Send(new DeletePriorityCommand());
+            var response = await mediator.Send(new DeletePriorityCommand { ID = id });
             return StatusCode(response.StatusCode, response);
         }
     }

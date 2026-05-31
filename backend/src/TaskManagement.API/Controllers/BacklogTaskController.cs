@@ -48,10 +48,26 @@ namespace TaskManagement.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBacklogTasks()
+        public async Task<IActionResult> GetAllBacklogTasks(
+            [FromQuery] int? priorityId,
+            [FromQuery] int? statusId,
+            [FromQuery] int? departmentId)
         {
-            var response = await mediator.Send(new GetAllBacklogTaskQuery());
+            var response = await mediator.Send(new GetAllBacklogTaskQuery
+            {
+                PriorityId = priorityId,
+                StatusId = statusId,
+                DepartmentId = departmentId
+            });
 
+            return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpPost("{id}/move-to-sprint")]
+        public async Task<IActionResult> MoveToSprint(int id, [FromBody] MoveToSprintRequestDto request)
+        {
+            var command = new MoveToSprintCommand(id, request.SprintName, request.StartDate, request.EndDate, request.Remarks, request.AssigneeId);
+            var response = await mediator.Send(command);
             return StatusCode(response.StatusCode, response);
         }
 
@@ -68,4 +84,12 @@ namespace TaskManagement.API.Controllers
             return StatusCode(response.StatusCode, response);
         }
     }
+
+    public record MoveToSprintRequestDto(
+        string SprintName,
+        DateTime? StartDate,
+        DateTime? EndDate,
+        string? Remarks,
+        string? AssigneeId
+    );
 }
