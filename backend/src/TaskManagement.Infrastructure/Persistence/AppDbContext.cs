@@ -2,14 +2,11 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TaskManagement.Application.Common.Behaviours;
 using TaskManagement.Domain.Entities;
-using TaskManagement.Domain.Enums;
-
 namespace TaskManagement.Infrastructure.Persistence;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<AppUser>(options), IApplicationDbContext
 {
     public DbSet<Department> Departments => Set<Department>();
-    public DbSet<MasterData> MasterData => Set<MasterData>();
     public DbSet<BacklogTask> BacklogTasks => Set<BacklogTask>();
     public DbSet<SprintTask> SprintTasks => Set<SprintTask>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
@@ -35,11 +32,6 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
 
         builder.Entity<AppUser>()
             .Property(u => u.Role)
-            .HasConversion<int>();
-
-        // MasterData
-        builder.Entity<MasterData>()
-            .Property(m => m.Type)
             .HasConversion<int>();
 
         // BacklogTask → Priority (MasterData)

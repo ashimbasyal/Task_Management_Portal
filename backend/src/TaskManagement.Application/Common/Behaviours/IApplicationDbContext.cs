@@ -12,8 +12,8 @@ namespace TaskManagement.Application.Common.Behaviours
         DbSet<Priority> Priorities { get; }
         DbSet<SprintStatusTrigger> SprintStatuses { get; }
         DbSet<Department> Departments { get; }
+        DbSet<AppUser> Users { get; }
         DbSet<UserPermission> UserPermissions { get; }
-        DbSet<Domain.Entities.MasterData> MasterData { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

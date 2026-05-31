@@ -1,5 +1,7 @@
 using MediatR;
 using TaskManagement.Application.Common.Behaviours;
+using TaskManagement.Domain.Entities;
+using TaskManagement.Domain.Enums;
 
 namespace TaskManagement.Application.MasterData.command
 {
@@ -14,15 +16,48 @@ namespace TaskManagement.Application.MasterData.command
         {
             try
             {
-                var entry = new Domain.Entities.MasterData
+                if (request.Type == MasterDataType.Assignee)
                 {
-                    Type = request.Type,
-                    Value = request.Value,
-                    DisplayOrder = request.DisplayOrder,
-                    IsActive = true
+                    return new APIResponse
+                    {
+                        StatusCode = 400,
+                        Message = "Cannot create assignee from master data. Use User Management instead."
+                    };
+                }
+
+                object entry = request.Type switch
+                {
+                    MasterDataType.Status =>
+                        new Status { Name = request.Value, IsActive = true },
+
+                    MasterDataType.Priority =>
+                        new Priority { Name = request.Value, IsActive = true },
+
+                    MasterDataType.SprintStatusTrigger =>
+                        new SprintStatusTrigger { Name = request.Value, IsActive = true },
+
+                    MasterDataType.Department =>
+                        new Department { Name = request.Value, IsActive = true },
+
+                    _ => throw new ArgumentException($"Invalid master data type: {request.Type}")
                 };
 
-                _context.MasterData.Add(entry);
+                switch (entry)
+                {
+                    case Status s:
+                        _context.Statuses.Add(s);
+                        break;
+                    case Priority p:
+                        _context.Priorities.Add(p);
+                        break;
+                    case SprintStatusTrigger sst:
+                        _context.SprintStatuses.Add(sst);
+                        break;
+                    case Department d:
+                        _context.Departments.Add(d);
+                        break;
+                }
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new APIResponse

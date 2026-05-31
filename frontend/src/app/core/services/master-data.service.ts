@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 export interface MasterDataEntry {
-  id: number;
+  id: number | string;
   type: number;
   value: string;
   displayOrder: number;
@@ -33,14 +33,14 @@ export class MasterDataService {
     );
   }
 
-  update(id: number, request: { value?: string; displayOrder: number }) {
+  update(id: number | string, request: { value?: string; displayOrder: number; type: number }) {
     return this.http.put<any>(this.API, { id, ...request }).pipe(
       map(res => res)
     );
   }
 
-  delete(id: number) {
-    return this.http.delete<any>(`${this.API}/${id}`).pipe(
+  delete(id: number | string, type: number) {
+    return this.http.delete<any>(`${this.API}/${id}`, { params: { type: type.toString() } }).pipe(
       map(res => res)
     );
   }

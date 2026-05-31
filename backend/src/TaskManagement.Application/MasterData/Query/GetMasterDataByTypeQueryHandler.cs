@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TaskManagement.Application.Common.Behaviours;
+using TaskManagement.Domain.Enums;
 
 namespace TaskManagement.Application.MasterData.Query
 {
@@ -15,17 +16,64 @@ namespace TaskManagement.Application.MasterData.Query
         {
             try
             {
-                var entries = await _context.MasterData
-                    .Where(x => x.Type == request.Type && x.IsActive)
-                    .OrderBy(x => x.DisplayOrder)
-                    .Select(x => new
-                    {
-                        x.Id,
-                        x.Type,
-                        x.Value,
-                        x.DisplayOrder
-                    })
-                    .ToListAsync(cancellationToken);
+                object entries = request.Type switch
+                {
+                    MasterDataType.Status => await _context.Statuses
+                        .Where(x => x.IsActive)
+                        .Select(x => new
+                        {
+                            Id = x.Id,
+                            Type = (int)MasterDataType.Status,
+                            Value = x.Name ?? string.Empty,
+                            DisplayOrder = x.Id
+                        })
+                        .ToListAsync(cancellationToken),
+
+                    MasterDataType.Priority => await _context.Priorities
+                        .Where(x => x.IsActive)
+                        .Select(x => new
+                        {
+                            Id = x.ID,
+                            Type = (int)MasterDataType.Priority,
+                            Value = x.Name ?? string.Empty,
+                            DisplayOrder = x.ID
+                        })
+                        .ToListAsync(cancellationToken),
+
+                    MasterDataType.SprintStatusTrigger => await _context.SprintStatuses
+                        .Where(x => x.IsActive)
+                        .Select(x => new
+                        {
+                            Id = x.Id,
+                            Type = (int)MasterDataType.SprintStatusTrigger,
+                            Value = x.Name ?? string.Empty,
+                            DisplayOrder = x.Id
+                        })
+                        .ToListAsync(cancellationToken),
+
+                    MasterDataType.Assignee => await _context.Users
+                        .Select(x => new
+                        {
+                            Id = x.Id,
+                            Type = (int)MasterDataType.Assignee,
+                            Value = x.FullName,
+                            DisplayOrder = 0
+                        })
+                        .ToListAsync(cancellationToken),
+
+                    MasterDataType.Department => await _context.Departments
+                        .Where(x => x.IsActive)
+                        .Select(x => new
+                        {
+                            Id = x.Id,
+                            Type = (int)MasterDataType.Department,
+                            Value = x.Name,
+                            DisplayOrder = x.Id
+                        })
+                        .ToListAsync(cancellationToken),
+
+                    _ => Enumerable.Empty<object>()
+                };
 
                 return new APIResponse
                 {

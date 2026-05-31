@@ -34,9 +34,9 @@ namespace TaskManagement.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, [FromQuery] MasterDataType type)
         {
-            var response = await mediator.Send(new DeleteMasterDataCommand { Id = id });
+            var response = await mediator.Send(new DeleteMasterDataCommand { Id = id, Type = type });
             return StatusCode(response.StatusCode, response);
         }
     }
