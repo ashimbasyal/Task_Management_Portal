@@ -1,18 +1,27 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 export interface BacklogItem {
   id: number;
+  sn: number;
   title: string;
   description: string | null;
   requestedBy: string;
   gitLabLink: string | null;
   remarks: string | null;
-  priority: string;
-  status: string;
-  department: string;
+  priorityId: number | null;
+  priorityName: string | null;
+  statusId: number | null;
+  statusName: string | null;
+  departmentId: number | null;
+  departmentName: string | null;
   isMovedToSprint: boolean;
+  createdAt: string;
+  createdBy: string | null;
+  updatedAt: string | null;
+  updatedBy: string | null;
 }
 
 export interface CreateBacklogRequest {
@@ -21,9 +30,20 @@ export interface CreateBacklogRequest {
   requestedBy: string;
   gitLabLink: string | null;
   remarks: string | null;
-  priority: string;
-  status: string;
-  department: string;
+  priorityId: number | null;
+  statusId: number | null;
+  departmentId: number | null;
+}
+
+export interface UpdateBacklogRequest {
+  title: string;
+  description: string | null;
+  requestedBy: string;
+  gitLabLink: string | null;
+  remarks: string | null;
+  priorityId: number | null;
+  statusId: number | null;
+  departmentId: number | null;
 }
 
 export interface MoveToSprintRequest {
@@ -31,23 +51,51 @@ export interface MoveToSprintRequest {
   startDate: string | null;
   endDate: string | null;
   remarks: string | null;
-  assigneeId: number | null;
+  assigneeId: string | null;
 }
 
 @Injectable({ providedIn: 'root' })
 export class BacklogService {
   private http = inject(HttpClient);
-  private readonly API = `${environment.apiBaseUrl}/backlog`;
+  private readonly API = `${environment.apiBaseUrl}/backlogtask`;
 
-  getAll() {
-    return this.http.get<BacklogItem[]>(this.API + '?_=' + Date.now());
+  getAll(priorityId?: number | null, statusId?: number | null, departmentId?: number | null) {
+    let params = new HttpParams();
+    if (priorityId != null) params = params.set('priorityId', priorityId);
+    if (statusId != null) params = params.set('statusId', statusId);
+    if (departmentId != null) params = params.set('departmentId', departmentId);
+    return this.http.get<any>(this.API, { params }).pipe(
+      map(res => res.data as BacklogItem[])
+    );
   }
 
   create(request: CreateBacklogRequest) {
-    return this.http.post<{ id: number }>(this.API, request);
+    return this.http.post<any>(this.API, request).pipe(
+      map(res => res.data || { id: 0, title: request.title })
+    );
+  }
+
+  update(id: number, request: UpdateBacklogRequest) {
+    return this.http.put<any>(`${this.API}/${id}`, request).pipe(
+      map(res => res.data || { id })
+    );
+  }
+
+  delete(id: number) {
+    return this.http.delete<any>(`${this.API}/${id}`).pipe(
+      map(res => res)
+    );
   }
 
   moveToSprint(id: number, request: MoveToSprintRequest) {
-    return this.http.post<{ sprintId: number }>(`${this.API}/${id}/move-to-sprint`, request);
+    return this.http.post<number>(`${this.API}/${id}/move-to-sprint`, request);
+  }
+
+  bulkUpload(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<any>(`${this.API}/bulk-upload`, formData).pipe(
+      map(res => res)
+    );
   }
 }

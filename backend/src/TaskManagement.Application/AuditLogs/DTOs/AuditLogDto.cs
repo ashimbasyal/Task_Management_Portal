@@ -1,4 +1,4 @@
-namespace TaskManagement.Application.AuditLogs.DTOs;
+﻿namespace TaskManagement.Application.AuditLogs.DTOs;
 
 public record AuditLogDto(
     long Id,

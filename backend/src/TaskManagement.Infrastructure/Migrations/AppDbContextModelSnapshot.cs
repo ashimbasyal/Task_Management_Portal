@@ -311,6 +311,9 @@ namespace TaskManagement.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("SN")
+                        .HasColumnType("integer");
+
                     b.Property<int?>("StatusId")
                         .HasColumnType("integer");
 
@@ -381,7 +384,26 @@ namespace TaskManagement.Infrastructure.Migrations
                     b.ToTable("MasterData");
                 });
 
-            modelBuilder.Entity("TaskManagement.Domain.Entities.UserPermission", b =>
+            modelBuilder.Entity("TaskManagement.Domain.Entities.Priority", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Priorities");
+                });
+
+            modelBuilder.Entity("TaskManagement.Domain.Entities.SprintStatusTrigger", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -389,22 +411,15 @@ namespace TaskManagement.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("IsGranted")
+                    b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("Permission")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
+                    b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId", "Permission")
-                        .IsUnique();
-
-                    b.ToTable("UserPermissions");
+                    b.ToTable("SprintStatuses");
                 });
 
             modelBuilder.Entity("TaskManagement.Domain.Entities.SprintTask", b =>
@@ -415,8 +430,8 @@ namespace TaskManagement.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AssigneeId")
-                        .HasColumnType("integer");
+                    b.Property<string>("AssigneeId")
+                        .HasColumnType("text");
 
                     b.Property<int>("BacklogTaskId")
                         .HasColumnType("integer");
@@ -459,6 +474,51 @@ namespace TaskManagement.Infrastructure.Migrations
                     b.HasIndex("StatusId");
 
                     b.ToTable("SprintTasks");
+                });
+
+            modelBuilder.Entity("TaskManagement.Domain.Entities.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Statuses");
+                });
+
+            modelBuilder.Entity("TaskManagement.Domain.Entities.UserPermission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsGranted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("Permission")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId", "Permission")
+                        .IsUnique();
+
+                    b.ToTable("UserPermissions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -525,17 +585,17 @@ namespace TaskManagement.Infrastructure.Migrations
             modelBuilder.Entity("TaskManagement.Domain.Entities.BacklogTask", b =>
                 {
                     b.HasOne("TaskManagement.Domain.Entities.Department", "Department")
-                        .WithMany()
+                        .WithMany("BacklogTasks")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("TaskManagement.Domain.Entities.MasterData", "Priority")
-                        .WithMany()
+                    b.HasOne("TaskManagement.Domain.Entities.Priority", "Priority")
+                        .WithMany("BacklogTasks")
                         .HasForeignKey("PriorityId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("TaskManagement.Domain.Entities.MasterData", "Status")
-                        .WithMany()
+                    b.HasOne("TaskManagement.Domain.Entities.Status", "Status")
+                        .WithMany("BacklogTasks")
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.SetNull);
 
@@ -548,7 +608,7 @@ namespace TaskManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("TaskManagement.Domain.Entities.SprintTask", b =>
                 {
-                    b.HasOne("TaskManagement.Domain.Entities.MasterData", "Assignee")
+                    b.HasOne("TaskManagement.Domain.Entities.AppUser", "Assignee")
                         .WithMany()
                         .HasForeignKey("AssigneeId")
                         .OnDelete(DeleteBehavior.SetNull);
@@ -559,7 +619,7 @@ namespace TaskManagement.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TaskManagement.Domain.Entities.MasterData", "Status")
+                    b.HasOne("TaskManagement.Domain.Entities.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.SetNull);
@@ -589,7 +649,19 @@ namespace TaskManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("TaskManagement.Domain.Entities.Department", b =>
                 {
+                    b.Navigation("BacklogTasks");
+
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("TaskManagement.Domain.Entities.Priority", b =>
+                {
+                    b.Navigation("BacklogTasks");
+                });
+
+            modelBuilder.Entity("TaskManagement.Domain.Entities.Status", b =>
+                {
+                    b.Navigation("BacklogTasks");
                 });
 #pragma warning restore 612, 618
         }

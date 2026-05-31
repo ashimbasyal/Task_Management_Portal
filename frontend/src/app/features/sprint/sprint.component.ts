@@ -7,31 +7,22 @@ import { DialogModule } from 'primeng/dialog';
 import { SelectModule } from 'primeng/select';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
+import { DatePickerModule } from 'primeng/datepicker';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TooltipModule } from 'primeng/tooltip';
 import { ConfirmationService, MessageService } from 'primeng/api';
-
-interface SprintTask {
-  id: number;
-  title: string;
-  priority: string;
-  status: string;
-  assignee: string;
-  sprintName: string;
-  startDate: string;
-  endDate: string;
-  remarks: string;
-  department: string;
-}
+import { SprintTaskService, SprintTaskDto } from '../../core/services/sprint-task.service';
+import { StatusService, StatusDto } from '../../core/services/status.service';
+import { UserService, UserDto } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-sprint',
   standalone: true,
   imports: [
     CommonModule, FormsModule, TableModule, ButtonModule, DialogModule,
-    SelectModule, InputTextModule, TextareaModule, TagModule,
+    SelectModule, InputTextModule, TextareaModule, DatePickerModule, TagModule,
     ToastModule, ConfirmDialogModule, TooltipModule,
   ],
   providers: [MessageService, ConfirmationService],
@@ -42,26 +33,27 @@ interface SprintTask {
     <div class="page-header">
       <h2>Sprint Management</h2>
       <div class="header-actions">
-        <p-select [options]="sprintNames" placeholder="All Sprints" [(ngModel)]="selectedSprint" (onChange)="applyFilter()" appendTo="body" styleClass="sprint-select"></p-select>
+        <p-select [options]="sprintNameOpts()" placeholder="All Sprints" [(ngModel)]="selectedSprint" (onChange)="applyFilter()" appendTo="body" styleClass="sprint-select" [showClear]="true"></p-select>
       </div>
     </div>
 
     <p-table [value]="filteredTasks()" [paginator]="true" [rows]="10" [loading]="loading()"
-      styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '75rem' }">
+      styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '85rem' }">
       <ng-template pTemplate="header">
         <tr>
-          <th>Title</th><th>Priority</th><th>Status</th><th>Assignee</th><th>Sprint</th><th>Start Date</th><th>End Date</th><th>Actions</th>
+          <th>SN</th><th>Title</th><th>Priority</th><th>Status</th><th>Assignee</th><th>Sprint</th><th>Start Date</th><th>End Date</th><th>Actions</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-task>
         <tr>
-          <td>{{ task.title }}</td>
-          <td><p-tag [value]="task.priority" [severity]="task.priority === 'High' ? 'danger' : task.priority === 'Medium' ? 'warn' : 'success'"></p-tag></td>
-          <td>{{ task.status }}</td>
-          <td>{{ task.assignee }}</td>
+          <td>{{ task.backlogTaskSN }}</td>
+          <td>{{ task.backlogTaskTitle }}</td>
+          <td><p-tag [value]="task.priorityName" [severity]="task.priorityName === 'High' ? 'danger' : task.priorityName === 'Medium' ? 'warn' : 'success'"></p-tag></td>
+          <td>{{ task.statusName }}</td>
+          <td>{{ task.assigneeName }}</td>
           <td>{{ task.sprintName }}</td>
-          <td>{{ task.startDate }}</td>
-          <td>{{ task.endDate }}</td>
+          <td>{{ task.startDate | date:'dd/MM/yyyy' }}</td>
+          <td>{{ task.endDate | date:'dd/MM/yyyy' }}</td>
           <td>
             <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text" (click)="editTask(task)" pTooltip="Edit"></button>
             <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="confirmDelete(task)" pTooltip="Delete"></button>
@@ -69,49 +61,43 @@ interface SprintTask {
         </tr>
       </ng-template>
       <ng-template pTemplate="emptymessage">
-        <tr><td colspan="8" style="text-align:center;padding:2rem;">No sprint tasks found</td></tr>
+        <tr><td colspan="9" style="text-align:center;padding:2rem;">No sprint tasks found</td></tr>
       </ng-template>
     </p-table>
 
     <p-dialog header="Edit Sprint Task" [modal]="true" [(visible)]="dialogVisible" [style]="{ width: '520px' }">
-      <div class="form">
+      <div class="form" *ngIf="editTaskData">
         <div class="field">
-          <label>Title <span class="req">*</span></label>
-          <input pInputText [(ngModel)]="editForm.title" class="w-full" />
+          <label>Title</label>
+          <input pInputText [ngModel]="editTaskData.backlogTaskTitle" class="w-full" disabled />
         </div>
         <div class="field-row">
-          <div class="field">
-            <label>Priority</label>
-            <p-select [options]="priorityOptions" [(ngModel)]="editForm.priority" placeholder="Select" appendTo="body" styleClass="w-full"></p-select>
-          </div>
           <div class="field">
             <label>Status</label>
-            <p-select [options]="statusOptions" [(ngModel)]="editForm.status" placeholder="Select" appendTo="body" styleClass="w-full"></p-select>
+            <p-select [options]="statusOpts()" [(ngModel)]="editTaskData.statusId" placeholder="Select" appendTo="body" styleClass="w-full" optionLabel="name" optionValue="id"></p-select>
           </div>
-        </div>
-        <div class="field-row">
           <div class="field">
             <label>Assignee</label>
-            <p-select [options]="assigneeOptions" [(ngModel)]="editForm.assignee" placeholder="Select" appendTo="body" styleClass="w-full"></p-select>
-          </div>
-          <div class="field">
-            <label>Sprint</label>
-            <p-select [options]="sprintNames" [(ngModel)]="editForm.sprintName" placeholder="Select" appendTo="body" styleClass="w-full"></p-select>
+            <p-select [options]="assigneeOpts()" [(ngModel)]="editTaskData.assigneeId" placeholder="Select" appendTo="body" styleClass="w-full" optionLabel="label" optionValue="value"></p-select>
           </div>
         </div>
         <div class="field-row">
           <div class="field">
             <label>Start Date</label>
-            <input pInputText [(ngModel)]="editForm.startDate" class="w-full" placeholder="DD/MM/YYYY" />
+            <p-datepicker [(ngModel)]="editTaskData.startDate" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
           </div>
           <div class="field">
             <label>End Date</label>
-            <input pInputText [(ngModel)]="editForm.endDate" class="w-full" placeholder="DD/MM/YYYY" />
+            <p-datepicker [(ngModel)]="editTaskData.endDate" dateFormat="dd/mm/yy" styleClass="w-full" appendTo="body"></p-datepicker>
           </div>
         </div>
         <div class="field">
+          <label>Sprint Name</label>
+          <input pInputText [(ngModel)]="editTaskData.sprintName" class="w-full" />
+        </div>
+        <div class="field">
           <label>Remarks</label>
-          <textarea pTextarea [(ngModel)]="editForm.remarks" rows="2" class="w-full"></textarea>
+          <textarea pTextarea [(ngModel)]="editTaskData.remarks" rows="2" class="w-full"></textarea>
         </div>
       </div>
       <ng-template pTemplate="footer">
@@ -135,75 +121,103 @@ interface SprintTask {
   `]
 })
 export class SprintComponent {
+  private sprintTaskService = inject(SprintTaskService);
+  private statusService = inject(StatusService);
+  private userService = inject(UserService);
   private messageService = inject(MessageService);
   private confirmationService = inject(ConfirmationService);
 
-  tasks: SprintTask[] = [
-    { id: 1, title: 'Implement login page', priority: 'High', status: 'In Progress', assignee: 'Alice', sprintName: 'Sprint 1', startDate: '01/05/2026', endDate: '15/05/2026', remarks: '', department: 'Engineering' },
-    { id: 2, title: 'Build task dashboard', priority: 'Medium', status: 'Completed', assignee: 'Bob', sprintName: 'Sprint 1', startDate: '01/05/2026', endDate: '15/05/2026', remarks: 'Delivered on time', department: 'Engineering' },
-    { id: 3, title: 'Excel upload feature', priority: 'Low', status: 'Open', assignee: 'Charlie', sprintName: 'Sprint 2', startDate: '16/05/2026', endDate: '30/05/2026', remarks: '', department: 'QA' },
-    { id: 4, title: 'Notification module', priority: 'High', status: 'Open', assignee: 'Alice', sprintName: 'Sprint 2', startDate: '16/05/2026', endDate: '30/05/2026', remarks: '', department: 'Engineering' },
-    { id: 5, title: 'API integration tests', priority: 'Medium', status: 'Completed', assignee: 'Bob', sprintName: 'Sprint 1', startDate: '01/05/2026', endDate: '15/05/2026', remarks: '', department: 'QA' },
-  ];
-
-  filteredTasks = signal<SprintTask[]>([]);
+  allTasks: SprintTaskDto[] = [];
+  filteredTasks = signal<SprintTaskDto[]>([]);
   loading = signal(false);
   saving = signal(false);
   dialogVisible = false;
   selectedSprint: string | null = null;
 
-  sprintNames = ['Sprint 1', 'Sprint 2'];
-  priorityOptions = ['High', 'Medium', 'Low'];
-  statusOptions = ['Open', 'In Progress', 'Completed', 'On Hold'];
-  assigneeOptions = ['Alice', 'Bob', 'Charlie'];
+  statusOpts = signal<StatusDto[]>([]);
+  assigneeOpts = signal<{ label: string; value: string }[]>([]);
+  sprintNameOpts = signal<{ label: string; value: string }[]>([]);
 
-  editForm: Partial<SprintTask> = {};
+  editTaskData: Partial<SprintTaskDto> = {};
 
   constructor() {
-    this.applyFilter();
+    this.loadReferenceData();
+    this.loadTasks();
   }
 
-  editTask(task: SprintTask) {
-    this.editForm = { ...task };
+  private loadReferenceData() {
+    this.statusService.getAll().subscribe(d => this.statusOpts.set(d));
+    this.userService.getAll().subscribe({
+      next: users => this.assigneeOpts.set(users.map(u => ({ label: `${u.fullName} (${u.email})`, value: u.id }))),
+      error: () => this.assigneeOpts.set([]),
+    });
+  }
+
+  private loadTasks() {
+    this.loading.set(true);
+    this.sprintTaskService.getAll().subscribe({
+      next: data => {
+        this.allTasks = data;
+        const names = [...new Set(data.map(t => t.sprintName).filter(Boolean))] as string[];
+        this.sprintNameOpts.set(names.map(n => ({ label: n, value: n })));
+        this.applyFilter();
+        this.loading.set(false);
+      },
+      error: () => this.loading.set(false),
+    });
+  }
+
+  editTask(task: SprintTaskDto) {
+    this.editTaskData = { ...task };
     this.dialogVisible = true;
   }
 
   saveTask() {
-    if (!this.editForm.title) {
-      this.messageService.add({ severity: 'warn', summary: 'Validation', detail: 'Title is required', key: 'br' });
-      return;
-    }
+    if (!this.editTaskData.id) return;
     this.saving.set(true);
-    const idx = this.tasks.findIndex(t => t.id === this.editForm.id);
-    if (idx >= 0) {
-      this.tasks[idx] = { ...this.editForm as SprintTask };
-      this.messageService.add({ severity: 'success', summary: 'Updated', detail: 'Sprint task updated', key: 'br' });
-    }
-    this.applyFilter();
-    this.dialogVisible = false;
-    this.saving.set(false);
+    this.sprintTaskService.update(this.editTaskData.id, {
+      sprintName: this.editTaskData.sprintName ?? null,
+      startDate: this.editTaskData.startDate ? new Date(this.editTaskData.startDate).toISOString() : null,
+      endDate: this.editTaskData.endDate ? new Date(this.editTaskData.endDate).toISOString() : null,
+      remarks: this.editTaskData.remarks ?? null,
+      assigneeId: this.editTaskData.assigneeId ?? null,
+      statusId: this.editTaskData.statusId ?? null,
+    }).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'success', summary: 'Updated', detail: 'Sprint task updated', key: 'br' });
+        this.dialogVisible = false;
+        this.saving.set(false);
+        this.loadTasks();
+      },
+      error: () => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update sprint task', key: 'br' });
+        this.saving.set(false);
+      },
+    });
   }
 
-  confirmDelete(task: SprintTask) {
+  confirmDelete(task: SprintTaskDto) {
     this.confirmationService.confirm({
-      message: `Delete sprint task "${task.title}"?`,
+      message: `Delete sprint task "${task.backlogTaskTitle}"?`,
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.tasks = this.tasks.filter(t => t.id !== task.id);
-        this.applyFilter();
-        this.messageService.add({ severity: 'success', summary: 'Deleted', detail: 'Sprint task removed', key: 'br' });
+        this.sprintTaskService.delete(task.id).subscribe({
+          next: () => {
+            this.messageService.add({ severity: 'success', summary: 'Deleted', detail: 'Sprint task removed', key: 'br' });
+            this.loadTasks();
+          },
+          error: () => this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete', key: 'br' }),
+        });
       },
     });
   }
 
   applyFilter() {
-    this.loading.set(true);
     this.filteredTasks.set(
       this.selectedSprint
-        ? this.tasks.filter(t => t.sprintName === this.selectedSprint)
-        : this.tasks
+        ? this.allTasks.filter(t => t.sprintName === this.selectedSprint)
+        : this.allTasks
     );
-    this.loading.set(false);
   }
 }
