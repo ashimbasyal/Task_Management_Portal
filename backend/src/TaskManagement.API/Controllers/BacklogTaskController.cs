@@ -64,14 +64,6 @@ namespace TaskManagement.API.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
-        [HttpPost("{id:int}/move-to-sprint")]
-        public async Task<IActionResult> MoveToSprint(int id, [FromBody] MoveToSprintRequestDto request)
-        {
-            var command = new MoveToSprintCommand(id, request.SprintName, request.StartDate, request.EndDate, request.Remarks, request.AssigneeId);
-            var response = await mediator.Send(command);
-            return StatusCode(response.StatusCode, response);
-        }
-
         [HttpGet("download-sample")]
         public async Task<IActionResult> DownloadSample()
         {
@@ -113,12 +105,4 @@ namespace TaskManagement.API.Controllers
             return StatusCode(response.StatusCode, response);
         }
     }
-
-    public record MoveToSprintRequestDto(
-        string SprintName,
-        DateTime? StartDate,
-        DateTime? EndDate,
-        string? Remarks,
-        string? AssigneeId
-    );
 }

@@ -420,6 +420,12 @@ namespace TaskManagement.Infrastructure.Migrations
                 column: "StatusId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BacklogTasks_Title",
+                table: "BacklogTasks",
+                column: "Title",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SprintTasks_AssigneeId",
                 table: "SprintTasks",
                 column: "AssigneeId");

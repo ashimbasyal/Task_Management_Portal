@@ -46,14 +46,6 @@ export interface UpdateBacklogRequest {
   departmentId: number | null;
 }
 
-export interface MoveToSprintRequest {
-  sprintName: string;
-  startDate: string | null;
-  endDate: string | null;
-  remarks: string | null;
-  assigneeId: string | null;
-}
-
 @Injectable({ providedIn: 'root' })
 export class BacklogService {
   private http = inject(HttpClient);
@@ -85,10 +77,6 @@ export class BacklogService {
     return this.http.delete<any>(`${this.API}/${id}`).pipe(
       map(res => res)
     );
-  }
-
-  moveToSprint(id: number, request: MoveToSprintRequest) {
-    return this.http.post<number>(`${this.API}/${id}/move-to-sprint`, request);
   }
 
   downloadSample() {
