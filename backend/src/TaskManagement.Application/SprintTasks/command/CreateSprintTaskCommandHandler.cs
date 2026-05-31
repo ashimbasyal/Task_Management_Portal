@@ -22,9 +22,9 @@ namespace TaskManagement.Application.SprintTasks.command
             try
             {
                 var backlogTask = await _context.BacklogTasks
-                   .FirstOrDefaultAsync(
-                       x => x.Id == request.BacklogTaskId,
-                       cancellationToken);
+                    .FirstOrDefaultAsync(
+                        x => x.Id == request.BacklogTaskId,
+                        cancellationToken);
 
                 if (backlogTask == null)
                 {
@@ -35,18 +35,12 @@ namespace TaskManagement.Application.SprintTasks.command
                     };
                 }
 
-                
-                var existingSprintTask = await _context.SprintTasks
-                    .FirstOrDefaultAsync(
-                        x => x.BacklogTaskId == request.BacklogTaskId,
-                        cancellationToken);
-
-                if (existingSprintTask != null)
+                if (backlogTask.IsMovedToSprint)
                 {
                     return new APIResponse
                     {
                         StatusCode = 400,
-                        Message = "Sprint task already exists for this backlog task."
+                        Message = "Task is moved to sprint."
                     };
                 }
 
@@ -59,13 +53,13 @@ namespace TaskManagement.Application.SprintTasks.command
                     Remarks = request.Remarks,
                     AssigneeId = request.AssigneeId,
                     StatusId = request.StatusId,
-                    CreatedAt = DateTime.UtcNow,
-                    CreatedBy = request.CreatedBy
+                    CreatedBy = request.CreatedBy,
+                    CreatedAt = DateTime.UtcNow
                 };
 
-                await _context.SprintTasks.AddAsync(
-                    sprintTask,
-                    cancellationToken);
+                _context.SprintTasks.Add(sprintTask);
+
+                backlogTask.IsMovedToSprint = true;
 
                 await _context.SaveChangesAsync(cancellationToken);
 
@@ -76,13 +70,13 @@ namespace TaskManagement.Application.SprintTasks.command
                     Data = sprintTask
                 };
             }
-
             catch (Exception ex)
             {
                 return new APIResponse
                 {
                     StatusCode = 500,
-                    Message = ex.Message
+                    Message = "Failed to create sprint task.",
+                    Error = ex.InnerException?.Message
                 };
             }
         }

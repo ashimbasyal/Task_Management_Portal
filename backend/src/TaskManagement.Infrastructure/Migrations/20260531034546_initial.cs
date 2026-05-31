@@ -107,8 +107,7 @@ namespace TaskManagement.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    IsActive = table.Column<bool>(type: "boolean", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -203,15 +202,15 @@ namespace TaskManagement.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_BacklogTasks_MasterData_PriorityId",
+                        name: "FK_BacklogTasks_Priorities_PriorityId",
                         column: x => x.PriorityId,
-                        principalTable: "MasterData",
-                        principalColumn: "Id",
+                        principalTable: "Priorities",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_BacklogTasks_MasterData_StatusId",
+                        name: "FK_BacklogTasks_Statuses_StatusId",
                         column: x => x.StatusId,
-                        principalTable: "MasterData",
+                        principalTable: "Statuses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
@@ -302,6 +301,27 @@ namespace TaskManagement.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserPermissions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    Permission = table.Column<int>(type: "integer", nullable: false),
+                    IsGranted = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserPermissions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserPermissions_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SprintTasks",
                 columns: table => new
                 {
@@ -312,7 +332,7 @@ namespace TaskManagement.Infrastructure.Migrations
                     StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Remarks = table.Column<string>(type: "text", nullable: true),
-                    AssigneeId = table.Column<int>(type: "integer", nullable: true),
+                    AssigneeId = table.Column<string>(type: "text", nullable: true),
                     StatusId = table.Column<int>(type: "integer", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: true),
@@ -323,21 +343,21 @@ namespace TaskManagement.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_SprintTasks", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_SprintTasks_AspNetUsers_AssigneeId",
+                        column: x => x.AssigneeId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
+                    table.ForeignKey(
                         name: "FK_SprintTasks_BacklogTasks_BacklogTaskId",
                         column: x => x.BacklogTaskId,
                         principalTable: "BacklogTasks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SprintTasks_MasterData_AssigneeId",
-                        column: x => x.AssigneeId,
-                        principalTable: "MasterData",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
-                    table.ForeignKey(
-                        name: "FK_SprintTasks_MasterData_StatusId",
+                        name: "FK_SprintTasks_Statuses_StatusId",
                         column: x => x.StatusId,
-                        principalTable: "MasterData",
+                        principalTable: "Statuses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
@@ -414,6 +434,12 @@ namespace TaskManagement.Infrastructure.Migrations
                 name: "IX_SprintTasks_StatusId",
                 table: "SprintTasks",
                 column: "StatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserPermissions_UserId_Permission",
+                table: "UserPermissions",
+                columns: new[] { "UserId", "Permission" },
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -438,7 +464,7 @@ namespace TaskManagement.Infrastructure.Migrations
                 name: "AuditLogs");
 
             migrationBuilder.DropTable(
-                name: "Priorities");
+                name: "MasterData");
 
             migrationBuilder.DropTable(
                 name: "SprintStatuses");
@@ -447,22 +473,25 @@ namespace TaskManagement.Infrastructure.Migrations
                 name: "SprintTasks");
 
             migrationBuilder.DropTable(
-                name: "Statuses");
+                name: "UserPermissions");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "BacklogTasks");
 
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "MasterData");
+                name: "Priorities");
+
+            migrationBuilder.DropTable(
+                name: "Statuses");
+
+            migrationBuilder.DropTable(
+                name: "Departments");
         }
     }
 }

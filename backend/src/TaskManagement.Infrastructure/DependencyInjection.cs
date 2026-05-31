@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TaskManagement.Application.AuditLogs.Interfaces;
 using TaskManagement.Application.Auth.Interfaces;
-using TaskManagement.Application.Dashboard.Interfaces;
 using TaskManagement.Application.Common.Behaviours;
 using TaskManagement.Application.Departments.Interfaces;
 using TaskManagement.Application.Users.Interfaces;

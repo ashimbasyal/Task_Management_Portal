@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using MediatR;
 using TaskManagement.Application.Common.Behaviours;
 
-namespace TaskManagement.Application.SprintTasks.Query
+namespace TaskManagement.Application.SprintTasks.command
 {
-    public class GetSprintTaskByIdQuery: IRequest<APIResponse>
+    public class DeleteSprintTaskCommand:IRequest<APIResponse>
     {
         public int Id { get; set; }
     }

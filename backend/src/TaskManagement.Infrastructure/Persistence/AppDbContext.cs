@@ -18,6 +18,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
     public DbSet<Priority> Priorities => Set<Priority>();
 
     public DbSet<SprintStatusTrigger> SprintStatuses => Set<SprintStatusTrigger>();
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        return base.SaveChangesAsync(cancellationToken);
+    }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -59,10 +63,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
 
         // SprintTask → Assignee (MasterData)
         builder.Entity<SprintTask>()
-            .HasOne(s => s.Assignee)
-            .WithMany()
-            .HasForeignKey(s => s.AssigneeId)
-            .OnDelete(DeleteBehavior.SetNull);
+             .HasOne(s => s.Assignee)
+             .WithMany()
+             .HasForeignKey(s => s.AssigneeId)
+             .OnDelete(DeleteBehavior.SetNull);
 
         // SprintTask → Status (MasterData)
         builder.Entity<SprintTask>()

@@ -12,6 +12,8 @@ namespace TaskManagement.Application.SprintTasks.DTOs
 
         public int BacklogTaskId { get; set; }
 
+        public string? BacklogTaskTitle { get; set; }
+
         public string? SprintName { get; set; }
 
         public DateTime? StartDate { get; set; }
@@ -20,12 +22,13 @@ namespace TaskManagement.Application.SprintTasks.DTOs
 
         public string? Remarks { get; set; }
 
-        public int? AssigneeId { get; set; }
+        public string? AssigneeId { get; set; }
 
         public string? AssigneeName { get; set; }
 
         public int? StatusId { get; set; }
 
+        public string? StatusName { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

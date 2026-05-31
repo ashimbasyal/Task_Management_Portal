@@ -12,7 +12,7 @@ namespace TaskManagement.Application.SprintTasks.command
     {
         public int BacklogTaskId { get; set; }
 
-        public string? SprintName { get; set; } 
+        public string SprintName { get; set; } = string.Empty;
 
         public DateTime? StartDate { get; set; }
 
@@ -20,7 +20,7 @@ namespace TaskManagement.Application.SprintTasks.command
 
         public string? Remarks { get; set; }
 
-        public int? AssigneeId { get; set; }
+        public string? AssigneeId { get; set; }
 
         public int? StatusId { get; set; }
 

@@ -23,7 +23,7 @@ namespace TaskManagement.API.Controllers
         public async Task<IActionResult> GetSprintTaskById(int id)
         {
             var response = await mediator.Send(
-                new GetSprintTaskByIdQuery(id));
+                new GetSprintTaskByIdQuery());
 
             return StatusCode(response.StatusCode, response);
         }
@@ -34,6 +34,15 @@ namespace TaskManagement.API.Controllers
             var response = await mediator.Send(command);
 
             return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await mediator.Send(
+                new DeleteSprintTaskCommand { Id = id });
+
+            return StatusCode(result.StatusCode, result);
         }
     }
 }

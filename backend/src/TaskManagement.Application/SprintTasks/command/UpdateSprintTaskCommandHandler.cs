@@ -20,53 +20,33 @@ namespace TaskManagement.Application.SprintTasks.command
         {
             try
             {
-                var sprintTask = await _context.SprintTasks
-                    .FirstOrDefaultAsync(
-                        x => x.Id == request.Id,
-                        cancellationToken);
+                var task = await _context.SprintTasks
+                    .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
-                if (sprintTask == null)
+                if (task == null)
                 {
                     return new APIResponse
                     {
                         StatusCode = 404,
-                        Message = "Sprint task not found."
+                        Message = "Sprint Task not found"
                     };
                 }
 
-                var backlogTaskExists = await _context.BacklogTasks
-                    .AnyAsync(
-                        x => x.Id == request.BacklogTaskId,
-                        cancellationToken);
-
-                if (!backlogTaskExists)
-                {
-                    return new APIResponse
-                    {
-                        StatusCode = 404,
-                        Message = "Backlog task not found."
-                    };
-                }
-
-                sprintTask.BacklogTaskId = request.BacklogTaskId;
-                sprintTask.SprintName = request.SprintName;
-                sprintTask.StartDate = request.StartDate;
-                sprintTask.EndDate = request.EndDate;
-                sprintTask.Remarks = request.Remarks;
-                sprintTask.AssigneeId = request.AssigneeId;
-                sprintTask.StatusId = request.StatusId;
-                sprintTask.UpdatedAt = DateTime.UtcNow;
-                sprintTask.UpdatedBy = request.UpdatedBy;
-
-                _context.SprintTasks.Update(sprintTask);
+                task.SprintName = request.SprintName!;
+                task.StartDate = request.StartDate;
+                task.EndDate = request.EndDate;
+                task.Remarks = request.Remarks;
+                task.AssigneeId = request.AssigneeId;
+                task.StatusId = request.StatusId;
+                task.UpdatedBy = request.UpdatedBy;
+                task.UpdatedAt = DateTime.UtcNow;
 
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new APIResponse
                 {
                     StatusCode = 200,
-                    Message = "Sprint task updated successfully.",
-                    Data = sprintTask
+                    Message = "Sprint Task updated successfully"
                 };
             }
             catch (Exception ex)
@@ -74,7 +54,8 @@ namespace TaskManagement.Application.SprintTasks.command
                 return new APIResponse
                 {
                     StatusCode = 500,
-                    Message = ex.Message
+                    Message = "Failed",
+                    Error = ex.Message
                 };
             }
         }
